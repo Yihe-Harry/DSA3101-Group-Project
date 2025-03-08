@@ -15,6 +15,8 @@ class DataCleaning:
         df = df.dropna()
         df = df.drop_duplicates()
         df = df.drop('Company', axis = 1) # Drop the 'Company' column
+        df = df.drop('Location', axis = 1) # Drop the 'Location' column
+        df = df.drop('Language', axis = 1) # Drop the 'Language' column
         return df
 
 print(DataCleaning(file_path).clean_data())
