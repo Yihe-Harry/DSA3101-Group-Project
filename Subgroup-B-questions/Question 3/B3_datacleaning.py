@@ -17,6 +17,13 @@ class DataCleaning:
         df = df.drop('Company', axis = 1) # Drop the 'Company' column
         df = df.drop('Location', axis = 1) # Drop the 'Location' column
         df = df.drop('Language', axis = 1) # Drop the 'Language' column
+        df = df.drop('Customer_Segment', axis = 1) # Drop the 'Customer_Segment' column
+        return df
+    
+    def add_weekdayweekend_to_date(self):
+        df = self.clean_data()
+        df['Date'] = pd.to_datetime(df['Date'])
+        df["Day_Type"] = df["Date"].apply(lambda x: "Weekend" if x.weekday() >= 5 else "Weekday")
         return df
 
-print(DataCleaning(file_path).clean_data())
+#print(DataCleaning(file_path).add_weekdayweekend_to_date())
