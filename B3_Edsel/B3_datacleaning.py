@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Read the CSV file
-file_path = 'Subgroup-B-datasets/Edsel-data/marketing_campaign_dataset.csv'
+file_path = 'B3_Edsel/marketing_campaign_dataset.csv'
 
 
 class DataCleaning:
