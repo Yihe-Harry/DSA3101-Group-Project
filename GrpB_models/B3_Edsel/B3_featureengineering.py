@@ -1,5 +1,6 @@
 import pandas as pd
 from B3_datacleaning import DataCleaning
+import holidays
 
 class FeatureEngineering:
     
@@ -13,7 +14,13 @@ class FeatureEngineering:
             return df
         
         def add_features(self):
-            df["CTR"] = df["Clicks"] / df["Impressions"]  # Click-Through Rate
-            df["CPC"] = df["Spend"] / df["Clicks"]  # Cost Per Click
-            df["Conversion Rate"] = df["Conversions"] / df["Clicks"]
+            us_holidays_2021 = set(holidays.US(years=2021).keys())
+            df = self.add_weekdayweekend_to_date()
+            df['Click-Through_Rate'] = df['Clicks'] / df['Impressions']
+            df['Cost_Per_Click'] = df['Acquisition_Cost'] / df['Clicks']
+            df['Is_Holiday'] = df['Date'].isin(us_holidays_2021).astype(int)
             return df
+
+
+print(FeatureEngineering('GrpB_models\B3_Edsel\marketing_campaign_dataset.csv').add_features())  
+print(FeatureEngineering('GrpB_models\B3_Edsel\marketing_campaign_dataset.csv').add_features()['Is_Holiday'].value_counts())  

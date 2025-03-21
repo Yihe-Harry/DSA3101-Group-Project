@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Read the CSV file
-file_path = 'B3_Edsel/marketing_campaign_dataset.csv'
+file_path = 'GrpB_models\B3_Edsel\marketing_campaign_dataset.csv'
 
 
 class DataCleaning:
@@ -18,12 +18,7 @@ class DataCleaning:
         df = df.drop('Location', axis = 1) # Drop the 'Location' column
         df = df.drop('Language', axis = 1) # Drop the 'Language' column
         df = df.drop('Customer_Segment', axis = 1) # Drop the 'Customer_Segment' column
-        return df
-    
-    def add_weekdayweekend_to_date(self):
-        df = self.clean_data()
-        df['Date'] = pd.to_datetime(df['Date'])
-        df["Day_Type"] = df["Date"].apply(lambda x: "Weekend" if x.weekday() >= 5 else "Weekday")
-        return df
+        df['Acquisition_Cost'] = df['Acquisition_Cost'].replace('[\$,]', '', regex=True).astype(float) # Remove the dollar sign from the 'Acquisition_Cost' column
+        df['Date'] = pd.to_datetime(df['Date']) # Convert the 'Date' column to datetime
 
-#print(DataCleaning(file_path).add_weekdayweekend_to_date())
+        return df
