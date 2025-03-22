@@ -1,5 +1,5 @@
 <p align="center">
-  <strong style="font-size:64px;">"Group Name"</strong> <br>
+  <strong style="font-size:64px;">Group 13</strong> <br>
   <em>Machine Learning for Personalized Marketing Campaigns in Banking</em> <br>
   <span style="font-size:16px;">NUS DSA3101 Data Science in Practice Project</span>
 </p>
