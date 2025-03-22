@@ -1,0 +1,314 @@
+---
+title: "DSA3101 A.2"
+output: html_document
+date: "2025-03-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Loading libraries & Reading files
+```{r}
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(jsonlite)
+library(tidyverse)
+library(smplot2)
+
+library(tidyverse)
+library(caret)
+library(randomForest)
+library(corrplot)
+
+telemarketing_data_snkl_a2 <- read.csv2("bank-full.csv")
+
+digitalmarketing_data_snkl_a2 <- read.csv("digital_marketing_campaign_dataset.csv")
+```
+
+
+
+
+# Dataset 1
+
+## Data Cleaning
+
+```{r}
+
+job_encoded_snkl_a2 <- model.matrix(~ job - 1, data = telemarketing_data_snkl_a2)
+marital_encoded_snkl_a2 <- model.matrix(~ marital - 1, data = telemarketing_data_snkl_a2)
+
+telemarketingdata_snkl_a2  <- cbind(telemarketing_data_snkl_a2 [ , -which(names(telemarketing_data_snkl_a2 ) == "job")], job_encoded_snkl_a2)
+telemarketingdata <- cbind(telemarketingdata_snkl_a2[ , -which(names(telemarketingdata_snkl_a2) == "marital")], marital_encoded_snkl_a2)
+
+telemarketing_snkl_a2 <- telemarketingdata_snkl_a2 %>%
+  mutate(education = as.factor(education),
+         default = as.factor(default),
+         housing = as.factor(housing),
+         loan = as.factor(loan),
+         day = as.factor(day),
+         month = as.factor(month),
+         poutcome = as.factor(poutcome),
+         outcome = ifelse(y == "yes", 1, 0)) %>%
+  filter(!(contact == "unknown"))
+
+```
+
+
+
+## Correlation of numerical variables
+
+```{r}
+# Correlation of numerical variables such as age, balance, duration, campaign, pdays, previous and outcome
+numerical_correlation <- cor(telemarketing %>% select(age, balance, duration, campaign, pdays, previous, outcome))[, "outcome"]
+  
+corrplot(cor(telemarketing %>% select(age, balance, duration, campaign, pdays, previous, outcome)), method = "circle")
+
+  
+# density plot to visualize
+
+#duration
+duration_plot <- telemarketing %>%
+  select(duration, outcome) %>%
+  ggplot(aes(x=duration, group = as.factor(outcome))) +
+  geom_density(aes(colour = as.factor(outcome)), linewidth = 1.5) +
+  theme_minimal()
+
+#age
+age_plot <- telemarketing %>%
+  select(age, outcome) %>%
+  ggplot(aes(x=age, group = as.factor(outcome))) +
+  geom_density(aes(colour = as.factor(outcome)), linewidth = 1.5) +
+  theme_minimal()
+
+
+#balance
+balance_plot <- telemarketing %>%
+  select(balance, outcome) %>%
+  ggplot(aes(x=balance, group = as.factor(outcome))) +
+  geom_density(aes(colour = as.factor(outcome)), linewidth = 1.5) +
+  theme_minimal()
+
+
+#pdays
+pdays_plot <- telemarketing %>%
+  select(pdays, outcome) %>%
+  ggplot(aes(x=pdays, group = as.factor(outcome))) +
+  geom_density(aes(colour = as.factor(outcome)), linewidth = 1.5) +
+  theme_minimal
+
+pdays_distribution <- telemarketing %>%
+  select(pdays, outcome) %>%
+  mutate(pdays_group = case_when(
+    pdays < 90 ~ "Under 90 days",
+    pdays >= 90 & pdays <= 180 ~ "90 to 180 days",
+    pdays > 180 ~ "Above 180 days"
+  )) %>%
+  group_by(pdays_group) %>%
+  summarise(deposit = sum(outcome == 1),
+            calls = n(),
+            percentage = deposit / calls *100)
+
+  
+#campaign
+campaign_plot <- telemarketing %>%
+  select(campaign, outcome) %>%
+  ggplot(aes(x=campaign, group = as.factor(outcome))) +
+  geom_density(aes(colour = as.factor(outcome)), linewidth = 1.5) +
+  theme_minimal()
+
+print(numerical_correlation)
+```
+
+
+
+## Correlation of categorical variables
+
+```{r}
+
+categorical_variables <- telemarketing %>%
+  select(education, default, housing, loan, day, month, poutcome, 16:31)
+
+categorical_variables[] <- lapply(categorical_variables, factor)
+
+
+
+# logistic regression to see which categorical variable are more important
+
+logistic_model <- glm(outcome ~ ., data = categorical_variables, family = binomial)
+
+p_values <- summary(logistic_model)$coefficients[, "Pr(>|z|)"]
+
+# Sort p-values in ascending order and get the lowest 5
+sorted_p_values <- sort(p_values)
+lowest_5_p_values <- head(sorted_p_values, 5)
+
+# Display the lowest 5 p-values
+lowest_5_p_values
+
+
+
+# plot to visualize
+
+percentage_deposit_per_month <- categorical_variables %>%
+  select(month, outcome) %>%
+  group_by(month) %>%
+  summarise(percentage = sum(outcome == 1)/ n() *100)
+
+month_plot <- categorical_variables %>%
+  select(month, outcome) %>%
+  ggplot(aes(x=month, group = as.factor(outcome))) +
+  geom_bar(aes(fill = as.factor(outcome)))
+
+
+percentage_deposit_by_housing <- categorical_variables %>%
+  select(housing, outcome) %>%
+  group_by(housing) %>%
+  summarise(percentage = sum(outcome == 1)/ n() *100)
+
+housing_plot <- categorical_variables %>%
+  select(housing, outcome) %>%
+  ggplot(aes(x=housing, group = as.factor(outcome))) +
+  geom_bar(aes(fill = as.factor(outcome)))
+
+
+
+percentage_deposit_by_poutcome <- categorical_variables %>%
+  select(poutcome, outcome) %>%
+  group_by(poutcome) %>%
+  summarise(percentage = sum(outcome == 1)/ n() *100)
+
+poutcome_plot <- categorical_variables %>%
+  select(poutcome, outcome) %>%
+  ggplot(aes(x=poutcome, group = as.factor(outcome))) +
+  geom_bar(aes(fill = as.factor(outcome)))
+```
+
+
+
+
+# Dataset 2
+
+## Data Cleaning
+
+```{r}
+
+
+```
+
+
+## Correlation of numerical variables
+
+```{r}
+
+numerical_correlation_2 <- cor(digitalmarketing_data %>% select(Age, Income, AdSpend, ClickThroughRate, ConversionRate, WebsiteVisits, PagesPerVisit, TimeOnSite, SocialShares, EmailOpens, EmailClicks, PreviousPurchases, LoyaltyPoints, Conversion))[, "Conversion"]
+
+corrplot(cor(digitalmarketing_data %>% select(Age, Income, AdSpend, ClickThroughRate, ConversionRate, WebsiteVisits, PagesPerVisit, TimeOnSite, SocialShares, EmailOpens, EmailClicks, PreviousPurchases, LoyaltyPoints, Conversion)), method = "circle")
+
+
+# density plot to visualize
+
+#AdSpend
+AdSpend_plot <- digitalmarketing_data %>%
+  select(AdSpend, Conversion) %>%
+  group_by(Conversion) %>%
+  ggplot(aes(x=AdSpend, group = as.factor(Conversion))) +
+  geom_density(aes(colour = as.factor(Conversion)), linewidth = 1.5) +
+  theme_minimal()
+
+AdSpend_converted <- digitalmarketing_data %>%
+  select(AdSpend, Conversion) %>%
+  filter(Conversion == 1) %>%
+  select(AdSpend)
+
+
+AdSpend_not_converted <- digitalmarketing_data %>%
+  select(AdSpend, Conversion) %>%
+  filter(Conversion == 0) %>%
+  select(AdSpend)
+
+t.test(AdSpend_converted, AdSpend_not_converted)
+
+#TimeOnSite
+TimeOnSite_plot <- digitalmarketing_data %>%
+  select(TimeOnSite, Conversion) %>%
+  group_by(Conversion) %>%
+  ggplot(aes(x=TimeOnSite, group = as.factor(Conversion))) +
+  geom_density(aes(colour = as.factor(Conversion)), linewidth = 1.5) +
+  theme_minimal()
+
+TimeOnSite_converted <- digitalmarketing_data %>%
+  select(TimeOnSite, Conversion) %>%
+  filter(Conversion == 1) %>%
+  select(TimeOnSite)
+
+TimeOnSite_not_converted <- digitalmarketing_data %>%
+  select(TimeOnSite, Conversion) %>%
+  filter(Conversion == 0) %>%
+  select(TimeOnSite)
+
+t.test(TimeOnSite_converted, TimeOnSite_not_converted)
+```
+
+
+
+## Correlation of categorical variables
+
+```{r}
+categorical_variables_2 <- digitalmarketing_data %>%
+  select(Gender, CampaignChannel, CampaignType, Conversion)
+
+categorical_variables_2[] <- lapply(categorical_variables_2, factor)
+
+
+
+# logistic regression to see which categorical variable are more important
+
+logistic_model_2 <- glm(Conversion ~ ., data = categorical_variables_2, family = binomial)
+
+p_values_2 <- summary(logistic_model_2)$coefficients[, "Pr(>|z|)"]
+
+# Sort p-values in ascending order and get the lowest 5
+sorted_p_values_2 <- sort(p_values_2)
+lowest_5_p_values_2 <- head(sorted_p_values_2, 5)
+
+# Display the lowest 5 p-values
+lowest_5_p_values_2
+
+
+
+# visualization plots
+
+#CampaignChannel
+percentage_convert_by_channel <- categorical_variables_2 %>%
+  select(CampaignChannel, Conversion) %>%
+  group_by(CampaignChannel) %>%
+  summarise(total = n(),
+            convert = sum(Conversion == 1),
+            percent = convert/total *100)
+
+
+CampaignChannel_plot <- categorical_variables_2 %>%
+  select(CampaignChannel, Conversion) %>%
+  ggplot(aes(x=CampaignChannel, group = as.factor(Conversion))) +
+  geom_bar(aes(fill = as.factor(Conversion)))
+
+
+
+#CampaignType
+percentage_convert_by_type <- categorical_variables_2 %>%
+  select(CampaignType, Conversion) %>%
+  group_by(CampaignType) %>%
+  summarise(total = n(),
+            convert = sum(Conversion == 1),
+            percent = convert/total *100)
+
+
+CampaignType_plot <- categorical_variables_2 %>%
+  select(CampaignType, Conversion) %>%
+  ggplot(aes(x=CampaignType, group = as.factor(Conversion))) +
+  geom_bar(aes(fill = as.factor(Conversion)))
+```
+
