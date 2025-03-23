@@ -6,14 +6,16 @@ This folder contains the relevant documents and explanations relating to Cost-Ef
 
 This README.md file includes the following sections:
 
-1. Overview of the model's functionality and justification for the chosen approaches
-2. How the model ensures a balance between personalization and cost management
+1. Introduction
+2. Methodology and justification 
+3. How the model ensures a balance between personalisation and cost management
+4. Conclusion
 
-# 1)	Overview of the model's functionality and justification for the chosen approaches
-## 1.1) Introduction
-This report outlines a data-driven approach to balancing personalisation and cost-effectiveness in bank marketing campaigns. The proposed framework integrates customer segmentation, predictive modeling, and constrained optimisation to determine the most efficient marketing spend while maximising customer response rates and Return on Investment (ROI).
+# 1) Introduction
+This report outlines a data-driven approach to balancing personalisation and cost-effectiveness in bank marketing campaigns. The proposed framework integrates customer segmentation, predictive modeling, and constrained optimisation to determine the most efficient marketing spend while maximising customer response rates and Return on Investment (ROI). Additionally, the framework takes into account key concerns in the banking industry, including regulatory compliance, transparency, and the need for interpretable models to ensure responsible and ethical marketing practices.
 
-## 1.2) Methodology
+## 2) Methodology and justification
+### 2.1) Approach
 ### Step 1: Customer Segmentation
 
 To better understand customer behaviour, an initial segmentation is performed using unsupervised learning techniques such as K-Means clustering, DBSCAN, or Autoencoders. This step helps group customers based on demographics, transaction patterns, engagement history, and economic conditions.
@@ -43,33 +45,38 @@ Given regulatory requirements such as GDPR and CCPA, explainability is a key con
 
 
 ### Step 3: Determining Optimal Personalisation Level & Cost Estimation
-Instead of predicting personalisation levels and cost separately, a cost-aware personalisation model is employed. This model determines the optimal level of personalisation (e.g., generic email, targeted SMS, personalised call) while estimating the cost associated with each option.
+Rather than predicting personalisation levels and costs separately, a cost-aware personalisation model is used to determine the optimal level of personalisation (e.g., generic email, targeted SMS, or personalised call) while estimating the cost associated with each option.
 
 Inputs: Customer profile, predicted response probability, campaign type
-Outputs:
-Personalisation level (e.g., mass email vs. tailored offer)
-Estimated cost per personalisation level
-Machine learning techniques such as reinforcement learning (RL) or Bayesian optimization can be used to dynamically adjust personalisation levels based on expected response.
+Outputs: Personalisation level (e.g., mass email vs. tailored offer), estimated cost per personalisation level
+
+Machine learning techniques such as reinforcement learning (RL) or Bayesian optimisation can be applied to dynamically adjust personalisation levels based on expected response rates.
+
+**Justification for the Chosen Approach**
+
+Bayesian Optimisation is chosen to identify the most cost-effective personalisation strategy for each customer while dynamically adjusting engagement levels based on response probability and cost constraints. Although Reinforcement Learning (RL) could theoretically optimise personalisation in a dynamic manner, its lack of interpretability makes it unsuitable for financial applications where transparency is essential. Financial regulations and business decision-making processes require clear explanations of model outputs, making black-box optimisation approaches difficult to justify. By contrast, Bayesian Optimisation offers a structured, probabilistic method that effectively balances cost and response probability while ensuring transparency in decision-making.
+
 
 ### Step 4: Predicting ROI Metrics
-To evaluate cost-effectiveness, additional models predict key business metrics, including:
+To evaluate cost-effectiveness, additional models are used to predict key business metrics such as expected revenue per customer, Customer Lifetime Value (CLV), and cost per successful response. These predictions help quantify the financial impact of marketing efforts before optimisation, ensuring that marketing strategies align with business objectives.
 
-Expected revenue per customer
-Customer Lifetime Value (CLV)
-Cost per successful response
-These predictions help quantify the financial impact of marketing efforts before optimization.
+**Justification for the Chosen Approach**
+
+To measure the financial effectiveness of marketing campaigns, XGBoost is used to predict key ROI metrics, including Expected Revenue Uplift, CLV, and Cost per Successful Response. This model offers a strong balance between predictive accuracy and interpretability, allowing financial teams to audit and justify marketing investments. Since ROI models play a crucial role in corporate decision-making, they must provide clear and defensible justifications for financial forecasts to align with corporate reporting standards.
+
+A key concern is ensuring that stakeholders understand how different factors contribute to ROI predictions. To address this, SHAP values are used to explain how various customer attributes influence the predicted financial outcomes. This approach enhances transparency, making the model’s outputs more interpretable for decision-makers and ensuring compliance with financial accountability requirements.
+
 
 ### Step 5: Constrained Budget Optimisation
-A constrained optimisation algorithm is applied to maximize response rates and ROI while ensuring that marketing costs remain within the allocated budget.
+A constrained optimisation algorithm is applied to maximise response rates and ROI while ensuring that marketing costs remain within the allocated budget. The objective function aims to enhance campaign effectiveness by optimising response rates and revenue uplift while adhering to constraints such as budget limitations, customer fatigue limits (to prevent excessive contact), and regulatory compliance with data privacy laws. Optimisation techniques such as Linear Programming (LP), Quadratic Programming (QP), or Reinforcement Learning can be used to distribute the budget efficiently across different customer segments.
 
-Objective Function: Maximise campaign effectiveness (response rate, revenue uplift)
-Constraints:
-Budget limitations (total marketing spend)
-Customer fatigue limits (avoid excessive contact)
-Regulatory constraints (compliance with data privacy laws)
-Optimisation techniques such as Linear Programming (LP), Quadratic Programming (QP), or Reinforcement Learning can be used to allocate the budget across different customer segments efficiently.
+**Justification for the Chosen Approach**
 
-## 1.3) Expected Outcome
+To ensure efficient budget allocation while maintaining compliance with financial and regulatory constraints, a Linear Programming (LP) or Quadratic Programming (QP) approach is adopted. These methods provide a structured and deterministic optimisation process that balances maximum expected response rates with budget limits while preventing excessive marketing exposure for any particular customer segment.
+
+Although Reinforcement Learning (RL) could theoretically enhance budget allocation by dynamically adjusting spending based on real-time feedback, its unpredictability and high complexity make it unsuitable for financial contexts where stability and transparency are critical. LP and QP, on the other hand, offer a controlled and deterministic approach, ensuring that marketing budgets are allocated optimally while maintaining predictability in financial planning. This structured methodology allows marketing teams to make data-driven decisions with confidence, aligning their budget allocation strategies with corporate financial objectives.
+
+### 2.2) Expected Outcome
 By integrating predictive analytics with cost-aware optimisation, the proposed approach ensures that:
 
 1. Personalisation is tailored to customer needs while staying cost-effective
@@ -77,4 +84,10 @@ By integrating predictive analytics with cost-aware optimisation, the proposed a
 3. Business constraints (budget, regulations, customer fatigue) are respected in campaign execution.
 4. This model provides a scalable, data-driven solution for banks looking to enhance marketing efficiency while maintaining high response rates.
 
-# 2)	How the model ensures a balance between personalization and cost management
+# 3)	How the model ensures a balance between personalization and cost management
+
+
+
+
+
+# 4) Conclusion
