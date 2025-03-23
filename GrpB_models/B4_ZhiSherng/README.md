@@ -1,10 +1,21 @@
-This folder contains the relevant documents and explanations relating to Subgroup B question 4, Cost-Effectiveness of Campaigns
+# Overview
+This folder contains the relevant documents and explanations relating to Subgroup B question 4, Cost-Effectiveness of Campaigns.
+The folder contains the following:
 
-# Cost-Optimized Personalized Marketing Strategy for Banks
-## 1) Introduction
+1) A (file name, will finalize soon) that contains the architecture design of the model
+2) A README.md file (this file) which contains the description and explanations for how the model works
+
+This README.md file contains the following sections
+1) Explanation of how the model works
+2) How the model addresses the question
+3) Rationale for the approaches in the model
+
+
+# 1) Cost-Optimized Personalized Marketing Strategy for Banks
+## 1.1) Introduction
 This report outlines a data-driven approach to balancing personalisation and cost-effectiveness in bank marketing campaigns. The proposed framework integrates customer segmentation, predictive modeling, and constrained optimisation to determine the most efficient marketing spend while maximising customer response rates and Return on Investment (ROI).
 
-## 2) Methodology
+## 1.2) Methodology
 ### Step 1: Customer Segmentation
 To better understand customer behaviour, an initial segmentation is performed using unsupervised learning techniques such as K-Means clustering, DBSCAN, or autoencoders. This step helps group customers based on demographics, transaction patterns, engagement history, and economic conditions. 
 
@@ -44,7 +55,7 @@ Customer fatigue limits (avoid excessive contact)
 Regulatory constraints (compliance with data privacy laws)
 Optimisation techniques such as Linear Programming (LP), Quadratic Programming (QP), or Reinforcement Learning can be used to allocate the budget across different customer segments efficiently.
 
-## 3) Expected Outcome
+## 1.3) Expected Outcome
 By integrating predictive analytics with cost-aware optimisation, the proposed approach ensures that:
 
 Personalisation is tailored to customer needs while staying cost-effective.
