@@ -13,12 +13,12 @@ Numerical features were standardized, and K-Means clustering was applied. The El
 Segmentation Outcome (K=5):
 Based on the K=5 clustering model, we identified five distinct customer segments:
 
-Cluster	Customer Type	Key Traits
-0	High-Value Power Users	Low-mid income, lower balances, frequent transactions, high loyalty
-1	Budget-Conscious Occasionals	Low-mid income, good balances, low engagement, cautious savers
-2	Value-Driven Frequent Users	High income, low balances, frequent but low-value activity, low loyalty
-3	Affluent Inactives	High income, high balances, low transactions, minimal engagement
-4	Cautious Regulars	High income, good balances, moderate usage, strong loyalty
+Cluster	 Customer Type	                  Key Traits
+0	       High-Value                       Power Users	Low-mid income, lower balances, frequent transactions, high loyalty
+1	       Budget-Conscious Occasionals	    Low-mid income, good balances, low engagement, cautious savers
+2	       Value-Driven Frequent Users	    High income, low balances, frequent but low-value activity, low loyalty
+3	       Affluent Inactives	              High income, high balances, low transactions, minimal engagement
+4	       Cautious Regulars	              High income, good balances, moderate usage, strong loyalty
 
 
 Conclusion:
