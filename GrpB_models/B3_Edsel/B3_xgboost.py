@@ -1,13 +1,14 @@
 import numpy as np
 import pandas as pd
 import xgboost as xgb
-from sklearn.model_selection import train_test_split
+import seaborn as sns
+from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import GridSearchCV
 from B3_datacleaning import DataCleaning
-from B3_featureengineering import FeatureEngineering    
+from B3_featureengineering import FeatureEngineering
+import matplotlib.pyplot as plt
 
 
 class XGBoostModel:
@@ -17,12 +18,20 @@ class XGBoostModel:
 
         def encode_categorical_features(self):
             df = FeatureEngineering(self.file_path).add_features()
-            le = LabelEncoder()
-            df['Day_Type'] = le.fit_transform(df['Day_Type'])
-            df['Campaign_Type'] = le.fit_transform(df['Campaign_Type'])
-            df['Target_Audience'] = le.fit_transform(df['Target_Audience'])
-            df['Channel_Used'] = le.fit_transform(df['Channel_Used'])
-            df['Is_Holiday'] = le.fit_transform(df['Is_Holiday'])
+            #le = LabelEncoder()
+            #df['Day_Type'] = le.fit_transform(df['Day_Type'])
+            #df['Campaign_Type'] = le.fit_transform(df['Campaign_Type'])
+            #df['Target_Audience'] = le.fit_transform(df['Target_Audience'])
+            #df['Channel_Used'] = le.fit_transform(df['Channel_Used'])
+            #df['Is_Holiday'] = le.fit_transform(df['Is_Holiday'])
+            categorical_cols = ['Day_Type', 'Campaign_Type', 'Target_Audience', 'Channel_Used', 'Is_Holiday']
+            df[categorical_cols] = df[categorical_cols].astype('category')  # XGBoost handles categories natively
+            df = df.drop('Day_Type', axis = 1)
+            df = df.drop('Is_Holiday', axis = 1)
+            df = df.drop('Channel_Used', axis = 1)
+            df = df.drop('Duration', axis = 1)
+            df = df.drop('Target_Audience', axis = 1)
+            df = df.drop('Acquisition_Cost', axis = 1)
             print(df.dtypes)
             print(df.head())
             return df
@@ -38,33 +47,41 @@ class XGBoostModel:
             X_train, X_test, y_train, y_test = self.traintestsplit()
 
             # Define the model
-            xg_reg = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=1000)
+            dtrain = xgb.DMatrix(X_train, label=y_train, enable_categorical=True)
+            dtest = xgb.DMatrix(X_test, label=y_test, enable_categorical=True)
+
 
             # Define hyperparameters to tune
-            param_grid = {
-                'learning_rate': [0.01, 0.05, 0.1],
-                'max_depth': [5, 7, 10],
-                'n_estimators': [100, 200, 500],
-                'colsample_bytree': [0.5, 0.7, 1],
-                'subsample': [0.7, 0.8, 1],
-                'alpha': [0, 1],
-                'lambda': [0, 1]
+            params = {
+                'objective': 'reg:squarederror',
+                'eval_metric': 'rmse',
+                'learning_rate': 0.01,
+                'max_depth': 10,
+                'n_estimators': 1000,
+                'colsample_bytree': 0.3,
+                'subsample': 0.5,
+                'alpha': 4,
+                'lambda': 10,
+                'tree_method': 'hist'  # Required for categorical handling
             }
 
-            # Set up GridSearchCV
-            grid_search = GridSearchCV(estimator=xg_reg, param_grid=param_grid, scoring='neg_mean_squared_error', cv=3)
-            grid_search.fit(X_train, y_train)
-    
-            # Get the best model
-            best_model = grid_search.best_estimator_
+            model = xgb.train(
+            params, dtrain, num_boost_round=1000,
+            evals=[(dtrain, 'train'), (dtest, 'test')],
+            early_stopping_rounds=20, verbose_eval=50
+            )
 
-            # Evaluate the model
-            y_pred = best_model.predict(X_test)
+            # Predictions
+            y_pred = model.predict(dtest)
             mse = mean_squared_error(y_test, y_pred)
             r2 = r2_score(y_test, y_pred)
-            return mse, r2, grid_search.best_params_
-        
 
+            return mse, r2, model
 
-print(XGBoostModel('GrpB_models\B3_Edsel\marketing_campaign_dataset.csv').xgboostmodel())
+model = XGBoostModel('GrpB_models/B3_Edsel/marketing_campaign_dataset.csv')
+df = model.encode_categorical_features()
+mse, r2, trained_model = model.xgboostmodel()
+print(f'MSE: {mse}, R2: {r2}')
 
+xgb.plot_importance(trained_model)
+plt.show()
