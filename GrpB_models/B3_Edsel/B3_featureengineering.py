@@ -19,8 +19,11 @@ class FeatureEngineering:
             df['Click-Through_Rate'] = df['Clicks'] / df['Impressions']
             df['Cost_Per_Click'] = df['Acquisition_Cost'] / df['Clicks']
             df['Is_Holiday'] = df['Date'].isin(us_holidays_2021).astype(int)
+            df = df.drop('Date', axis = 1)
+            df = df.drop('Impressions', axis = 1)
+            df = df.drop('Clicks', axis = 1)
             return df
 
 
-print(FeatureEngineering('GrpB_models\B3_Edsel\marketing_campaign_dataset.csv').add_features())  
-print(FeatureEngineering('GrpB_models\B3_Edsel\marketing_campaign_dataset.csv').add_features()['Is_Holiday'].value_counts())  
+df = FeatureEngineering('GrpB_models\B3_Edsel\marketing_campaign_dataset.csv').add_features()
+print(df.dtypes)
