@@ -1,8 +1,8 @@
 ## Machine Learning Models for Customer Churn Prediction
 
 This folder contains two machine learning models designed for:
-1. [**Predicting customer churn in a banking dataset**](#model-1-customer-churn-prediction)
-2. [**Predicting customer churn using financial history**](#model-2-credit-card-default-prediction)
+1. [**Predicting customer churn in a banking churn dataset**](#model-1-customer-churn-prediction)
+2. [**Predicting customer churn using credit card financial history**](#model-2-credit-card-default-prediction)
 
 Both models use classification techniques to analyze customer behavior and identify patterns leading to churn or default.
 
