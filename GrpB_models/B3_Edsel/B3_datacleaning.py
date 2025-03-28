@@ -26,5 +26,5 @@ class DataCleaning:
 
         return df
 
-print(DataCleaning(file_path).clean_data().head())
-print(DataCleaning(file_path).clean_data().dtypes)
+#print(DataCleaning(file_path).clean_data().head())
+#print(DataCleaning(file_path).clean_data().dtypes)

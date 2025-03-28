@@ -26,4 +26,3 @@ class FeatureEngineering:
 
 
 df = FeatureEngineering('GrpB_models\B3_Edsel\marketing_campaign_dataset.csv').add_features()
-print(df.dtypes)
