@@ -4,6 +4,7 @@ import xgboost as xgb
 import seaborn as sns
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
 from B3_datacleaning import DataCleaning
@@ -28,10 +29,10 @@ class XGBoostModel:
             df[categorical_cols] = df[categorical_cols].astype('category')  # XGBoost handles categories natively
             df = df.drop('Day_Type', axis = 1)
             df = df.drop('Is_Holiday', axis = 1)
-            df = df.drop('Channel_Used', axis = 1)
-            df = df.drop('Duration', axis = 1)
-            df = df.drop('Target_Audience', axis = 1)
-            df = df.drop('Acquisition_Cost', axis = 1)
+            #df = df.drop('Channel_Used', axis = 1)
+            #df = df.drop('Duration', axis = 1)
+            #df = df.drop('Target_Audience', axis = 1)
+            #df = df.drop('Acquisition_Cost', axis = 1)
             print(df.dtypes)
             print(df.head())
             return df
@@ -55,13 +56,13 @@ class XGBoostModel:
             params = {
                 'objective': 'reg:squarederror',
                 'eval_metric': 'rmse',
-                'learning_rate': 0.01,
-                'max_depth': 10,
-                'n_estimators': 1000,
-                'colsample_bytree': 0.3,
-                'subsample': 0.5,
-                'alpha': 4,
-                'lambda': 10,
+                'learning_rate': 0.001,
+                'max_depth': 15,
+                'n_estimators': 2000,
+                'colsample_bytree': 0.8,
+                'subsample': 0.9,
+                'alpha': 0.1,
+                'lambda': 1,
                 'tree_method': 'hist'  # Required for categorical handling
             }
 
@@ -77,11 +78,46 @@ class XGBoostModel:
             r2 = r2_score(y_test, y_pred)
 
             return mse, r2, model
+        
+        def crossvalidation(self):
+            X = self.encode_categorical_features().drop(['ROI'], axis=1)
+            y = self.encode_categorical_features()['ROI']
+            dtrain = xgb.DMatrix(X, label=y, enable_categorical=True)
+            dtest = xgb.DMatrix(X, label=y, enable_categorical=True)
+            params = {
+                'objective': 'reg:squarederror',
+                'eval_metric': 'rmse',
+                'learning_rate': 0.001,
+                'max_depth': 15,
+                'n_estimators': 2000,
+                'colsample_bytree': 0.8,
+                'subsample': 0.9,
+                'alpha': 0.1,
+                'lambda': 1,
+                'tree_method': 'hist'  # Required for categorical handling
+            }
+            cv_results = xgb.cv(
+                params,
+                dtrain,
+                num_boost_round=1000,
+                seed=42,
+                nfold=5,
+                metrics={'rmse'},
+                early_stopping_rounds=20
+            )
+            print(cv_results)
+            return cv_results
+        
 
 model = XGBoostModel('GrpB_models/B3_Edsel/marketing_campaign_dataset.csv')
-df = model.encode_categorical_features()
-mse, r2, trained_model = model.xgboostmodel()
-print(f'MSE: {mse}, R2: {r2}')
+#df = model.encode_categorical_features()
+#mse, r2, trained_model = model.xgboostmodel()
+#print(f'MSE: {mse}, R2: {r2}')
 
-xgb.plot_importance(trained_model)
-plt.show()
+#xgb.plot_importance(trained_model)
+#plt.show()
+
+cv_results = model.crossvalidation()
+print(cv_results)
+
+
