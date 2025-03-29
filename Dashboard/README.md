@@ -49,8 +49,16 @@ This function predicts whether a specific customer is likely to churn in the fut
 
 1. Customer general data
    - Use this model if you have access to the customer's basic bank information, enter the required details and click 'Predict' to determine the likelihood of the customer churning.
-![Model 1](Images/customer%20general%20data.JPG)
-3. Customer credit card data.
+<p align="center">
+  <img src="Images/customer%20general%20data.JPG" width="800">
+</p>
+2. Customer credit card data.
    - Use this model if you have the customer's credit card payment information, enter the details and click 'Predict' to find out the likelihood of customer churn.
-![Model 2](Images/customer%20cc%20data.JPG)
+<p align="center">
+  <img src="Images/customer%20cc%20data.JPG" width="800">
+</p>
 
+Once the data is entered and the 'Predict' button is clicked, the model will display whether the customer is likely to churn or not.
+<p align="center">
+  <img src="Images/prediction%20result.JPG" width="600">
+</p>
