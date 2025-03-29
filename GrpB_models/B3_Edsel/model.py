@@ -7,8 +7,8 @@ from sklearn.metrics import mean_squared_error, r2_score, root_mean_squared_erro
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
-from B3_datacleaning import DataCleaning
-from B3_featureengineering import FeatureEngineering
+from GrpB_models.B3_Edsel.datacleaning import DataCleaning
+from GrpB_models.B3_Edsel.featureengineering import FeatureEngineering
 import matplotlib.pyplot as plt
 
 
@@ -27,8 +27,8 @@ class XGBoostModel:
             df['Is_Holiday'] = le.fit_transform(df['Is_Holiday'])
             categorical_cols = ['Day_Type', 'Campaign_Type', 'Target_Audience', 'Channel_Used', 'Is_Holiday']
             df[categorical_cols] = df[categorical_cols].astype('category')  # XGBoost handles categories natively
-            df = df.drop('Day_Type', axis = 1)
-            df = df.drop('Is_Holiday', axis = 1)
+            #df = df.drop('Day_Type', axis = 1)
+            #df = df.drop('Is_Holiday', axis = 1)
             #df = df.drop('Channel_Used', axis = 1)
             #df = df.drop('Duration', axis = 1)
             #df = df.drop('Target_Audience', axis = 1)
@@ -57,15 +57,15 @@ class XGBoostModel:
                 'booster': 'gbtree',
                 'objective': 'reg:squarederror',
                 'eval_metric': 'rmse',
-                'learning_rate': 0.003978019405534775,
-                'max_depth': 14,
-                'min_child_weight': 14.96437712268051,
-                'n_estimators': 1310.0,
-                'colsample_bytree': 0.8114417907098898,
-                'subsample': 0.5067918562953183,
-                'gamma': 6.676061850613797,
-                'alpha': 6.478534776863411,
-                'lambda': 1.3588609884618768,
+                'learning_rate': 0.017638483192002327,
+                'max_depth': 4,
+                'min_child_weight': 4.481549741741674,
+                'n_estimators': 360.0,
+                'colsample_bytree': 0.6929304873945399,
+                'subsample': 0.37518827341965655,
+                'gamma': 2.88294917603643,
+                'alpha': 7.006597027901627,
+                'lambda':  9.379355978740126,
                 'tree_method': 'approx'  # Required for categorical handling
             }
 

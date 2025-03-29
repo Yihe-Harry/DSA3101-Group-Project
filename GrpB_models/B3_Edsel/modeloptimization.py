@@ -3,7 +3,7 @@ import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import numpy as np
-from B3_xgboost import XGBoostModel  # Import your model class
+from GrpB_models.B3_Edsel.model import XGBoostModel  # Import your model class
 
 
 class XGBoostOptimizer:
@@ -59,15 +59,13 @@ if __name__ == "__main__":
     optimizer = XGBoostOptimizer('GrpB_models/B3_Edsel/marketing_campaign_dataset.csv', max_evals=50)
     best_params = optimizer.optimize()
 
-#Best Hyperparameters: 
-# {'alpha': 6.478534776863411, 
-# 'colsample_bytree': 0.8114417907098898, 
-# 'gamma': 6.676061850613797, 
-# 'lambda': 1.3588609884618768, 
-# 'learning_rate': 0.003978019405534775, 
-# 'max_depth': 14.0, 
-# 'min_child_weight': 14.96437712268051, 
-# 'n_estimators': 1310.0, 
-# 'subsample': 0.5067918562953183}
-# As of 29/03/2024, the best hyperparameters.
+#Best Hyperparameters: {'alpha': 7.006597027901627, 
+# 'colsample_bytree': 0.6929304873945399, 
+# 'gamma': 2.88294917603643, 
+# 'lambda': 9.379355978740126, 
+# 'learning_rate': 0.017638483192002327, 
+# 'max_depth': 4.0, 
+# 'min_child_weight': 4.481549741741674, 
+# 'n_estimators': 360.0, 
+# 'subsample': 0.37518827341965655}
         

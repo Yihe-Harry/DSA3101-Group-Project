@@ -1,5 +1,5 @@
 import pandas as pd
-from B3_datacleaning import DataCleaning
+from GrpB_models.B3_Edsel.datacleaning import DataCleaning
 import holidays
 
 class FeatureEngineering:
