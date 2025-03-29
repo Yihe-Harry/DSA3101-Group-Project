@@ -7,8 +7,8 @@ from sklearn.metrics import mean_squared_error, r2_score, root_mean_squared_erro
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
-from GrpB_models.B3_Edsel.datacleaning import DataCleaning
-from GrpB_models.B3_Edsel.featureengineering import FeatureEngineering
+from featureengineering import FeatureEngineering
+from xgboost import cv
 import matplotlib.pyplot as plt
 
 
@@ -26,15 +26,7 @@ class XGBoostModel:
             df['Channel_Used'] = le.fit_transform(df['Channel_Used'])
             df['Is_Holiday'] = le.fit_transform(df['Is_Holiday'])
             categorical_cols = ['Day_Type', 'Campaign_Type', 'Target_Audience', 'Channel_Used', 'Is_Holiday']
-            df[categorical_cols] = df[categorical_cols].astype('category')  # XGBoost handles categories natively
-            #df = df.drop('Day_Type', axis = 1)
-            #df = df.drop('Is_Holiday', axis = 1)
-            #df = df.drop('Channel_Used', axis = 1)
-            #df = df.drop('Duration', axis = 1)
-            #df = df.drop('Target_Audience', axis = 1)
-            #df = df.drop('Acquisition_Cost', axis = 1)
-            #print(df.dtypes)
-            #print(df.head())
+            df[categorical_cols] = df[categorical_cols].apply(lambda x: x.astype('category'))
             return df
 
         def traintestsplit(self):
@@ -47,83 +39,58 @@ class XGBoostModel:
         def xgboostmodel(self):
             X_train, X_test, y_train, y_test = self.traintestsplit()
 
-            # Define the model
             dtrain = xgb.DMatrix(X_train, label=y_train, enable_categorical=True)
             dtest = xgb.DMatrix(X_test, label=y_test, enable_categorical=True)
 
-
-            # Define hyperparameters to tune
             params = {
                 'booster': 'gbtree',
                 'objective': 'reg:squarederror',
                 'eval_metric': 'rmse',
-                'learning_rate': 0.017638483192002327,
-                'max_depth': 4,
-                'min_child_weight': 4.481549741741674,
-                'n_estimators': 360.0,
-                'colsample_bytree': 0.6929304873945399,
-                'subsample': 0.37518827341965655,
-                'gamma': 2.88294917603643,
-                'alpha': 7.006597027901627,
-                'lambda':  9.379355978740126,
-                'tree_method': 'approx'  # Required for categorical handling
+                'alpha': 4.201332861544761, 
+                'colsample_bytree': 0.6463286021553563, 
+                'gamma': 5.356686700691181, 
+                'lambda': 4.405233368619567, 
+                'learning_rate': 0.08647595866291882, 
+                'max_depth': 3, 
+                'min_child_weight': 9.635893105010524, 
+                'n_estimators': 270.0, 
+                'subsample': 0.5199596730744189,
+                'tree_method': 'approx'
             }
 
-            model = xgb.train(
-            params, dtrain, num_boost_round=1000,
-            evals=[(dtrain, 'train'), (dtest, 'test')],
-            early_stopping_rounds=20, verbose_eval=50
-            )
+            cv_results = xgb.cv(
+                params=params,
+                dtrain=dtrain,
+                num_boost_round=1000,
+                nfold=10,  # 10-fold cross-validation
+                early_stopping_rounds=20,
+                metrics='rmse',
+                as_pandas=True,
+                seed=42
+                )
+            
+            print("Best CV score: ", cv_results['test-rmse-mean'].min())
+            best_num_boost_round = cv_results['test-rmse-mean'].idxmin()
+            print(f"Best number of boosting rounds: {best_num_boost_round}")
 
-            # Predictions
+            model = xgb.train(
+                params, dtrain, num_boost_round = best_num_boost_round,
+                evals=[(dtrain, 'train'), (dtest, 'test')],
+                early_stopping_rounds=20, verbose_eval=50
+            )
+        
             y_pred = model.predict(dtest)
             mse = mean_squared_error(y_test, y_pred)
-            #r2 = r2_score(y_test, y_pred)
             rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+
 
             return mse, rmse, model
         
-        #def crossvalidation(self):
-            df = self.encode_categorical_features()
-            X = df.drop(['ROI'], axis=1)
-            y = df['ROI']
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-            dtrain = xgb.DMatrix(X_train, label=y_train, enable_categorical=True)
-            dtest = xgb.DMatrix(X_test, label=y_test, enable_categorical=True)
-            params = {
-                'objective': 'reg:squarederror',
-                'eval_metric': 'rmse',
-                'learning_rate': 0.001,
-                'max_depth': 15,
-                'n_estimators': 2000,
-                'colsample_bytree': 0.8,
-                'subsample': 0.9,
-                'alpha': 0.1,
-                'lambda': 1,
-                'tree_method': 'hist'  # Required for categorical handling
-            }
-            cv_results = xgb.cv(
-                params,
-                dtrain,
-                num_boost_round=1000,
-                seed=42,
-                nfold=5,
-                metrics={'rmse'},
-                early_stopping_rounds=20
-            )
-            print(cv_results)
-            return cv_results
-        
-
 model = XGBoostModel('GrpB_models/B3_Edsel/marketing_campaign_dataset.csv')
 df = model.encode_categorical_features()
-mse, rmse,trained_model = model.xgboostmodel()
+mse, rmse,trained_model= model.xgboostmodel()
 print(f'MSE: {mse}, Root MSE: {rmse}')
 
 xgb.plot_importance(trained_model)
 plt.show()
-
-#cv_results = model.crossvalidation()
-#print(cv_results)
-
 

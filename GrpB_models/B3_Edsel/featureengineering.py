@@ -1,5 +1,5 @@
 import pandas as pd
-from GrpB_models.B3_Edsel.datacleaning import DataCleaning
+from datacleaning import DataCleaning
 import holidays
 
 class FeatureEngineering:
@@ -25,4 +25,5 @@ class FeatureEngineering:
             return df
 
 
-df = FeatureEngineering('GrpB_models\B3_Edsel\marketing_campaign_dataset.csv').add_features()
+#df = FeatureEngineering('GrpB_models\B3_Edsel\marketing_campaign_dataset.csv').add_features()
+print("Feature Engineering: OK")

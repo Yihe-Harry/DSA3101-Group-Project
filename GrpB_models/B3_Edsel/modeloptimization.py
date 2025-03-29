@@ -3,7 +3,8 @@ import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import numpy as np
-from GrpB_models.B3_Edsel.model import XGBoostModel  # Import your model class
+from xgboost import cv
+from model import XGBoostModel
 
 
 class XGBoostOptimizer:
@@ -21,16 +22,30 @@ class XGBoostOptimizer:
         dtrain = xgb.DMatrix(self.X_train, label=self.y_train, enable_categorical=True)
         dtest = xgb.DMatrix(self.X_test, label=self.y_test, enable_categorical=True)
         
+        cv_results = xgb.cv(
+            params=params,
+            dtrain=dtrain,
+            num_boost_round=1000,
+            nfold=10,  # 10-fold cross-validation
+            early_stopping_rounds=20,
+            metrics='rmse',
+            as_pandas=True,
+            seed=42
+        )
+
+        best_num_boost_round = cv_results['test-rmse-mean'].idxmin()
+
         model = xgb.train(
-            params, dtrain, num_boost_round=1000,
+            params, dtrain, num_boost_round=best_num_boost_round,
             evals=[(dtrain, 'train'), (dtest, 'test')],
             early_stopping_rounds=20, verbose_eval=50 #maybe change to 50
         )
         
         y_pred = model.predict(dtest)
         mse = mean_squared_error(self.y_test, y_pred)
+        rmse = np.sqrt(mse)
         
-        return {'loss': mse, 'status': STATUS_OK}
+        return {'loss': rmse, 'status': STATUS_OK}
     
     def optimize(self):
         space = {
@@ -51,21 +66,19 @@ class XGBoostOptimizer:
         print("Best Hyperparameters:", best_params)
         return best_params
 
-
-
-
 # Run optimization
 if __name__ == "__main__":
     optimizer = XGBoostOptimizer('GrpB_models/B3_Edsel/marketing_campaign_dataset.csv', max_evals=50)
     best_params = optimizer.optimize()
 
-#Best Hyperparameters: {'alpha': 7.006597027901627, 
-# 'colsample_bytree': 0.6929304873945399, 
-# 'gamma': 2.88294917603643, 
-# 'lambda': 9.379355978740126, 
-# 'learning_rate': 0.017638483192002327, 
-# 'max_depth': 4.0, 
-# 'min_child_weight': 4.481549741741674, 
-# 'n_estimators': 360.0, 
-# 'subsample': 0.37518827341965655}
+#Best Hyperparameters: 
+# {'alpha': 4.201332861544761, 
+# 'colsample_bytree': 0.6463286021553563, 
+# 'gamma': 5.356686700691181, 
+# 'lambda': 4.405233368619567, 
+# 'learning_rate': 0.08647595866291882, 
+# 'max_depth': 3.0, 
+# 'min_child_weight': 9.635893105010524, 
+# 'n_estimators': 270.0, 
+# 'subsample': 0.5199596730744189}
         
