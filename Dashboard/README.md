@@ -6,18 +6,21 @@
 - The dashboard uses Python 3.10 as specified in the Dockerfile.
 
 ## Build and Run Instructions
-
-1. Build the Docker image :
+1. Navigate to the dashboard directory
+   ```bash
+   cd DSA3101-Group-Project/Dashboard
+   ```
+2. Build the Docker image :
 
    ```bash
    docker build -t my-streamlit-app .
    ```
-2. Run the Docker image :
+3. Run the Docker image :
 
    ```bash
    docker run -p 8501:8501 my-streamlit-app
    ```
-3. The application will be accessible at `http://localhost:8501`.
+4. The application will be accessible at `http://localhost:8501`.
 
 ## Configuration
 
