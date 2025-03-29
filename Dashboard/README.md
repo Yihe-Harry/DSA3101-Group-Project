@@ -34,3 +34,21 @@
 For further details, refer to the project documentation or contact the development team.
 
 # Usage guide
+## Home page
+
+
+
+
+When you first open the dashboard, you will be greeted with a selection prompt. From the dropdown menu, choose the function you'd like to use. This will allow you to navigate to the corresponding feature and begin your analysis.
+
+## Function: CTR-Based 'Real-Time' Campaign Optimizer
+
+## Function: Customer Churn Prediction
+This function predicts whether a specific customer is likely to churn in the future. It utilizes two distinct models to generate accurate predictions:
+
+1. Customer general data
+   - Use this model if you have access to the customer's basic bank information, enter the required details and click 'Predict' to determine the likelihood of the customer churning.
+3. Customer credit card data.
+   - Use this model if you have the customer's credit card payment information, enter the details and click 'Predict' to find out the likelihood of customer churn.
+
+
