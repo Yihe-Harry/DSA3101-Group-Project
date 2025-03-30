@@ -1,8 +1,8 @@
 FROM python:3.10
 
-WORKDIR /GrpB/B5_Marcus
+WORKDIR /GrpB_models/B5_Marcus
 
-COPY . /GrpB/B5_Marcus
+COPY . /GrpB_models/B5_Marcus
 
 RUN pip install --no-cache-dir pandas joblib scikit-learn imbalanced-learn openpyxl xlrd
 
