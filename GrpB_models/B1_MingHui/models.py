@@ -35,7 +35,7 @@ def mod_eval(y_test, y_pred_prob, y_pred):
     print(f"Test Accuracy: {acc:.5f} | Test AUROC: {auroc:.5f} | Test F1: {f1:.5f} | Test AUPRC: {auprc:.5f}(baseline:{prc_b:.5f})")
     return acc, auroc, f1, auprc, prc_b
 
-def final_model(X_train, y_train, X_test, y_test):
+def final_classification_model(X_train, y_train, X_test, y_test):
     hl_y_train, hl_y_test, pl_y_train, pl_y_test, td_y_train, td_y_test = label_split(y_train, y_test)
     print("Housing Loan:")
     hl_opt_params = {'bagging_fraction': 0.5436036759336191,
@@ -95,5 +95,8 @@ def final_model(X_train, y_train, X_test, y_test):
     print(f"Test Accuracy: {fin_acc:.5f} | Test AUROC: {fin_auroc:.5f} | Test F1: {fin_f1:.5f} | Test AUPRC: {fin_auprc:.5f}(baseline:{fin_prc_b:.5f})")
     return y_pred_prob, y_pred
 
-    
-    
+def final_recommendation_model(y_pred_prob):
+    scaler = MinMaxScaler()
+    norm_y_pred_probs = pd.DataFrame(scaler.fit_transform(y_pred_prob), columns=["Housing Loan", "Personal Loan", "Term Deposit"]) #normalise the probabilities across results of different models
+    ranks = norm_y_pred_probs.apply(lambda x: x.rank(method="first", ascending=False), axis=1) #the higher probabilities will be ranked higher to recommend
+    return ranks     
