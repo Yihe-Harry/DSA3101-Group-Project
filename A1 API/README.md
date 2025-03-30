@@ -239,6 +239,32 @@ does not add the requested customer to the database.
 13. transaction_count:int
 14. has_loan:int
 
+#### Example input 
+
+```json
+{
+  "age": 34,
+  "gender": 1,
+  "monthly_income": 9763,
+  "account_balance": 26514,
+  "loyalty_score": 45,
+  "education_level": 2,
+  "facebook_interaction": 1,
+  "twitter_interaction": 0,
+  "email_interaction": 0,
+  "instagram_interaction": 0,
+  "total_withdrawal_amount": 926,
+  "total_deposit_amount": 0,
+  "transaction_count": 1,
+  "has_loan": 1
+}
+```
+#### Example output
+
+```json
+"Cluster 1: Value-Driven Frequent Users , Business strategy: Build loyalty to reduce churn"
+```
+
 #### 6.  retrain_model_with_latest_data
 
 Retrains the k-means algorithm using the current database. It is used
