@@ -13,6 +13,7 @@ import xgboost as xgb
 import lightgbm as lgb
 
 from lazypredict.Supervised import LazyClassifier 
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import roc_curve, accuracy_score, f1_score, roc_auc_score, average_precision_score
 from bayes_opt import BayesianOptimization
 
