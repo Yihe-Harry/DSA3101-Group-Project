@@ -5,10 +5,10 @@ his project analyzes customer behavior across different segments to help banks d
 
 ## Project Structure
 
-### Folder 1: Data Extraction
+### Folder 1: Data Retrieval
 - `eugene_data.py`  
   Extracts and compiles the initial customer dataset.
-- `main dataset.csv`  
+- `eugene_data.csv`  
   Raw dataset output from extraction.
 - `df_k4.csv`
   Dataset that contains customer segmentation
@@ -19,7 +19,7 @@ his project analyzes customer behavior across different segments to help banks d
 - `df_merged.csv`  
   Final cleaned dataset ready for analysis.
 
-### Folder 3: Analysis
+### Folder 3: Data Analysis
 - `digital_engagement_analysis.py`  
   .
 - `product_usage_analysis.py`  
@@ -29,13 +29,8 @@ his project analyzes customer behavior across different segments to help banks d
 
 ---
 
-## Methodology
 
-
-
----
-
-## Key Insights (K=4)
+## Key Insights 
 
 
 
