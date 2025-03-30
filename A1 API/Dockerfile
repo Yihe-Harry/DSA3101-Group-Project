@@ -8,7 +8,7 @@ WORKDIR /app
 
 
 COPY . /app
-RUN pip install uvicorn pandas scikit-learn fastapi pedantic
+RUN pip install uvicorn pandas scikit-learn fastapi pydantic
 
 
 # Expose the application port
