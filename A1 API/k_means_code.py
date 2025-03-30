@@ -5,7 +5,7 @@ from sklearn.cluster import KMeans
 
 df = pd.read_csv("cleaned main dataset.csv",delimiter=",")
 
-
+# features used for clustering
 cluster_features = [
     'age', 'age group', 'gender', 'income/month', 'account balance',
     'loyalty score', 'education level', 'Facebook', 'Twitter', 'Email',
@@ -15,7 +15,7 @@ cluster_features = [
     'job grouped_student', 'job grouped_unemployed', 'job grouped_unknown',
     'job grouped_white collar', 'marital_married', 'marital_single'
 ]
-
+# same as features above, but only a selected few
 less_cluster_features = [
     'age', 'gender', 'income/month', 'account balance',
     'loyalty score', 'education level', 'Facebook', 'Twitter', 'Email',
@@ -26,14 +26,14 @@ less_cluster_features = [
 
 
 
-
+# the corresponding label of each cluster number
 cluster_names = {
     0: "High-Value Power Users",
     1: "Value-Driven Frequent Users",
     2: "Affluent Inactives",
     3: "Budget-Conscious Occasionals"
 }
-
+#the corresponding business strategy for each cluster/segment to improve ROI
 cluster_strategy ={
 "High-Value Power Users": "Upsell bank products to increase profits",
 "Value-Driven Frequent Users": "Build loyalty to reduce churn",

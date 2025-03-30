@@ -9,7 +9,7 @@ WORKDIR /app
 COPY . /app
 
 
-RUN pip install --no-cache-dir uvicorn pandas scikit-learn fastapi pydantic
+RUN pip install uvicorn pandas scikit-learn fastapi pydantic
 
 
 # Expose the application port

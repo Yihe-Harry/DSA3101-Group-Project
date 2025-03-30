@@ -30,6 +30,9 @@ class predictcluster_input(BaseModel):
     transaction_count:int
     has_loan:int
 
+# this user input is used for updating customer data in the database
+# Only customer_id is a required field, the rest of the fields are optional
+# Omitted fields result in no change to that particular attribute
 class updatecustomer_input(BaseModel):
     customer_id: int
     age: Optional[int] = None
@@ -48,31 +51,29 @@ class updatecustomer_input(BaseModel):
     has_loan: Optional[int] = None
 
 
-# --- 1. Precomputed cluster lookup from DataFrame ---
-@app.post("/Get segment that customer belong to, from database")
-def get_customer_segment(customer_id: int):
-
-    customer_index=df_cluster2[df_cluster2["customer id"] == customer_id].index
-    if customer_index.empty:
-        return {"error": f"Customer id {customer_id} is not a valid customer id"}
-    customer_details = df_cluster2[df_cluster2["customer id"] == customer_id].to_dict()
-    cluster_num = df_cluster2.at[customer_index[0], "cluster_num"]
-    cluster_name=cluster_names[cluster_num]
-    business_strategy=cluster_strategy[cluster_name]
-    return {f'Cluster {cluster_num}: {cluster_name} , Business strategy: {business_strategy}'}
 
 
 
-# --- 1.1 Get customer details
-@app.post("/Get customer details from database")
-def get_customer_info(customer_id: int):
+
+# --- 1. Get Customer details
+@app.get("/GetCustomerInfo")
+def get_customer_info_from_database(customer_id: int):
+    global df_cluster2
+    # Returns invalid ID if inpit ID does not exist in the database
     if customer_id not in df_cluster2["customer id"].values:
         return "Invalid customer ID"
-    return df_cluster2[df_cluster2["customer id"] == customer_id].iloc[0].to_dict()
+    # Getting information on the cluster, and corresponding business strategy to improve ROI
+    customer_index = df_cluster2[df_cluster2["customer id"] == customer_id].index
+    cluster_num = df_cluster2.at[customer_index[0], "cluster_num"]
+    cluster_name = cluster_names[cluster_num]
+    business_strategy = cluster_strategy[cluster_name]
+    return {"Customer info":df_cluster2[df_cluster2["customer id"] == customer_id].iloc[0].to_dict(),
+            "Segmentation info": f'Cluster {cluster_num}: {cluster_name}',
+            "Business strategy": business_strategy}
 
 # ---2. Update customer details in Dataframe ---
-@app.post("/Update customer details")
-def update_customer(update_data: updatecustomer_input):
+@app.post("/UpdateCustomerDetails")
+def update_customer_details_to_database(update_data: updatecustomer_input):
     global df_cluster2
 
     # Find the customer by ID
@@ -101,14 +102,21 @@ def update_customer(update_data: updatecustomer_input):
     replace_entry(df_cluster2, update_data.transaction_count, "transaction_count", customer_index)
     replace_entry(df_cluster2, update_data.has_loan, "loan", customer_index)
 
+    # Re-segments the updated customer using the existing segmentation model
+    customer= df_cluster2[df_cluster2["customer id"] == update_data.customer_id]
+    customer_kmeans=customer[less_cluster_features]
+    scaled_input = scaler.transform(customer_kmeans)
+    cluster_num = kmeans2.predict(scaled_input)[0]
+    df_cluster2.at[customer_index,"cluster_num"]=cluster_num
+
     return {
         "message": f'Customer id {update_data.customer_id} updated successfully',
         "updated_customer": df_cluster2[df_cluster2["customer id"] == update_data.customer_id].iloc[0].to_dict()
     }
 
 # ---3. Delete customer in Dataframe ---
-@app.post("/Delete customer from database")
-def delete_customer(customer_id: int):
+@app.post("/DeleteCustomer")
+def delete_customer_from_database(customer_id: int):
     global df_cluster2
 
     # Check if the customer exists
@@ -117,16 +125,17 @@ def delete_customer(customer_id: int):
 
     # Drop the row where customer_id matches
     df_cluster2 = df_cluster2[df_cluster2['customer id'] != customer_id]
-
     return {"message": f"Customer with ID {customer_id} deleted successfully"}
 
 
 # ---4. Add customer to Dataframe ---
-@app.post("/Add customer to database")
-def add_customer(data:updatecustomer_input):
+@app.post("/AddCustomer")
+def add_customer_to_database(data:updatecustomer_input):
     global df_cluster2
     if data.customer_id in df_cluster2['customer id'].values:
         return {"message": "Customer ID already in databank, choose a different ID"}
+
+    # Features used for segmentation
     features = [
         data.age,
         data.gender,
@@ -143,18 +152,22 @@ def add_customer(data:updatecustomer_input):
         data.transaction_count,
         data.has_loan
     ]
+    # Segments the newly added customer using the existing segmentation model
     scaled_input = scaler.transform([features])
     cluster_num = kmeans2.predict(scaled_input)[0]
     features.append(cluster_num)
     features.append(data.customer_id)
     df_cluster2.loc[len(df_cluster2)]=features
-    return {"message": "Customer successfully added to databank"}
+    return {"message": "Customer successfully added to databank",
+            "updated_customer": df_cluster2[df_cluster2["customer id"] == data.customer_id].iloc[0].to_dict()}
 
 
 
 # --- 5. Predict cluster for new input (Real-time segmentation) ---
-@app.post("/Customer segmentation in real time")
-def predict_customer_segment(data:predictcluster_input):
+@app.post("/RealTimeSegmentation")
+def predict_customer_segment_in_real_time(data:predictcluster_input):
+
+    # features used for segmentation
     features = [
         data.age,
         data.gender,
@@ -171,6 +184,8 @@ def predict_customer_segment(data:predictcluster_input):
         data.transaction_count,
         data.has_loan
     ]
+
+    # Segments the newly added customer using the existing segmentation model
     scaled_input = scaler.transform([features])
     cluster_num = kmeans2.predict(scaled_input)[0]
     cluster_name = cluster_names[cluster_num]
@@ -178,8 +193,8 @@ def predict_customer_segment(data:predictcluster_input):
     return f'Cluster {cluster_num}: {cluster_name} , Business strategy: {business_strategy}'
 
 # --- 6. Dynamic retraining of K-means segmentation model
-@app.post("/Updates segmentation model with the latest data")
-def retrain_model():
+@app.post("/RetrainModel")
+def retrain_model_with_latest_data():
     global df_cluster2
 
     df_temp=df_cluster2[less_cluster_features].dropna()
@@ -189,7 +204,6 @@ def retrain_model():
     df_temp["cluster_num"] = clusters2
     df_temp["customer id"] = df_cluster2["customer id"]
     df_cluster2=df_temp
-
     return "Model successfully updated"
 
 
