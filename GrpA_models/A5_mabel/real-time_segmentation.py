@@ -120,7 +120,7 @@ df_fixed_customer['Cluster_Update_2'] = df_cleaned.loc[fixed_customer, 'Cluster_
 print("\nCluster Changes for Selected Customer:")
 print(df_fixed_customer)
 
-## Cluster changed from 1 to 0 (
+## Cluster changed from 1 to 0 (Value-Driven Frequent Users --> High-Value Power Users)
 
 # Visualize changes
 plt.figure(figsize=(6, 4))
