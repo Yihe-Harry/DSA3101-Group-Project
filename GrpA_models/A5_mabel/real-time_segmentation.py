@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Loading dataset 
-df = pd.read_csv("cleaned main dataset.csv",delimiter=",")
+df = pd.read_csv("cleaned_main_dataset.csv",delimiter=",")
 df.head()
 
 # Select features for clustering
