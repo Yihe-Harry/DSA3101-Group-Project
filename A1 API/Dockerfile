@@ -1,5 +1,4 @@
 
-
 # Use python image
 FROM python:3.10
 
@@ -8,7 +7,9 @@ WORKDIR /app
 
 
 COPY . /app
-RUN pip install uvicorn pandas scikit-learn fastapi pydantic
+
+
+RUN pip install --no-cache-dir uvicorn pandas scikit-learn fastapi pydantic
 
 
 # Expose the application port

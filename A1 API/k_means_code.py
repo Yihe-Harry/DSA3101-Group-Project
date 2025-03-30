@@ -24,6 +24,9 @@ less_cluster_features = [
     'loan'
 ]
 
+
+
+
 cluster_names = {
     0: "High-Value Power Users",
     1: "Value-Driven Frequent Users",
