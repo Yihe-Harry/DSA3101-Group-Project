@@ -18,7 +18,7 @@ from bayes_opt import BayesianOptimization
 
 from datapreparation import import_data, data_cleaning, data_split, label_split
 from hyperparametertuning import get_lgb_opt_params, get_xgb_opt_params
-from models import final_model
+from models import final_classification_model, final_recommendation_model
 
 ####################Data Preparation####################
 df = import_data()
@@ -71,4 +71,6 @@ td_opt_params = {'colsample_bytree': 0.4157942248802582,
 
 ####################Models####################
 
-y_pred_prob, y_pred = final_model(X_train, y_train, X_test, y_test)
+y_pred_prob, y_pred = final_classification_model(X_train, y_train, X_test, y_test)
+ranks = final_recommendation_model(y_pred_prob)
+print(ranks)
