@@ -23,10 +23,10 @@ Awareness is the first stage of the marketing funnel. In this stage, the bank ai
 The success of Awareness campaigns should be evaluated based on reach,visibility, brand awareness and brand image. Reach, visibility and to an extent brand awareness can be measured more objectively while brand image is alot more subjective. As such, the KPIs we look at would be more focused on the first 3.
 
 ### KPIs
-#### 1) Ad Views/Impressions - This measures ad traffic, or the number of people that have seen the campaign ads. 
+#### 1) Ad Views/Impressions - This measures ad traffic, or the number of people that have seen the campaign ads. Defined as number of people who viewed the ad
 ##### Actionable Insight: If ad views/impressions are low, it is an indicator that the campaign is not reaching enough people. This could suggest the need for broader targeting or increasing the budget to enhance the ad’s reach. 
 
-#### 2) Website/Social media page Views/Impressions  - This measures the number of people that have visited the website or social media page 
+#### 2) Website/Social media page Views/Impressions  - This measures the number of people that have visited the website or social media page. Defined as number of people who viewed the bank's website or social media page
 ##### Actionable Insight: This is an indicator of both reach and brand awareness. If this number is low but Ad Views/Impressions are high, it typically indicates that the ad does not resonate or capture the attention of the audience . This could suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience.
 
 #### 3) Click through rate(CTR) (for online ads) - Measures the percentage of people who click on an ad after seeing it. Similar to 2), it is an indicator of how well the ad resonates with or captures the audiences' attention. Defined as
