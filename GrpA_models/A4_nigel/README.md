@@ -29,7 +29,7 @@ The success of Awareness campaigns should be evaluated based on reach,visibility
 #### 2) Website/Social media page Views/Impressions  - This measures the number of people that have visited the website or social media page 
 ##### Actionable Insight: This is an indicator of both reach and brand awareness. If this number is low but Ad Views/Impressions are high, it typically indicates that the ad does not resonate or capture the attention of the audience . This could suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience.
 
-#### 3) Click through rate(CTR) (for online ads) - Defined as
+#### 3) Click through rate(CTR) (for online ads) - Measures the percentage of people who click on an ad after seeing it. Similar to 2), it is an indicator of how well the ad resonates with or captures the audiences' attention. Defined as
 
 $$
 f(\text{Click Through Rate}) = \left( \frac{\text{Number of Clicks}}{\text{Number of Impressions}} \right) \times 100, \text{ where}
@@ -37,9 +37,9 @@ $$
 
 * **Number of Clicks** refers to the number of people who clicked on the ad.
 * **Number of Impressions** refers to the number of people who viewed the ad.
-##### Actionable Insight: This measures the percentage of people who click on an ad after seeing it. Similar to 2), it is an indicator of how well the ad resonates with or captures the audiences' attention. A low CTR would suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience.
+##### Actionable Insight: A low CTR would suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience.
 
-#### 4) Branded Search Volume - the number of times the bank or keywords related to the bank are searched for on a search engine, like Google, over a certain period. Defined as 
+#### 4) Branded Search Volume - Measures brand awareness and interest. It is the number of times the bank or keywords related to the bank are searched for on a search engine, like Google, over a certain period. Defined as 
 
 $$
 f(\text{Branded Search Volume}) = \left( \frac{\text{Number of searches}}{\text{Number of Days}} \right) , \text{ where}
@@ -47,10 +47,10 @@ $$
 
 * **Number of Searches** refers to the total number of searches containing Bank name or products on search engines
 * **Number of Days** refers to the number of days contained in time the time period we are interested in
-##### Actionable Insight: This measures brand awareness and interest. A low number suggests low awareness and interest in the bank and may indicate that the awareness campaign has not been as effective in generating interest or making the brand memorable. If branded search volume is low, it could signal that the campaign is not reaching the right audience or is not leaving a strong enough impression for people to actively seek out the brand after encountering the ad. This could suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience. If the search volume is low, it could also be a sign of inconsistent messaging. Ensuring that the bank's branding is coherent across all channels—whether social media, YouTube ads, or influencer posts—will help reinforce the brand's identity, making it more likely for customers to search for it later.
+##### Actionable Insight:  A low number suggests low awareness and interest in the bank and may indicate that the awareness campaign has not been as effective in generating interest or making the brand memorable. If branded search volume is low, it could signal that the campaign is not reaching the right audience or is not leaving a strong enough impression for people to actively seek out the brand after encountering the ad. This could suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience. If the search volume is low, it could also be a sign of inconsistent messaging. Ensuring that the bank's branding is coherent across all channels—whether social media, YouTube ads, or influencer posts—will help reinforce the brand's identity, making it more likely for customers to search for it later.
 
-#### 5) Social media mentions - comments on social media platforms mentioning the bank
-##### Actionable Insight: This measures brand image and the publics' sentiment towards banks. If comments are largely negative, it is an indicator that the bank has a poor reputation, and rebranding may be necessary to change perspectives. It may also be helpful to reevaluate the bank's practices, products and services to find out the root cause.
+#### 5) Social media mentions - comments on social media platforms mentioning the bank. This measures brand image and the publics' sentiment towards banks.
+##### Actionable Insight:  If comments are largely negative, it is an indicator that the bank has a poor reputation, and rebranding may be necessary to change perspectives. It may also be helpful to reevaluate the bank's practices, products and services to find out the root cause.
 
 
 ## Consideration
@@ -59,7 +59,7 @@ Consideration is the second stage of the funnel. Awareness campaigns introduce p
 The success of Consideration campaigns can be evaluated based on the level of customer engagement, while also taking into account cost related metric such as cost per lead to achieve a balance. From question A2, Customers with longer session durations, a history of loyalty, and more recent interactions were more likely to engage with marketing campaigns. This insights should be taken into account when coming up with KPIs and possible action steps.
 
 ### KPIs
-#### 1)  Click through rate(CTR) (for online ads) - Defined as
+#### 1)  Click through rate(CTR) (for online ads) - Measures the percentage of people who click on an ad after seeing it. Defined as
 
 $$
 f(\text{Click Through Rate}) = \left( \frac{\text{Number of Clicks}}{\text{Number of Impressions}} \right) \times 100, \text{ where}
@@ -67,9 +67,9 @@ $$
 
 * **Number of Clicks** refers to the number of people who clicked on the ad.
 * **Number of Impressions** refers to the number of people who viewed the ad.
-##### Actionable Insight: This measures the percentage of people who click on an ad after seeing it. It is an indicator of how well the ad resonates with or captures the audiences' attention. A low CTR would suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience.
+##### Actionable Insight:  It is an indicator of how well the ad resonates with or captures the audiences' attention. A low CTR would suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience.
 
-#### 2) Average Website Session Duration - average time spent on website by people who click on ads. Defined as  
+#### 2) Average Website Session Duration - average time spent on website by people who click on ads. This measures the level of engagement people have with the website. Defined as  
 
 $$
 f(\text{Average Website Session Duration}) = \left( \frac{\text{Total Time Spent on Website by All Users}}{\text{Number of Clicks}} \right), \text{ where}
@@ -78,7 +78,7 @@ $$
 * **Total Time Spent on Website by All Users** refers to the cumulative time all users have spent on the website.  
 * **Number of Clicks** refers to the total number of users who clicked on the ad.
 
-##### Actionable Insight: This measures the level of engagement people have with the website. A longer time spent on the website is desirable as it generally indicates greater interest in the bank and its products and services. Moreover, customers with longer session durations are more likely to be responsive towards future marketing campaigns. As such, it would be beneficial to focus marketing efforts towards customers with longer website session duration. As clicking on ads or searching for the bank's website generally indicates a baseline level of interest in the bank, low website session duration numbers could suggest that the website is unappealing to audiences, which could indicate a need to improve the websites design or interface.
+##### Actionable Insight:  A longer time spent on the website is desirable as it generally indicates greater interest in the bank and its products and services. Moreover, customers with longer session durations are more likely to be responsive towards future marketing campaigns. As such, it would be beneficial to focus marketing efforts towards customers with longer website session duration. As clicking on ads or searching for the bank's website generally indicates a baseline level of interest in the bank, low website session duration numbers could suggest that the website is unappealing to audiences, which could indicate a need to improve the websites design or interface.
 
 #### 3) Lead generation rate - Measures the rate in which leads are generated throughout a specific marketing campaign. Defined as
 
