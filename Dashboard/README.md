@@ -39,7 +39,7 @@ For further details, refer to the project documentation or contact the developme
 When you first open the dashboard, you will be greeted with a selection prompt. From the dropdown menu, choose the function you'd like to use. This will allow you to navigate to the corresponding feature and begin your analysis.
 
 <p align="center">
-  <img src="Images/dashboard%20home%20page.JPG" width="800">
+  <img src="Images/dashboard_home_page.JPG" width="800">
 </p>
 
 ## Function: CTR-Based 'Real-Time' Campaign Optimizer
@@ -57,15 +57,15 @@ This function predicts whether a specific customer is likely to churn in the fut
 1. Customer general data
    - Use this model if you have access to the customer's basic bank information, enter the required details and click 'Predict' to determine the likelihood of the customer churning.
 <p align="center">
-  <img src="Images/customer%20general%20data.JPG" width="800">
+  <img src="Images/customer_general_data.JPG" width="800">
 </p>
 2. Customer credit card data.
    - Use this model if you have the customer's credit card payment information, enter the details and click 'Predict' to find out the likelihood of customer churn.
 <p align="center">
-  <img src="Images/customer%20cc%20data.JPG" width="800">
+  <img src="Images/customer_cc_data.JPG" width="800">
 </p>
 
 Once the data is entered and the 'Predict' button is clicked, the model will display whether the customer is likely to churn or not.
 <p align="center">
-  <img src="Images/prediction%20result.JPG" width="600">
+  <img src="Images/prediction_result.JPG" width="600">
 </p>
