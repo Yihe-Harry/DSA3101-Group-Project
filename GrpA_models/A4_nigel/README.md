@@ -2,6 +2,7 @@
 This folder contains the framework we have developed to measure the success of marketing campaigns. It contains the following:
 1. A README.md file (this file) which provides a description and explanations of our framework
 2. A Jupyter Notebook containing the code used to calculate metrics and KPIs
+3. A folder containing synthetic datasets used in the Jupyter Notebook
 
 This README.md file contains the following sections:
 1. Introduction
