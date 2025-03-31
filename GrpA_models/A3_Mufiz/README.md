@@ -1,5 +1,5 @@
 # Customer behavior analysis
-his project analyzes customer behavior across different segments to help banks develop more informed and data-driven marketing strategies. The goal is to help financial institutions deliver more targeted and effective marketing strategies.
+This project analyzes customer behavior across different segments to help banks develop more informed and data-driven marketing strategies. The goal is to help financial institutions deliver more targeted and effective marketing strategies.
 
 ---
 
