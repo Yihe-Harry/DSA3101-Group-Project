@@ -138,10 +138,10 @@ The success of Loyalty campaigns can be evaluated based on the level of customer
 #### 1)Churn Rate -  Measures the percentage of the bank's customers that stop engaging with the bank during the time period. It allows the bank to determine how well they are retaining their customers and is an indicator of customer loyalty and satisfaction. Defined as 
 
 $$
-f(\text{Churn Rate}) = \left( \frac{\text{Customers Lost}}{\text{Total Customers at Start of Period}} \right) \times 100
+f(\text{Churn Rate}) = \left( \frac{\text{Customers Lost}}{\text{Total Customers at Start of Period}} \right) \times 100 , \text{ where}
 $$
 
-* **Customers Lost ** refers to the number of customers who stopped engaging with the bank during the time period.  
+* **Customers Lost** refers to the number of customers who stopped engaging with the bank during the time period.  
 * **Total Customers at Start of Period** refers to the number of customers with the bank at the beginning of the period.
 ##### Actionable Insight: A high churn rate may suggest that the bank may not be successfully maintaining relationships with customers or maintaining customer satisfaction. The bank may want to look into ways to strengthen their relationships with customers. Examples include loyalty programs and improved customer service. It may be a good idea for the bank to collect feedback from customers via surveys or direct conversations, in order to find out what might be causing customers to feel dissatisfied. Another reason for a high churn rate is that the bank's products and services may be inferior compared to other banks. It is important to conduct regular competitor analyses to ensure quality and pricing of products and services remain competitive in the market. Customer segmentation and increased personalisation in marketing may help the bank address specific needs of customers which can lead to greater customer satisfaction.
 
@@ -149,6 +149,7 @@ $$
 
 $$
 f(\text{Active Engagement Rate}) = \left( \frac{\text{Number of Active Customers}}{\text{Total Participants Enrolled in Loyalty Program}} \right) \times 100
+, \text{ where}
 $$
 
 * **Number of Active Customers** refers to customers who engage with the loyalty program by earning points, redeeming rewards, etc.  
