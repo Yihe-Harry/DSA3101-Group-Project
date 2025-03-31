@@ -279,3 +279,9 @@ No features, just click execute
 ```json
 "Model successfully updated"
 ```
+
+This is temporary for now, while working out integration to streamlit
+```
+streamlit run app.py
+```
+
