@@ -24,6 +24,22 @@ Ensure you have Python installed along with the necessary libraries. You can ins
 pip install pandas numpy scikit-learn
 ```
 
+### Running the Project
+1. **Prepare the Data:**
+   - Ensure `bank_customer_segmentation.csv` is available in the project directory.
+   - Run `clean_data.py` to clean and preprocess the dataset.
+   ```bash
+   python clean_data.py
+   ```
+   - This will generate `cleaned_bank_customer_segmentation.csv`.
+
+2. **Run the Segmentation Model:**
+   - Execute `model.py` to perform customer segmentation and simulate real-time data processing.
+   ```bash
+   python model.py
+   ```
+   - The script assigns new incoming customers to segments dynamically.
+
 ## How It Works
 1. **Data Cleaning (clean_data.py)**
    - Removes duplicates and missing values.
@@ -35,3 +51,4 @@ pip install pandas numpy scikit-learn
    - Normalizes the data.
    - Uses KMeans clustering to segment customers.
    - Simulates real-time customer data and assigns new customers to segments dynamically.
+
