@@ -15,7 +15,7 @@ This project is divided into two key components:
 
 Customer Segmentation & Behaviour Analysis – Focuses on identifying customer groups and analysing their financial behaviours. (See GrpA_models)
 
-Personalisation & Campaign Optimisation – Uses AI to tailor marketing campaigns and optimize outreach strategies. (See GrpB_models)
+Personalisation & Campaign Optimisation – Uses AI to tailor marketing campaigns and optimise outreach strategies. (See GrpB_models)
 
 # Installation and Setup
 Please ensure you have Docker installed on your local machine. You can download and install Docker from https://www.docker.com/products/docker-desktop/.<br>
