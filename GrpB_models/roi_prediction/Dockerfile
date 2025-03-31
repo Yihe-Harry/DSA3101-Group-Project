@@ -2,9 +2,10 @@ FROM python:3.10
 
 WORKDIR /GrpB_models/roi_prediction
 
-COPY . /GrpB_models/roi_prediction
+COPY requirements.txt ./ 
 
-RUN pip install GrpB_models/roi_prediction/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
 
 CMD ["python", "main.py"]
-

@@ -1,8 +1,7 @@
-pandas as pd
-numpy as np
+pandas
+numpy
 holidays
-sklearn
+scikit-learn
 matplotlib
 xgboost
 hyperopt
-pickle
