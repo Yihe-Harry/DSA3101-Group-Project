@@ -6,10 +6,6 @@ This folder contains the framework we have developed to measure the success of m
 This README.md file contains the following sections:
 1. Introduction
 2. Breakdown
-   a. Awareness
-   b. Consideration
-   c. Conversion
-   d. Loyalty
 3. Conclusion
 
 # 1) Introduction 
