@@ -1,7 +1,7 @@
 # Marketing Campaign Personalisation and Optimisation
 
 ## Overview
-This directory focuses on the personalisation and optimisation of marketing campaigns to improve customer engagement, maximise Return on Investment (ROI) and enhance overall campaign effectiveness. The project is divided into key areas that target various aspects of marketing campaign strategy and evaluation.
+This directory focuses on the personalisation and optimisation of marketing campaigns to improve customer engagement, maximise Return on Investment (ROI) and enhance overall campaign effectiveness. The project is divided into key areas that target various aspects of personalising and optimising marketing campaigns.
 
 ## Directory Structure
 The directory contains the following subdirectories, each representing a key area of focus for personalising or optimising marketing campaigns:
