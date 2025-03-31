@@ -22,7 +22,7 @@ Please ensure you have Docker installed on your local machine. You can download 
 
 1. Clone the repository
 ```
-[git clone https://github.com/](https://github.com/Yihe-Harry/DSA3101-Group-Project.git)
+git clone https://github.com/Yihe-Harry/DSA3101-Group-Project.git
 ```
 
 2. Create Virtual Environment
@@ -31,14 +31,9 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-3. Install Dependencies
-```
-pip install -r requirements.txt
-```
+3. Run the Application
 
-4. Run the Application
-
-5. Docker Deployment
+4. Docker Deployment
 
 
 <h2>Usage Guide</h2>
