@@ -1,22 +1,23 @@
 <p align="center">
-  <strong style="font-size:64px;">Group 13</strong> <br>
+  <strong style="font-size:64px;">DSA3101 AY24/25 Group 13</strong> <br>
   <em>Machine Learning for Personalized Marketing Campaigns in Banking</em> <br>
-  <span style="font-size:16px;">NUS DSA3101 Data Science in Practice Project</span>
 </p>
 
-<h2>Project Overview</h2>
-Banks are facing challenges in optimising their marketing strategies, struggling to efficiently allocate resources and engage customers in a personalised way. Traditional methods fail to utilise the continuous influx of valuable customer data.<br>
-This project aims to build an AI-driven system that leverages machine learning techniques to craft personalised marketing campaigns. By extracting data-driven insights, we aim to enhance customer engagement, improve conversion rates, and transform our marketing approach. Here are some key features of our system:<br>
+# Project Overview
+Traditional bank marketing strategies often rely on mass campaigns and generic customer segmentation. This leads to low engagement rates, inefficient resource allocation and customer dissatisfaction due to irrelevant offers. Many customers receive irrelevant financial offers, resulting in poor engagement and missed opportunities for both banks and consumers.
 
-- Customer segmentation: Clustering customers based on behavioural data
+With advancements in AI and machine learning, there is an opportunity to transform bank marketing by personalising customer interactions based on customer behaviour, transaction history and real-time behavioural insights. This project aims to leverage AI to analyse customer data, predict preferences and deliver highly relevant marketing campaigns. By providing tailored financial product recommendations such as loans, credit cards and investment plans at the right time, banks can improve customer experience, increase engagement and optimise marketing efficiency.
 
-- Predictive modelling: Forecasting customer needs for targeted campaigns and identifying customers with high risk of churning
+The goal is to enhance customer satisfaction, improve conversion rates and maximise marketing ROI, all while ensuring compliance with the strict regulations that govern the banking industry.
 
-- API Development: API to serve model predictions
+# Project Structure
+This project is divided into two key components:
 
-- Ease of deployment: Containerised application using Docker for easy deployment
+Customer Segmentation & Behaviour Analysis – Focuses on identifying customer groups and analysing their financial behaviours. (See GrpA_models)
 
-<h2>Installation and Setup</h2>
+Personalisation & Campaign Optimisation – Uses AI to tailor marketing campaigns and optimize outreach strategies. (See GrpB_models)
+
+# Installation and Setup
 Please ensure you have Docker installed on your local machine. You can download and install Docker from https://www.docker.com/products/docker-desktop/.<br>
 
 1. Clone the repository
@@ -49,8 +50,8 @@ This project is developed by the following developers:<br>
 |-----------------|---------------------------------------------|
 | Edsel Tan       | [edselllll](https://github.com/edselllll)   |
 | Eugene Goh      | [Eugjk](https://github.com/Eugjk)           |
-| Marcus Yong     | [honeylew01](https://github.com/honeylew01) |
 | Mabel Ng        | [mab-ell](https://github.com/mab-ell)       |
+| Marcus Yong     | [honeylew01](https://github.com/honeylew01) |
 | Mufiz Ahmed     | [mufiz1](https://github.com/mufiz1)         |
 | Nigel Eng       | [nigel7023](https://github.com/nigel7023)   |
 | Rachel Chun     | [Chxlz](https://github.com/Chxlz)           |
