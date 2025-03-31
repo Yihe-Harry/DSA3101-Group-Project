@@ -4,7 +4,7 @@
 This directory focuses on customer segmentation and behaviour analysis to enhance personalised bank marketing strategies. By leveraging AI, we aim to understand customer needs, preferences and behaviour, enabling the creation of highly targeted and relevant marketing campaigns. Through advanced segmentation and predictive behaviour models, the goal is to improve customer experience, increase engagement and maximise the effectiveness of personalised bank marketing, ultimately driving a higher Return on Investment (ROI) and fostering long-term customer loyalty.
 
 ## Directory Structure
-The directory contains the following subdirectories, each representing a key area of focus for segmenting customers or understanding their behaviour:
+The directory contains the following subdirectories, each representing a key area of focus for segmenting customers and understanding their behaviour:
 
 ### Customer Segmentation
 This folder focuses on segmenting customers into distinct clusters based on demographics and transactional data. The goal is to develop a segmentation system using machine learning to group customers for more targeted and personalised marketing efforts. The ultimate goal is to optimise marketing campaigns by delivering relevant offers and content tailored to the specific needs of each customer segment, enhancing engagement and driving business growth.
