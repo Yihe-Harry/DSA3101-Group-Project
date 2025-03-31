@@ -1,5 +1,5 @@
 import pandas as pd
-from datacleaning import DataCleaning
+from data_cleaning import DataCleaning
 import holidays
 
 class FeatureEngineering:
@@ -23,7 +23,3 @@ class FeatureEngineering:
             df = df.drop('Impressions', axis = 1)
             df = df.drop('Clicks', axis = 1)
             return df
-
-
-#df = FeatureEngineering('GrpB_models\B3_Edsel\marketing_campaign_dataset.csv').add_features()
-print("Feature Engineering: OK")
