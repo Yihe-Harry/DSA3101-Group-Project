@@ -319,8 +319,4 @@ streamlit run app.py
 If you are prompted to enter your email address, simply press Enter to skip this step.
 
 7.&nbsp; Open the App in Your Browser
-After running the command, the app will launch and you will be automatically redirected to the application in your default web browser. If this does not happen, open your browser and go to the following URL.
-
-```
-http://localhost:8501
-```
+After running the command, the app will launch and you will be automatically redirected to the application in your default web browser. If this does not happen, open your browser and go to the following URL specified by the terminal.
