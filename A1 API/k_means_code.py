@@ -7,7 +7,7 @@ df = pd.read_csv("cleaned main dataset.csv",delimiter=",")
 
 # features used for clustering
 cluster_features = [
-    'age', 'age group', 'gender', 'income/month', 'account balance',
+    'customer id', 'age', 'age group', 'gender', 'income/month', 'account balance',
     'loyalty score', 'education level', 'Facebook', 'Twitter', 'Email',
     'Instagram', 'prev campaign success', 'total_withdrawals',
     'total_deposits', 'net_transaction', 'transaction_count',
