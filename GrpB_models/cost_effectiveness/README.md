@@ -51,9 +51,9 @@ $$ f(p) = P(r|p) * V_r - C(p), \text{ where} $$
 
 * $$p$$ is the personalisation level
 * $$f(p)$$ is the objective function to maximise
-* $$P(r|p)$$ is the probability of response given personalisation level p
+* $$P(r|p)$$ is the probability of response given personalisation level $$p$$
 * $$V_r$$​ is the expected value of a successful response
-* $$C(p)$$ is the cost associated with personalisation level p
+* $$C(p)$$ is the cost associated with personalisation level $$p$$
 
 **2.&nbsp; Prior Distribution**
 
@@ -178,7 +178,7 @@ As new data sources (e.g., social media, customer support interactions) become a
 
 Effective Model Lifecycle Management ensures that marketing models remain relevant, accurate and adaptable to evolving conditions. By prioritising data freshness, regular retraining, continuous performance monitoring and the integration of new data sources, businesses can optimise their marketing strategies and achieve long-term success. This proactive approach ensures that marketing campaigns continue to drive high engagement and ROI while staying aligned with the latest customer trends and economic factors.
 
-# 4) Conclusion
+# 3) Conclusion
 Balancing personalisation with cost-effectiveness in marketing campaigns is crucial for banks looking to maximise the impact of their marketing efforts while maintaining budget control. By leveraging AI techniques like customer segmentation, predictive modeling and Bayesian Optimisation, banks can ensure that their campaigns are not only personalised but also cost-efficient. 
 
 Segmentation allows for precise targeting of customer groups, ensuring that marketing efforts deliver the right message to the right people. Predictive models enable the accurate forecasting of customer response probabilities, helping marketers allocate their efforts to the based on the predicted response probability of the customers. Furthermore, Bayesian Optimisation fine-tunes personalisation strategies, balancing customer engagement with the cost of delivering tailored messages.
