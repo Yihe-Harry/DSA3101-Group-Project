@@ -90,7 +90,7 @@ This model predicts whether a credit card customer is likely to default on their
 - The dataset [Default of Credit Card Clients](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients) is sourced from the UCI Machine Learning Repository.
 - It includes financial features such as the amount of given credit, history of past payment, amount of bill statement and amount of previous payment.
 - The target variable for this dataset is default and does not have direct churn labels. We defined churn based on certain assumptions:
-  - **The customer churns if no payments were made for two months**.
+  - **The customer churns if no payments are made for two months**.
       - **Explanation**: A lack of payments for two consecutive months could signal that a customer is no longer actively using their credit card or may be experiencing financial difficulties. This behavior is often associated with customers who are at risk of discontinuing their relationship with the bank.
   - **The customer churns if they have decreased card usage over three months**.
       - **Explanation**: A decline in card usage over three months may suggest that the customer no longer finds the credit card valuable or is cutting back on spending due to dissatisfaction or financial difficulties. Such decreasing usage patterns can serve as an early indicator of churn, as customers who are disengaging with their credit cards may be preparing to switch to other financial institutions.
@@ -101,7 +101,7 @@ This model predicts whether a credit card customer is likely to default on their
 1. The value "-2" in PAY variables is found to be the same as "0" and hence all "-2" values will be replaced with "0".
 2. **One-hot encoding for PAY variables** (to convert categorical payment history into numeric form).
 3. **Derived Features:**
-   - **Sudden Large Payment:** This feature identifies customers who make a significant payment (more than 90% of their bill) in either the first or second payment period. 1 is assigned if the payment amount in either period exceeds 90% of the corresponding bill amount or 0 otherwise.
+   - **Sudden Large Payment:** This feature identifies customers who make a significant payment (more than 90% of their bill) in either the first or second payment period. 1 is assigned if the payment amount in either period exceeds 90% of the corresponding bill amount, or 0 otherwise.
    - **Decreasing Usage:** This feature identifies customers whose credit card usage has decreased over the last three months. If the bill amounts for the last three months have been decreasing, it assigns a value of 1, or 0 otherwise.
    - **Churn Definition:** A combination of no payments for the last two months, sudden large payments, or decreasing usage.
 
@@ -122,7 +122,7 @@ This model predicts whether a credit card customer is likely to default on their
   - The optimal parameters for the Random Forest model include:
     - No bootstrapping
     - No max tree depth
-    - 1 minimum samples per leaf
+    - 1 minimum sample per leaf
     - Minimum of 5 samples to split
     - 100 estimators
   - Therefore, we have selected Random Forest as our preferred method.
@@ -143,20 +143,10 @@ This model predicts whether a credit card customer is likely to default on their
 
 This task focused on building models to predict customer churn. Both models utilized Random Forest classifiers, which outperformed Logistic Regression in key metrics such as recall and F1-score.
 
-For the first model trained on banking customer churn dataset, we identified critical features like **Age**, **Number of products**, and **Account balance**, which were key determinants of churn. The model demonstrated that older customers and those with only one product are more likely to churn, highlighting the need for targeted engagement and product diversification strategies to reduce churn.
+For the first model trained on the banking customer churn dataset, we identified critical features like **Age**, **Number of products**, and **Account balance**, which were key determinants of churn. The model demonstrated that older customers and those with only one product are more likely to churn, highlighting the need for targeted engagement and product diversification strategies to reduce churn.
 
 In the second model trained on the UCI credit card data, we introduced custom features like **Sudden Large Payment** and **Decreasing Usage** to help identify customers at high risk of churning. A significant difference in churn rates was observed between low and high balance customers, emphasizing the importance of managing account balances for better customer retention. The model suggested that assisting high-balance customers with debt management could be an effective strategy.
 
 Both models show the power of Random Forest in capturing complex patterns and interactions in customer behavior. Moving forward, focusing on the insights gained from these models—such as targeting high-risk customers based on balance and product usage—could help the bank enhance customer loyalty, increase retention, and drive long-term profitability.
-
-
-### Future Improvements
-1. **Addressing Data Imbalance:**
-   - While SMOTE helped balance the churn dataset, alternative techniques such as **ADASYN** (Adaptive Synthetic Sampling) or **undersampling** could be explored to address class imbalance in different ways.
-   - Investigating the use of **class weights** in Random Forest could be another approach to improve model performance on imbalanced data.
-
-2. **Explainability and Interpretability:**
-   - Improving the interpretability of the Random Forest models using techniques like **SHAP (Shapley Additive Explanations)** or **LIME (Local Interpretable Model-agnostic Explanations)** could help stakeholders understand model decisions and facilitate better decision-making.
-   - This would also be crucial for regulatory compliance, as understanding the rationale behind model predictions can ensure fairness and transparency.
 
 
