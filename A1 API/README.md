@@ -280,8 +280,47 @@ No features, just click execute
 "Model successfully updated"
 ```
 
-This is temporary for now, while working out integration to streamlit
+# Running app.py
+## This section contains instructions on how to run app.py
+
+1.&nbsp; Ensure that your Python version is at least 3.XX (will check later). You can check your Python version by running:
+
+```
+python --version
+```
+
+2.&nbsp; Install the required libraries if you have not done so. You can do so by running the following command:
+
+```
+pip install streamlit pandas numpy matplotlib scikit-learn fastapi pydantic uvicorn
+```
+
+3.&nbsp; Download all the files in this folder and ensure they are placed in the same directory on your system.
+
+4.&nbsp; Open the Project in Your IDE
+
+Open your favourite IDE (e.g Visual Studio Code, PyCharm, or any other editor) and navigate to the folder where ```app.py``` and the other required files are located. This will allow you to view, modify and execute the app from within your IDE.
+
+5.&nbsp; Run the Streamlit App
+
+Navigate to the directory containing app.py. You can do this using the cd command. For example,
+
+```
+cd path/to/your-folder
+```
+
+Once you're in the correct directory, open a new terminal within your IDE or a standalone terminal and run the following command:
+
 ```
 streamlit run app.py
 ```
 
+6.&nbsp; Optional Email Prompt
+If you are prompted to enter your email address, simply press Enter to skip this step.
+
+7.&nbsp; Open the App in Your Browser
+After running the command, the app will launch and you will be automatically redirected to the application in your default web browser. If this does not happen, open your browser and go to the following URL.
+
+```
+http://localhost:8501
+```
