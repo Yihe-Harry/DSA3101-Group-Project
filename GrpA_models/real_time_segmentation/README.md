@@ -27,9 +27,9 @@ pip install pandas numpy scikit-learn
 ### Running the Project
 1. **Prepare the Data:**
    - Ensure `bank_customer_segmentation.csv` is available in the project directory.
-   - Run `clean_data.py` to clean and preprocess the dataset.
+   - Run `data_cleaning.py` to clean and preprocess the dataset.
    ```bash
-   python clean_data.py
+   python data_cleaning.py
    ```
    - This will generate `cleaned_bank_customer_segmentation.csv`.
 
