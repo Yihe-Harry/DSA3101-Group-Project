@@ -39,21 +39,23 @@ XGBoost and Random Forest were chosen for their strong predictive power and abil
 Given the banking sector's need for transparency in decision-making, it is essential to understand which factors contribute to a customer's likelihood of responding to a marketing campaign. To further aid this, techniques such as SHapley Additive exPlanations (SHAP) and Local Interpretable Model-agnostic Explanations (LIME) will be applied. These methods provide detailed insights into how different customer attributes such as financial behaviour, transaction history and engagement patterns influence response probabilities. By leveraging these techniques, banks can ensure that marketing decisions are transparent, auditable and aligned with ethical and regulatory expectations while also refining their strategies based on key drivers of customer engagement.
 
 
+
 ### Step 3: Determining Optimal Personalisation Level & Cost Estimation
 A Bayesian Optimisation approach is employed to optimise the personalisation level while considering the associated costs. This allows for the dynamic adjustment of personalisation strategies based on the predicted response rates and costs, such as sending mass emails, targeted SMS messages or personalised calls. Bayesian Optimisation can also be employed to refine key parameters such as interest rates, loan terms or discount levels, tailoring them based on individual customer segments, behaviours and recent activity. The goal is to determine the optimal personalisation level that balances high customer engagement with cost efficiency. The Bayesian Optimisation works as follow:
 
-1.&nbsp; Objective Function Definition
+**1.&nbsp; Objective Function Definition**
 
 The objective of the Bayesian Optimisation process is to identify the personalisation level that maxims the expected response rate while minimising the related cost. The objective function can be defined as:
 
-$$
-f(\text{personalisation level}) = \text{expected response rate} - \text{cost per personalisation}, \text{ where}
-$$
+$$ f(p) = P(r|p) * V_r - C(p), \text{ where} $$
 
-* response rate is the probability of a customer engaging with the respective marketing outreach (e.g., opening an account, subscribing to a service, applying for a loan)
-* cost per personalisation refers to the expenses associated with different marketing strategies (e.g., automated emails, targeted SMS, personalised calls)
+* $$p$$ is the personalisation level
+* $$f(p)$$ is the objective function to maximise
+* $$P(r|p)$$ is the probability of response given personalisation level p
+* $$V_r$$​ is the expected value of a successful response
+* $$C(p)$$ is the cost associated with personalisation level p
 
-2.&nbsp; Prior Distribution
+**2.&nbsp; Prior Distribution**
 
 At the outset, prior beliefs about customer behaviour are based on historical data and domain knowledge. Examples of initial assumptions include:
 
@@ -66,13 +68,13 @@ At the outset, prior beliefs about customer behaviour are based on historical da
 
 These assumptions make up the prior distribution, which is refined as more data is collected.
 
-3.&nbsp; Surrogate Model
+**3.&nbsp; Surrogate Model**
 
 Since evaluating the objective function directly is a costly process, Bayesian Optimisation will use a Gaussian Process (GP) to approximate the relationship between personalisation levels, response rates and costs. This surrogate model captures the uncertainty about how each personalisation method performs, allowing the optimisation process to be more efficient.
 
 As data is collected through testing different personalisation levels, the surrogate model is updated to reflect the relationship between personalisation methods and their respective outcomes. For example, the model may initially predict that personalised calls yield the highest response. However, after several iterations, it may learn that SMS reminders achieve similar engagement at a lower cost.
 
-4.&nbsp; Acquisition Function
+**4.&nbsp; Acquisition Function**
 
 The acquisition function guides the optimisation process by suggesting the next personalisation level to evaluate. It identifies the points in the personalisation space that are likely to yield the most improvement, balancing exploration of unknown areas with exploitation of known good options.
 
@@ -82,13 +84,13 @@ Common acquisition functions include:
 
 The acquisition function is essential to optimise the balance between personalisation and cost, ensuring that the optimisation process explores new personalisation levels while honing in on the most cost-effective options.
 
-5.&nbsp; Iterative Optimiation Process
+**5.&nbsp; Iterative Optimiation Process**
 
 The optimisation begins by testing a few initial personalisation levels, typically chosen through random sampling or prior knowledge. Following each test, the observed response rate and associated cost are used to update the surrogate model. This iterative process allows the model to refine its predictions and progressively identify the optimal personalisation strategy.
 
 Upon each iteration, the surrogate model gains confidence in the expected response rates and costs for each personalisation level. The acquisition function then selects the next personalisation strategy to evaluate, guiding the search towards increasingly optimal solutions.
 
-6.&nbsp; Convergence and Optimisation
+**6.&nbsp; Convergence and Optimisation**
 
 The process continues until convergence is reached, which occurs when the optimisation model has sufficiently explored the trade-off between personalisation and cost, identifying the most cost-effective personalisation level that maximises the expected response rate. At this point, the optimal level of personalisation has been determined.
 
@@ -99,6 +101,7 @@ By applying Bayesian Optimisation, this approach dynamically adjusts the persona
 Bayesian Optimisation is chosen to identify the most cost-effective personalisation strategy for each customer while dynamically adjusting engagement levels based on response probability and cost constraints. Although reinforcement learning could theoretically optimise personalisation in a dynamic manner, its lack of interpretability makes it unsuitable for financial applications where transparency is essential. Financial regulations and business decision-making processes require clear explanations of model outputs, making black-box optimisation approaches difficult to justify. By contrast, Bayesian Optimisation offers a structured, probabilistic method that effectively balances cost and response probability while ensuring transparency in decision-making.
 
 
+
 ### Step 4: Predicting ROI Metrics
 To evaluate cost-effectiveness, additional models are used to predict ROI metrics such as return on ad spend, customer acquisition cost and cost per successful response. These predictions help quantify the financial impact of marketing efforts before optimisation, ensuring that marketing strategies align with business objectives.
 
@@ -107,6 +110,7 @@ To evaluate cost-effectiveness, additional models are used to predict ROI metric
 XGBoost is used to predict key ROI metrics of marketing campaigns. This model offers a strong balance between predictive accuracy and interpretability, allowing financial teams to audit and justify marketing investments. Since ROI models play a crucial role in corporate decision-making, they must provide clear and defensible justifications for financial forecasts to align with corporate reporting standards.
 
 A key concern is ensuring that stakeholders understand how different factors contribute to ROI predictions. To address this, SHAP values are used to explain how various customer attributes influence the predicted financial outcomes. This approach enhances transparency, making the model’s outputs more interpretable for decision-makers and ensuring compliance with financial accountability requirements.
+
 
 
 ### Step 5: Constrained Budget Optimisation
@@ -153,9 +157,12 @@ Stochastic optimisation is valuable in uncertain environments, where customer be
 These optimisation models offer tailored solutions to balance marketing efficiency with regulatory compliance, transparency and ethical marketing practices. Each model addresses the complexity of relationships and the level of uncertainty in different marketing scenarios, helping the bank allocate resources effectively while meeting industry standards and customer expectations.
 
 
+
 ### Step 6: Pilot Testing and Controlled Deployment
 
 Before fully deploying the model to the entire customer base, the bank should first apply it to a small, controlled group of customers. This allows for a real-world test of the model’s effectiveness without exposing the entire customer segment to potential risks. During this pilot phase, the bank can closely monitor key metrics such as response rate, customer engagement and ROI to assess the model’s performance. This step helps identify any issues or unexpected outcomes that can be addressed before broader implementation. After evaluating the pilot results and making any necessary adjustments, the model can be gradually rolled out to larger segments, ensuring that the bank’s marketing efforts are both effective and cost-efficient.
+
+
 
 ### Step 7: Model Lifecycle Management
 
