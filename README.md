@@ -4,11 +4,11 @@
 </p>
 
 # Project Overview
-Traditional bank marketing strategies often rely on mass campaigns and generic customer segmentation. This leads to low engagement rates, inefficient resource allocation and customer dissatisfaction due to irrelevant offers. Many customers receive irrelevant financial offers, resulting in poor engagement and missed opportunities for both banks and consumers.
+Traditional bank marketing strategies often rely on mass campaigns and generic customer segmentation. This can often lead to low engagement rates, inefficient resource allocation as well as reduced customer satisfaction due to poorly targeted offers. Irrelevant financial offers lead to low customer engagement, resulting in missed opportunities for both banks and consumers.
 
-With advancements in AI and machine learning, there is an opportunity to transform bank marketing by personalising customer interactions based on customer behaviour, transaction history and real-time behavioural insights. This project aims to leverage AI to analyse customer data, predict preferences and deliver highly relevant marketing campaigns. By providing tailored financial product recommendations such as loans, credit cards and investment plans at the right time, banks can improve customer experience, increase engagement and optimise marketing efficiency.
+With advancements in AI and machine learning, there is an opportunity to transform bank marketing by personalising customer interactions based on customer behaviour, transaction history and real-time behavioural insights. By leveraging AI to analyse customer data, predict preferences and deliver highly relevant marketing campaigns, we hope to be able to provide tailored financial product recommendations and offer loans, credit cards and investment plans at the right time, in order to improve customer experience, increase engagement and optimise marketing efficiency.
 
-The goal is to enhance customer satisfaction, improve conversion rates and maximise marketing ROI, all while ensuring compliance with the strict regulations that govern the banking industry.
+Our goal is to enhance customer satisfaction, improve conversion rates and maximise marketing ROI, all while ensuring compliance with the strict regulations that govern the banking industry.
 
 # Project Structure
 This project is divided into two key components:
