@@ -2,6 +2,7 @@
 This folder contains the framework we have developed to measure the success of marketing campaigns. It contains the following:
 1. A README.md file (this file) which provides a description and explanations of our framework
 2. A Jupyter Notebook containing the code used to calculate metrics and KPIs
+3. A folder containing synthetic datasets used in the Jupyter Notebook
 
 This README.md file contains the following sections:
 1. Introduction
@@ -39,14 +40,14 @@ $$
 * **Number of Impressions** refers to the number of people who viewed the ad.
 ##### Actionable Insight: A low CTR would suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience.
 
-#### 4) Branded Search Volume - Measures brand awareness and interest. It is the number of times the bank or keywords related to the bank are searched for on a search engine, like Google, over a certain period. Defined as 
+#### 4) Branded Search Volume - Measures brand awareness and interest. It is the number of times the bank or keywords related to the bank are searched for on a search engine, like Google, over a certain period. It can be directly obtained from the search engine's services eg Google Ads, Google Trends. Defined as 
 
 $$
 f(\text{Branded Search Volume}) = \left( \frac{\text{Number of searches}}{\text{Number of Days}} \right) , \text{ where}
 $$
 
-* **Number of Searches** refers to the total number of searches containing Bank name or products on search engines
-* **Number of Days** refers to the number of days contained in time the time period we are interested in
+* **Number of Searches** refers to the total number of searches containing Bank name or products on search engines. Obtained directly from search engine.
+* **Number of Days** refers to the number of days contained in time the time period we are interested in.
 ##### Actionable Insight:  A low number suggests low awareness and interest in the bank and may indicate that the awareness campaign has not been as effective in generating interest or making the brand memorable. If branded search volume is low, it could signal that the campaign is not reaching the right audience or is not leaving a strong enough impression for people to actively seek out the brand after encountering the ad. This could suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience. If the search volume is low, it could also be a sign of inconsistent messaging. Ensuring that the bank's branding is coherent across all channels—whether social media, YouTube ads, or influencer posts—will help reinforce the brand's identity, making it more likely for customers to search for it later.
 
 #### 5) Social media mentions - comments on social media platforms mentioning the bank. This measures brand image and the publics' sentiment towards banks.
@@ -69,14 +70,14 @@ $$
 * **Number of Impressions** refers to the number of people who viewed the ad.
 ##### Actionable Insight:  It is an indicator of how well the ad resonates with or captures the audiences' attention. A low CTR would suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience.
 
-#### 2) Average Website Session Duration - average time spent on website by people who click on ads. This measures the level of engagement people have with the website. Defined as  
+#### 2) Average Website Session Duration - average time spent on website by people who visit. This measures the level of engagement people have with the website. Defined as  
 
 $$
-f(\text{Average Website Session Duration}) = \left( \frac{\text{Total Time Spent on Website by All Users}}{\text{Number of Clicks}} \right), \text{ where}
+f(\text{Average Website Session Duration}) = \left( \frac{\text{Total Time Spent on Website by All Users}}{\text{Number of Visitors}} \right), \text{ where}
 $$
 
 * **Total Time Spent on Website by All Users** refers to the cumulative time all users have spent on the website.  
-* **Number of Clicks** refers to the total number of users who clicked on the ad.
+* **Number of Visitors** refers to the total number of people who visited the website
 
 ##### Actionable Insight:  A longer time spent on the website is desirable as it generally indicates greater interest in the bank and its products and services. Moreover, customers with longer session durations are more likely to be responsive towards future marketing campaigns. As such, it would be beneficial to focus marketing efforts towards customers with longer website session duration. As clicking on ads or searching for the bank's website generally indicates a baseline level of interest in the bank, low website session duration numbers could suggest that the website is unappealing to audiences, which could indicate a need to improve the websites design or interface.
 
@@ -106,7 +107,7 @@ Conversion is the third stage of the funnel. In this stage, potential customers 
 The success of Conversion campaigns can be evaluated based on conversion and conversion rate, which should be weighed against cost metrics to achieve a balance, such that a high level of conversions are obtained without having to overspend. The average conversion rate differs across platforms and is affected by numerous other factors such as the reputation of the bank and the quality of products and servies offered. As there isnt really a formula for what the optimal balance should be, the bank may have to experiment with different levels of ad spending and rely on previous benchmarks to find the optimal balance of conversions,conversion rate and spending.
 
 ### KPIs
-#### 1) Conversion rate - Measures the effectiveness of the campaign at converting visitors/leads into customers. Defined as 
+#### 1) Conversion rate - Measures the effectiveness of the campaign at converting impressions into customers. Defined as 
 
 $$
 f(\text{Conversion Rate}) = \left( \frac{\text{Number of Conversions}}{\text{Number of Impressions}} \right) \times 100, \text{ where}
@@ -138,10 +139,10 @@ The success of Loyalty campaigns can be evaluated based on the level of customer
 #### 1)Churn Rate -  Measures the percentage of the bank's customers that stop engaging with the bank during the time period. It allows the bank to determine how well they are retaining their customers and is an indicator of customer loyalty and satisfaction. Defined as 
 
 $$
-f(\text{Churn Rate}) = \left( \frac{\text{Customers Lost}}{\text{Total Customers at Start of Period}} \right) \times 100
+f(\text{Churn Rate}) = \left( \frac{\text{Customers Lost}}{\text{Total Customers at Start of Period}} \right) \times 100 , \text{ where}
 $$
 
-* **Customers Lost ** refers to the number of customers who stopped engaging with the bank during the time period.  
+* **Customers Lost** refers to the number of customers who stopped engaging with the bank during the time period.  
 * **Total Customers at Start of Period** refers to the number of customers with the bank at the beginning of the period.
 ##### Actionable Insight: A high churn rate may suggest that the bank may not be successfully maintaining relationships with customers or maintaining customer satisfaction. The bank may want to look into ways to strengthen their relationships with customers. Examples include loyalty programs and improved customer service. It may be a good idea for the bank to collect feedback from customers via surveys or direct conversations, in order to find out what might be causing customers to feel dissatisfied. Another reason for a high churn rate is that the bank's products and services may be inferior compared to other banks. It is important to conduct regular competitor analyses to ensure quality and pricing of products and services remain competitive in the market. Customer segmentation and increased personalisation in marketing may help the bank address specific needs of customers which can lead to greater customer satisfaction.
 
@@ -149,6 +150,7 @@ $$
 
 $$
 f(\text{Active Engagement Rate}) = \left( \frac{\text{Number of Active Customers}}{\text{Total Participants Enrolled in Loyalty Program}} \right) \times 100
+, \text{ where}
 $$
 
 * **Number of Active Customers** refers to customers who engage with the loyalty program by earning points, redeeming rewards, etc.  
