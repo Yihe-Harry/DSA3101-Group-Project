@@ -4,7 +4,7 @@ from roi_regression_model import XGBoostModel
 from model_optimization import XGBoostOptimizer
 import matplotlib.pyplot as plt
 import xgboost as xgb
-import pickle
+import joblib
 import pandas as pd
 import numpy as np
 
@@ -18,8 +18,7 @@ print(f"Results - RMSE: {rmse:.4f}\nThe model's ROI predictions are, on average,
 xgb.plot_importance(trained_model, importance_type="weight", xlabel="Feature Importance", title="XGBoost Feature Importance")
 plt.show() #Plots the importance of features in the dataset.
 
-
-#print("Optimizing Hyperparameters...")
-#optimizer = XGBoostOptimizer(file_path, max_evals=50)
-#best_params = optimizer.optimize()
-#print(f"Best Parameters Found: {best_params}\n")
+# Save the model
+#joblib.dump(trained_model, '../../Dashboard/roi_xgboost.pkl')
+ #Load the model
+#loaded_model = joblib.load('../../Dashboard/roi_xgboost.pkl')
