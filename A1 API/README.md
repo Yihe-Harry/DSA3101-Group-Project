@@ -5,7 +5,7 @@ To run this api using Docker, follow the steps below:
 ## Prerequisites
 
 - Ensure Docker is installed on your system.
-- The project uses Python 3.10 as specified in the Dockerfile.
+- The api uses Python 3.10 as specified in the Dockerfile.
 - Ensure that your terminal's directory is in the API folder
 
 ## Build and Run Instructions
