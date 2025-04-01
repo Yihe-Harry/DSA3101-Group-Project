@@ -126,23 +126,29 @@ try:
                         
                     else:
                         #this replicates the API logic
-                        cluster_num = model_data['df_cluster'].at[customer_id, "cluster_num"]
-                        cluster_name = model_data['cluster_names'][cluster_num]
-                        business_strategy = model_data['cluster_strategy'][cluster_name]
-                        
-                        #display results in a nice format
-                        st.success(f"Customer {customer_id} belongs to Cluster {cluster_num}")
-                        
-                        col1, col2 = st.columns(2)
-                        with col1:
-                            st.info(f"**Cluster Name:** {cluster_name}")
-                        with col2:
-                            st.info(f"**Business Strategy:** {business_strategy}")
-                        
-                        #show customer details
-                        st.subheader("Customer Details")
-                        customer_data = model_data["df"].loc[customer_id]
-                        st.dataframe(pd.DataFrame(customer_data).transpose())
+                        #use .loc to filter the rows where "customer id" equals the input customer_id
+                        customer_row = model_data['df_cluster'].loc[model_data['df_cluster']["customer id"] == customer_id]
+
+                        if len(customer_row) > 0:
+                            cluster_num = customer_row["cluster_num"].values[0]
+                            cluster_name = model_data['cluster_names'][cluster_num]
+                            business_strategy = model_data['cluster_strategy'][cluster_name]
+                            
+                            #display results in a nice format
+                            st.success(f"Customer {customer_id} belongs to Cluster {cluster_num}")
+                            
+                            col1, col2 = st.columns(2)
+                            with col1:
+                                st.info(f"**Cluster Name:** {cluster_name}")
+                            with col2:
+                                st.info(f"**Business Strategy:** {business_strategy}")
+                            
+                            #show customer details
+                            st.subheader("Customer Details")
+                            customer_data = model_data["df"].loc[model_data["df"]["customer id"] == customer_id]
+                            st.dataframe(customer_data)
+                        else:
+                            st.error(f"Customer ID {customer_id} not found in the dataset.")
                     
                 except KeyError:
                     st.error(f"Customer ID {customer_id} not found in the dataset.")
@@ -162,15 +168,16 @@ try:
                 gender = st.selectbox("Gender", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male")
                 monthly_income = st.number_input("Monthly Income", min_value=0, value=5000)
                 account_balance = st.number_input("Account Balance", min_value=0, value=10000)
-                loyalty_score = st.slider("Loyalty Score", min_value=0, max_value=10, value=5)
-                education_level = st.slider("Education Level", min_value=0, max_value=4, value=2)
+                loyalty_score = st.slider("Loyalty Score", min_value=0, max_value=1000, value=500)
                 has_loan = st.selectbox("Has Loan", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes")
-            
+                education_input = st.selectbox("Education Level", options=["Primary", "Secondary", "Tertiary", "Postgrad"], index=2)
+                education_level = ["Primary", "Secondary", "Tertiary", "Postgrad"].index(education_input)
+
             with col2:
-                facebook_interaction = st.slider("Facebook Interaction", min_value=0, max_value=10, value=5)
-                twitter_interaction = st.slider("Twitter Interaction", min_value=0, max_value=10, value=3)
-                email_interaction = st.slider("Email Interaction", min_value=0, max_value=10, value=7)
-                instagram_interaction = st.slider("Instagram Interaction", min_value=0, max_value=10, value=4)
+                facebook_interaction = st.selectbox("Facebook Interaction", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes")
+                twitter_interaction = st.selectbox("Twitter Interaction", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes")
+                email_interaction = st.selectbox("Email Interaction", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes")
+                instagram_interaction = st.selectbox("Instagram Interaction", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes")
                 total_withdrawal_amount = st.number_input("Total Withdrawal Amount", min_value=0, value=3000)
                 total_deposit_amount = st.number_input("Total Deposit Amount", min_value=0, value=5000)
                 transaction_count = st.number_input("Transaction Count", min_value=0, value=20)
@@ -217,9 +224,15 @@ try:
                         st.error(f"❌ Invalid Customer ID! Please enter an integer from {min(valid_ids)} to {max(valid_ids)}.")
 
                     #get the customer data
-                    customer_data = model_data['df'].loc[customer_id].copy()
+                    customer_data = model_data['df'][model_data['df']["customer id"] == customer_id].copy()
                     
-                    #display current data
+                    #check if customer exists before accessing
+                    if customer_data.empty:
+                        st.error(f"❌ Customer ID {customer_id} not found. Please enter an integer from {min(valid_ids)} to {max(valid_ids)}.")
+                    else:
+                        customer_data = customer_data.iloc[0]  #convert dataframe row to series
+                    
+                    #display current customer data
                     st.subheader("Current Customer Data")
                     st.dataframe(pd.DataFrame(customer_data).transpose())
                     
@@ -228,24 +241,29 @@ try:
                         st.subheader("Update Customer Information")
                         
                         col1, col2 = st.columns(2)
-                        
+
+                        education_labels = ["Primary", "Secondary", "Tertiary", "Postgrad"]
+                        education_mapping = {"Primary": 0, "Secondary": 1, "Tertiary": 2, "Postgrad": 3}
+
+                        #these are the RAW VALUES the customer will input to update the information. will standardise later
+                        #index means the default values
                         with col1:
-                            updated_age = st.number_input("Age", min_value=18, max_value=100, value=int(customer_data['age']) if not pd.isna(customer_data['age']) else 30)
-                            updated_gender = st.selectbox("Gender", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male", index=int(customer_data['gender']) if not pd.isna(customer_data['gender']) else 0)
-                            updated_income = st.number_input("Monthly Income", min_value=0, value=int(customer_data['income/month']) if not pd.isna(customer_data['income/month']) else 5000)
-                            updated_balance = st.number_input("Account Balance", min_value=0, value=int(customer_data['account balance']) if not pd.isna(customer_data['account balance']) else 10000)
-                            updated_loyalty = st.slider("Loyalty Score", min_value=0, max_value=10, value=int(customer_data['loyalty score']) if not pd.isna(customer_data['loyalty score']) else 5)
-                            updated_education = st.slider("Education Level", min_value=0, max_value=4, value=int(customer_data['education level']) if not pd.isna(customer_data['education level']) else 2)
-                            updated_loan = st.selectbox("Has Loan", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes", index=int(customer_data['loan']) if not pd.isna(customer_data['loan']) else 0)
+                            updated_age = st.number_input("Age", min_value=18, max_value=100, value=int(customer_data['age']))
+                            updated_gender = st.selectbox("Gender", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male", index=int(customer_data['gender']))
+                            updated_income = st.number_input("Monthly Income", min_value=0, value=int(customer_data['income/month']))
+                            updated_balance = st.number_input("Account Balance", min_value=0, value=int(customer_data['account balance']))
+                            updated_loyalty = st.slider("Loyalty Score", min_value=0, max_value=1000, value=int(customer_data['loyalty score']))
+                            updated_education = education_mapping[st.selectbox("Education Level", options=education_labels, index=int(customer_data['education level']))]
+                            updated_loan = st.selectbox("Has Loan", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes", index=int(customer_data['loan']))
                         
                         with col2:
-                            updated_facebook = st.slider("Facebook Interaction", min_value=0, max_value=10, value=int(customer_data['Facebook']) if not pd.isna(customer_data['Facebook']) else 5)
-                            updated_twitter = st.slider("Twitter Interaction", min_value=0, max_value=10, value=int(customer_data['Twitter']) if not pd.isna(customer_data['Twitter']) else 3)
-                            updated_email = st.slider("Email Interaction", min_value=0, max_value=10, value=int(customer_data['Email']) if not pd.isna(customer_data['Email']) else 7)
-                            updated_instagram = st.slider("Instagram Interaction", min_value=0, max_value=10, value=int(customer_data['Instagram']) if not pd.isna(customer_data['Instagram']) else 4)
-                            updated_withdrawal = st.number_input("Total Withdrawal Amount", min_value=0, value=int(customer_data['total_withdrawals']) if not pd.isna(customer_data['total_withdrawals']) else 3000)
-                            updated_deposit = st.number_input("Total Deposit Amount", min_value=0, value=int(customer_data['total_deposits']) if not pd.isna(customer_data['total_deposits']) else 5000)
-                            updated_transactions = st.number_input("Transaction Count", min_value=0, value=int(customer_data['transaction_count']) if not pd.isna(customer_data['transaction_count']) else 20)
+                            updated_facebook = st.selectbox("Facebook Interaction", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes", index=int(customer_data['Facebook']))
+                            updated_twitter = st.selectbox("Twitter Interaction", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes", index=int(customer_data['Twitter']))
+                            updated_email = st.selectbox("Email Interaction", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes", index=int(customer_data['Email']))
+                            updated_instagram = st.selectbox("Instagram Interaction", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes", index=int(customer_data['Instagram']))
+                            updated_withdrawal = st.number_input("Total Withdrawal Amount", min_value=0, value=int(customer_data['total_withdrawals']))
+                            updated_deposit = st.number_input("Total Deposit Amount", min_value=0, value=int(customer_data['total_deposits']))
+                            updated_transactions = st.number_input("Transaction Count", min_value=0, value=int(customer_data['transaction_count']))
                         
                         update_submitted = st.form_submit_button("Update Customer Information")
                         
