@@ -34,12 +34,12 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-3. Run the Application
-
-4. Docker Deployment
-
 
 <h2>Usage Guide</h2>
+
+1. For instructions on using our customer segmentation API, please refer to ```README.md``` in the ```API``` directory.
+
+2. For instructions on using our dashboard application, please refer to ```README.md``` in the ```Dashboard``` directory.
 
 <h2>Contributors</h2>
 This project is developed by the following developers:<br>
