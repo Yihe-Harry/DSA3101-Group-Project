@@ -25,6 +25,33 @@ To find factors that are most strongly correlated with customer engagement in ma
 
 3. Logistic Regression
       - Model Training: A logistic regression model is trained on categorical variables to predict the likelihood of a
-        client subscribing to a deposit/converted.
+        client subscribing to a deposit/converted. Chosen as the outcome variable is binary and suspecting that the
+        relationship is linear. 
       - P-values Analysis: The statistical significance of each feature is calculated using p-values from a logistic
         regression model.
+
+
+## Findings
+
+Factors that are most strongly correlated with customer engagement in marketing campaigns:
+      - Session Duration (TimeOnSite / Duration of call)
+      - Previous loyalty (loyalty points / poutcome)
+      - Duration since last contact (pdays)
+
+Key metrics for tracking customer engagement over time:
+      1. Start of Campaign / Acquisition:
+            - Outreach Rate (% of customer that click on Email, Site / Pick up call)
+      2. During Campaign / Behaviour:
+            - Session Duration (Call Duration / Time on Site)
+      3. End of Campaign:
+            - Churn Rate (% of customer that buy product)
+            - Customer Satisfaction
+      4. After Campaign:
+            - Customer Retention Rate
+            - Net Promoter Score (Tracks loyalty and likelihood to recommend)
+            - Customer Lifetime Value
+
+
+
+ 
+
