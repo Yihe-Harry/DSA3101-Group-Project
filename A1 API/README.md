@@ -1,6 +1,6 @@
-# Running the Project with Docker
+# Running the API with Docker
 
-To run this project using Docker, follow the steps below:
+To run this api using Docker, follow the steps below:
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ For further details, refer to the project documentation or contact the developme
 ## Summary of API
 - This API is used to deploy a real-time customer segmentation model using the K-means algorithm.
 - This API supports immediate segmentation for both real-time new customer additions/queries , as well as 
-for real-time updates to customer data of customers who already exist in the database
+for real-time updates to the customer data of those who already exist in the database
 - Additional helper functions are included to allow for the ability to 
 add/delete/update customer data in the database
 - Periodic/ Dynamic re-training of the K-means segmentation model using recently updated data is also
@@ -94,7 +94,7 @@ Takes in a customer id and returns the customer attributes, the cluster that the
 }
 ```
 2. #### update_customer_details_to_database
-Updates customer details of **existing** customers in database whenever the field (e.g. monthly_income) is provided. If a particular field is not provided in the request body,
+Updates customer details of **existing** customers in the database whenever the field (e.g. monthly_income) is provided. If a particular field is not provided in the request body,
 no change is made to that attribute. This function also automatically re-segments customers after each update.
 
 
