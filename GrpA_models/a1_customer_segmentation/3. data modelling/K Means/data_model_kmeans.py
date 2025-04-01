@@ -1,26 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[148]:
-
-
 # Installing packages 
 
 import pandas as pd 
 import os 
 from sklearn.preprocessing import StandardScaler
 
-# Working Directory 
-os.chdir("/Users/rachel/Desktop/DSA3101/dataset")
-
-
-# In[149]:
-
-
 # Loading dataset 
 df = pd.read_csv("cleaned main dataset.csv",delimiter=",")
 df.head()
-
 
 # ## **Customer Segmentation**
 # ##### - **Demographics**: Age, gender, income, education, marital status, job type
@@ -29,9 +18,6 @@ df.head()
 # ##### - **Customer outcomes**: Whether they bought a product, churned, or responded to past campaigns
 
 # ## **K Means Clustering: Banking Behaviour**
-
-# In[150]:
-
 
 # Re-import necessary libraries after environment reset
 import pandas as pd
@@ -80,9 +66,6 @@ plt.show()
 
 # ### **K Means (K=4)**
 # Based on graph, taking the best number of clusters to be 4 and profiling them 
-
-# In[151]:
-
 
 # Re-import necessary libraries after code reset
 import pandas as pd
@@ -137,10 +120,6 @@ cluster_profile = df_cluster.groupby('Cluster').mean(numeric_only=True).round(2)
 # Display the cluster profile
 print("Cluster Profile (k=4):")
 cluster_profile
-
-
-# In[152]:
-
 
 # Re-import necessary libraries after code execution state reset
 import pandas as pd
@@ -230,8 +209,6 @@ descriptions
 # - Cluster 2: Affluent inacitves
 # - Cluster 3: Budget conscious occasionals
 
-# In[153]:
-
 
 # Saving df_k4 dataset
 
@@ -255,9 +232,6 @@ df_k4 = df_cluster[cols]
 
 # Save the final DataFrame as df_k4.csv
 df_k4.to_csv("df_k4.csv", index=False)
-
-
-# In[154]:
 
 
 # Saving clusters information K=4
@@ -287,9 +261,6 @@ profile_k4.to_csv("cluster_profile_k4.csv", index=False)
 
 # ### **K Means (K=5)**
 # If taking the number of clusters to be 5 and profiling them:
-
-# In[155]:
-
 
 # Re-import necessary libraries after code reset
 import pandas as pd
@@ -344,9 +315,6 @@ cluster_profile = df_cluster.groupby('Cluster').mean(numeric_only=True).round(2)
 # Display the cluster profile
 print("Cluster Profile (k=5):")
 cluster_profile
-
-
-# In[156]:
 
 
 # Re-import necessary libraries
@@ -437,8 +405,6 @@ descriptions_k5
 # - Cluster 3: Budget conscious occasionals
 # - Cluster 4: Cautious regulars
 
-# In[157]:
-
 
 # Add Banking Behavior descriptions
 df_cluster['Banking Behavior'] = df_cluster['Cluster'].map(descriptions_k5)
@@ -461,9 +427,6 @@ df_k5 = df_cluster[cols]
 
 # Save the final DataFrame as df_k5.csv
 df_k5.to_csv("df_k5.csv", index=False)
-
-
-# In[158]:
 
 
 # Saving cluster information k=5
@@ -525,8 +488,6 @@ profile_k5.to_csv("cluster_profile_k5.csv", index=False)
 
 # ### **Comparing K=4 vs K=5:**
 
-# In[159]:
-
 
 # Re-import necessary libraries
 import pandas as pd
@@ -580,9 +541,6 @@ comparison_df
 
 
 # ### **Calculating Silhouette Score**
-
-# In[160]:
-
 
 from sklearn.metrics import silhouette_score
 from sklearn.cluster import KMeans
