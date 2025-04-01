@@ -11,7 +11,7 @@ Both models use classification techniques to analyze customer behavior and ident
 Please ensure you have Docker installed and the repository cloned to your local device.
 1. Navigate to the file directory
   ```bash
-  cd DSA3101-Group-Project/GrpB_models/B5_Marcus
+  cd DSA3101-Group-Project/GrpB_models/b5_churn_prediction
   ```
 
 2. Build the image
@@ -20,7 +20,7 @@ Please ensure you have Docker installed and the repository cloned to your local 
   ```
 3. Run the container (Note: the following code assumes that the repository is in your local C drive)
   ```bash
-  docker run --rm -v ${PWD}/C:/DSA3101-Group-Project/GrpB_models/B5_Marcus churn-model
+  docker run --rm -v ${PWD}/C:/DSA3101-Group-Project/GrpB_models/b5_churn_prediction churn-model
   ```
 4. If successful, you will see
   ```bash
