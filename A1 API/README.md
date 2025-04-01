@@ -283,7 +283,7 @@ No features, just click execute
 # Running app.py
 ## This section contains instructions on how to run app.py
 
-1.&nbsp; Ensure that your Python version is at least 3.XX (will check later). You can check your Python version by running:
+1.&nbsp; Ensure that your Python version is at least 3.9. You can check your Python version by running:
 
 ```
 python --version
