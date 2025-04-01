@@ -34,22 +34,25 @@ To find factors that are most strongly correlated with customer engagement in ma
 ## Findings
 
 Factors that are most strongly correlated with customer engagement in marketing campaigns:
-      - Session Duration (TimeOnSite / Duration of call)
-      - Previous loyalty (loyalty points / poutcome)
-      - Duration since last contact (pdays)
+1. Session Duration (TimeOnSite / Duration of call)
+2. Campaign Channels
+3. Previous loyalty (loyalty points / poutcome)
+4. Duration since last contact (pdays)
 
 Key metrics for tracking customer engagement over time:
-      1. Start of Campaign / Acquisition:
-            - Outreach Rate (% of customer that click on Email, Site / Pick up call)
-      2. During Campaign / Behaviour:
-            - Session Duration (Call Duration / Time on Site)
-      3. End of Campaign:
-            - Churn Rate (% of customer that buy product)
-            - Customer Satisfaction
-      4. After Campaign:
-            - Customer Retention Rate
-            - Net Promoter Score (Tracks loyalty and likelihood to recommend)
-            - Customer Lifetime Value
+1. Start of Campaign / Acquisition
+      - Outreach Rate (% of customer that click on Email, Site / Pick up call): Provides insights on the effectiveness of campaign channels used.
+
+2. During Campaign / Behaviour
+      - Session Duration (Call Duration / Time on Site): Assess the quality of the interaction. If customers are spending more time on the site or staying on calls longer, it’s a positive sign that the campaign is piquing their interest.
+  
+3. End of Campaign: 
+      - Churn Rate (% of customer that stopped engaging): Understanding if there exists a mismatch between customer needs and what was offered. 
+      - Net Promoter Score: Tracks loyalty and likelihood to recommend, crucial for retention and brand loyalty
+
+3. After Campaign: 
+      - Customer Retension Rate: Retention is often more cost-effective than acquiring new customers, and high retention rates indicate that customers find ongoing value in products or services provided.
+      - Customer Lifetime Value: Understanding the long-term financial impact of customers and aids in assessing the return on investment (ROI) from marketing efforts. By tracking CLV, we can better allocate resources, target high-value customers, and identify opportunities.
 
 
 
