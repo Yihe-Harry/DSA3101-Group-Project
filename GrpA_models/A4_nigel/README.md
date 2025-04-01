@@ -15,6 +15,9 @@ For question A4, the objective is to develop a framework for measuring campaign 
 
 The marketing funnel consists of four key stages: Awareness, Consideration, Conversion, and Loyalty. Within our framework, marketing campaigns will be categorized into one of these stages. Customers typically progress through these stages sequentially, and weak performance at any stage can negatively impact the subsequent stages, making it crucial to ensure each stage functions effectively without leakages. Since each stage serves a distinct purpose, it is essential to evaluate campaigns based on their specific objectives.
 
+
+
+
 # 2) Breakdown
 This section contains an indepth analysis of each of the 4 stages in our framework. The code snippet provided under each KPI demonstrates a possible method for calculating the metric using the available data from the bank.
 
@@ -27,8 +30,14 @@ The success of Awareness campaigns should be evaluated based on reach,visibility
 #### 1) Ad Views/Impressions - This measures ad traffic, or the number of people that have seen the campaign ads. Defined as number of people who viewed the ad
 ##### Actionable Insight: If ad views/impressions are low, it is an indicator that the campaign is not reaching enough people. This could suggest the need for broader targeting or increasing the budget to enhance the ad’s reach. 
 
+<img width="1121" alt="Screenshot 2025-04-01 at 6 53 22 PM" src="https://github.com/user-attachments/assets/4f301e21-df23-4f34-b01b-06f024961e45" />
+
 #### 2) Website/Social media page Views/Impressions  - This measures the number of people that have visited the website or social media page. Defined as number of people who viewed the bank's website or social media page
 ##### Actionable Insight: This is an indicator of both reach and brand awareness. If this number is low but Ad Views/Impressions are high, it typically indicates that the ad does not resonate or capture the attention of the audience . This could suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience.
+
+<img width="1117" alt="Screenshot 2025-04-01 at 7 03 00 PM" src="https://github.com/user-attachments/assets/ec764e81-fb49-4d5b-9e6c-ea72795311e1" />
+
+
 
 #### 3) Click through rate(CTR) (for online ads) - Measures the percentage of people who click on an ad after seeing it. Similar to 2), it is an indicator of how well the ad resonates with or captures the audiences' attention. Defined as
 
@@ -40,6 +49,9 @@ $$
 * **Number of Impressions** refers to the number of people who viewed the ad.
 ##### Actionable Insight: A low CTR would suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience.
 
+<img width="1120" alt="Screenshot 2025-04-01 at 6 53 36 PM" src="https://github.com/user-attachments/assets/bd4bdd05-138a-406f-ad81-eff097101800" />
+
+
 #### 4) Branded Search Volume - Measures brand awareness and interest. It is the number of times the bank or keywords related to the bank are searched for on a search engine, like Google, over a certain period. It can be directly obtained from the search engine's services eg Google Ads, Google Trends. Defined as 
 
 $$
@@ -49,6 +61,8 @@ $$
 * **Number of Searches** refers to the total number of searches containing Bank name or products on search engines. Obtained directly from search engine.
 * **Number of Days** refers to the number of days contained in time the time period we are interested in.
 ##### Actionable Insight:  A low number suggests low awareness and interest in the bank and may indicate that the awareness campaign has not been as effective in generating interest or making the brand memorable. If branded search volume is low, it could signal that the campaign is not reaching the right audience or is not leaving a strong enough impression for people to actively seek out the brand after encountering the ad. This could suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience. If the search volume is low, it could also be a sign of inconsistent messaging. Ensuring that the bank's branding is coherent across all channels—whether social media, YouTube ads, or influencer posts—will help reinforce the brand's identity, making it more likely for customers to search for it later.
+
+
 
 #### 5) Social media mentions - comments on social media platforms mentioning the bank. This measures brand image and the publics' sentiment towards banks.
 ##### Actionable Insight:  If comments are largely negative, it is an indicator that the bank has a poor reputation, and rebranding may be necessary to change perspectives. It may also be helpful to reevaluate the bank's practices, products and services to find out the root cause.
@@ -70,6 +84,9 @@ $$
 * **Number of Impressions** refers to the number of people who viewed the ad.
 ##### Actionable Insight:  It is an indicator of how well the ad resonates with or captures the audiences' attention. A low CTR would suggest a need to change the ad design and content or to assess whether the platform used is suitable for the bank's target audience.
 
+
+<img width="1119" alt="Screenshot 2025-04-01 at 6 53 52 PM" src="https://github.com/user-attachments/assets/1b61b8d0-82bb-4b65-b4cf-a0a30289c5fe" />
+
 #### 2) Average Website Session Duration - average time spent on website by people who visit. This measures the level of engagement people have with the website. Defined as  
 
 $$
@@ -81,6 +98,11 @@ $$
 
 ##### Actionable Insight:  A longer time spent on the website is desirable as it generally indicates greater interest in the bank and its products and services. Moreover, customers with longer session durations are more likely to be responsive towards future marketing campaigns. As such, it would be beneficial to focus marketing efforts towards customers with longer website session duration. As clicking on ads or searching for the bank's website generally indicates a baseline level of interest in the bank, low website session duration numbers could suggest that the website is unappealing to audiences, which could indicate a need to improve the websites design or interface.
 
+
+<img width="1117" alt="Screenshot 2025-04-01 at 6 54 01 PM" src="https://github.com/user-attachments/assets/839d2959-2cae-4903-9ec7-9e5662fd56cc" />
+
+
+
 #### 3) Lead generation rate - Measures the rate in which leads are generated throughout a specific marketing campaign. Defined as
 
 $$
@@ -91,6 +113,9 @@ $$
 * **Duration of campaign** refers to the total number of days in which the campaign took place.
 ##### Actionable insight: This metric can be used to assess both ads and the bank's website, along with other possible platforms such as email. A low rate could suggest that the messaging is not compelling enough, targeting is off, or that the process of accomplishing the desired action eg filling in form is too difficult/troublesome for audience. It may be a good idea to enhance user experience, improve on the ad messaging or adjust targeting strategies. One possible targeting strategy would be to target people who have responded to past marketing campaigns or people who have had recent interactions with the bank.
 
+
+<img width="1111" alt="Screenshot 2025-04-01 at 6 54 11 PM" src="https://github.com/user-attachments/assets/576ceb7b-8f09-4c03-a129-89e5e87a58df" />
+
 #### 4) Cost per lead(CPL)- Measures whether or not marketing strategy is cost effective. Defined as
 
 $$
@@ -99,6 +124,9 @@ $$
 * **Total number of leads generated** refers to the number of people who indicated interest in the bank's products or services, either through filling in forms, signing up for newsletters, downloading product brochures or making inquiries etc.
 * **Total Cost of Campaign** refers to the total amount spent by the bank over the course of the campaign.
 ##### Actionable insight:  It may be useful to compare CPL between channels to find the most cost efficient channel. More investment can be made towards these cost effective channels to maximise the number of leads generated while keeping cost low. If cost per lead is high, it could suggest that the messaging is not compelling enough, targeting is off, or that the process of accomplishing the desired action eg filling in form is too difficult/troublesome for audience. It may be a good idea to enhance user experience, improve on the ad messaging or adjust targeting strategies. One possible targeting strategy would be to target people who have responded to past marketing campaigns or people who have had recent interactions with the bank.
+
+
+<img width="1119" alt="Screenshot 2025-04-01 at 6 54 19 PM" src="https://github.com/user-attachments/assets/6afc7525-ef3f-4dac-b5b3-93252fe2329e" />
 
 
 ## Conversion
@@ -117,8 +145,14 @@ $$
 * **Number of Impressions** refers to the number of people who viewed the ad.
 ##### Actionable Insight: Comparing conversion rates across platforms and past campaigns can help the bank to identify and compare between better and poorer performing platforms and campaigns. They can take insights and seek to emulate features from well performing campaigns, while avoiding mistakes made in poorer performing campaigns. They can also do A/B testing with different features to find out what works and what does not work, allowing them to optimise campaigns in the future. Comparing between platforms can also help the bank to determine which platforms work better for their target audience. A low conversion rate on a specific platform could indicate a need to improve targeting strategies, and assess whether or not a platform is suitable for the target audience. Segmentation of customers also allow for more personalised marketing, which could improve conversion rates. Targeting higher intent users who have expressed more interest in previous stages or improving incentives could also help with improving conversion rates.
 
+
+<img width="1119" alt="Screenshot 2025-04-01 at 6 54 26 PM" src="https://github.com/user-attachments/assets/f69842aa-3997-4c04-afd6-51cb3ea67b04" />
+
 #### 2) Number of conversions - Refers to number of people who take a desired action(sign up for credit card, open account with bank etc).
 ##### Actionable Insight: A low number of conversions but a high conversion rate would suggest that reach needs to be improved. The bank can increase ad spending or explore new platforms to reach out to a larger audience. The bank should also consider improving on Awareness and Consideration campaigns to maximise lead generation. If both conversion rates and number of conversions are low, it would be better to improve conversion rates first, before deciding to increase the scale of campaigns, to avoid unneccessary and inefficient spending.
+
+<img width="1121" alt="Screenshot 2025-04-01 at 6 54 34 PM" src="https://github.com/user-attachments/assets/1255d3bd-ac49-466f-8743-fccff4f870d8" />
+
 
 #### 3) Cost per conversion - Measures the efficiency of campaign and allows us to assess which platforms are the most cost efficient. Defined as
 $$
@@ -129,6 +163,8 @@ $$
 Again, there is no ideal standard for what cost per conversion should be. A high customer lifetime value(see A4_Loyalty) could also justify having a high cost per conversion, as each conversion results in a higher level of earnings for the bank. A high cost per conversion is often a result of low conversion rates, so it would be useful to look into that as well. This part would elaborate more on the case where conversion rate is not low, but cost per conversion is high.
 ##### Actionable Insight: Cost per conversion can be compared between platforms to assess the cost efficiency of each platform. If cost per conversion for a particular platform is too high, it might signal that the platform may not be suitable for the target audience. If there is significant overlap between users of different platforms, the bank could consider focusing their spending on one platform instead. A high cost per conversion could also signal a need to narrow the scope of target audience. A possible solution is to create more specific audience segments and use more personalised offers targeted towards each segment. A/B testing can also be done to identify areas in which cost can be reduced without much consequence to conversion rates and number of conversions.
 
+
+<img width="1112" alt="Screenshot 2025-04-01 at 6 54 43 PM" src="https://github.com/user-attachments/assets/7e8b79b1-172a-4b44-8e9f-dc7484a90e68" />
 
 ## Loyalty
 Loyalty is the final stage of the funnel. This stage involves only customers who have been or are currently with the bank now. In this stage, the aim is to keep them as customers, and prevent them from switching banks. For Loyalty campaigns, we want to maintain customer satisfaction and retention, minimise churn rates, as well as maximise customer lifetime value. Examples of such campaigns would be loyalty programs and personalised customer service. 
@@ -146,6 +182,10 @@ $$
 * **Total Customers at Start of Period** refers to the number of customers with the bank at the beginning of the period.
 ##### Actionable Insight: A high churn rate may suggest that the bank may not be successfully maintaining relationships with customers or maintaining customer satisfaction. The bank may want to look into ways to strengthen their relationships with customers. Examples include loyalty programs and improved customer service. It may be a good idea for the bank to collect feedback from customers via surveys or direct conversations, in order to find out what might be causing customers to feel dissatisfied. Another reason for a high churn rate is that the bank's products and services may be inferior compared to other banks. It is important to conduct regular competitor analyses to ensure quality and pricing of products and services remain competitive in the market. Customer segmentation and increased personalisation in marketing may help the bank address specific needs of customers which can lead to greater customer satisfaction.
 
+
+<img width="1120" alt="Screenshot 2025-04-01 at 6 54 51 PM" src="https://github.com/user-attachments/assets/82737200-2fd6-4634-abb5-64a04497de85" />
+
+
 #### 2)Active Engagement Rate(for loyalty programs) - Measures how well loyalty programs resonate with customers or meet their needs. Defined as 
 
 $$
@@ -156,6 +196,9 @@ $$
 * **Number of Active Customers** refers to customers who engage with the loyalty program by earning points, redeeming rewards, etc.  
 * **Total Participants Enrolled in Loyalty Program** refers to all customers who have signed up for the loyalty program over a given time period.
 ##### Actionable Insight: A low active engagement rate indicates that customers enrolled in loyalty programs are not actively participating in programs. It could suggest a need to improve the level of rewards to incentivise particpation. This could increase spending. A high customer lifetime value could justify increased spending on loyalty programs. Another possible action could be to look into the process to earn or redeem rewards. An overly complicated process could deter customers from participating due to lack of patience or interest. Customer segmentation can personalisation can be incorporated into loyalty programs to align more accurately with customer needs and preferences, which could incentivise engagement.
+
+
+<img width="1121" alt="Screenshot 2025-04-01 at 6 54 58 PM" src="https://github.com/user-attachments/assets/a4252ef7-378b-44da-8dfd-0aec9a91b5c0" />
 
 #### 3)Customer Lifetime Value (CLV) - Estimates the total profit the bank can expect from each customer over their relationship with the bank. Defined as  
 
@@ -186,6 +229,9 @@ where
 
 
 ##### Actionable Insight: This metric helps the bank to determine how much they can afford to spend for customer acquisition and retention. Aside from that, a low customer lifetime value suggests that the bank is not maximising what they are getting out of each customer. Looking into each of the 3 factors(Average Revenue, Average Customer Lifespan, Average Customer Acquisition Cost) in CLV may offer a more in depth insight on which aspects require improvements. For low average revenue, the bank can look into ways to increase the value they provide to each customer, such as offering additional services, upselling, or cross-selling products. For a low average customer lifespan, the bank can look into improving customer retention by enhancing customer satisfaction, improving loyalty programs, or offering personalized experiences to encourage long-term relationships. Lastly, if the customer acquisition cost (CAC) is high, the bank can look into reducing spending on marketing campaigns, or improving the efficiency of marketing strategies in the previous three stages.
+
+
+<img width="1116" alt="Screenshot 2025-04-01 at 6 55 06 PM" src="https://github.com/user-attachments/assets/33f65d73-4fed-44d1-a052-40e15bb8ca6d" />
 
 
 # 3) Conclusion
