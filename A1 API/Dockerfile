@@ -9,7 +9,7 @@ WORKDIR /app
 COPY . /app
 
 
-RUN pip install uvicorn pandas scikit-learn fastapi pydantic
+RUN pip install uvicorn pandas scikit-learn fastapi pydantic flask
 
 
 # Expose the application port
