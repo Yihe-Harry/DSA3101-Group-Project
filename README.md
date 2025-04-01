@@ -11,7 +11,7 @@ With advancements in AI and machine learning, there is an opportunity to transfo
 Our goal is to enhance customer satisfaction, improve conversion rates and maximise marketing ROI, all while ensuring compliance with the strict regulations that govern the banking industry.
 
 # Limitations
-Due to the the sensitive and confidential nature of financial data, we were not able to obtain large amounts of real and up to date data of customer details and activity. To overcome this, we generated synthetic data based on research-backed distributions in order to reflect realistic customer behaviors as best as we could.
+Due to the the sensitive and confidential nature of financial data, we were not able to obtain large amounts of real and up to date data of customer details and activity. To overcome this, we generated synthetic data based on research-backed distributions in order to reflect realistic customer behaviors as best as we could. While we aimed to model real-world banking scenarios, certain assumptions had to be made regarding customer behaviors, spending patterns, and engagement metrics. There are a plethora of variables affecting customer behaviours and our simplified and generalised models due to our limited resources may not capture all the complexities involved. 
 
 # Project Structure
 This project is divided into two key components:
