@@ -1,3 +1,11 @@
+## Installation
+
+pip install -r `requirements.txt`
+
+Run `main.py` to run all scripts and get all the scripts.
+
+`model_optimization.py` returns a set of the best parameters.
+
 ## ROI Prediction using XGBoost model
 
 To tackle the task of ROI regression, this project proposes the use of XGBoost, particularly given the large dataset of 200,000 entries. Through the analysis conducted in the notebooks, XGBoost demonstrates superior flexibility and provides deeper insights into the key factors influencing ROI. One notable advantage is its feature importance plot, which effectively highlights the most influential variables, offering businesses and banks actionable insights on where to focus for future campaigns.
@@ -21,9 +29,3 @@ Users (Marketing analysts, bank management) could use this model to have their R
 ## What it hopes to solve
 
 XGBoost is extremely efficient at handling multiple features and large datasets due to its gradient boosting algorithms, which can be a popular choice for banks, as they have access to much more customer data than any other business. This method is also considered a fairly modern technique. As some banks may feel that their vast amount of data is being under-utilised by older machine learning models, this XGBoost model ensures that large datasets can be used to train the model, and also develop more creative ROI predictions. As such, XGBoost offers a way for banks to use their data wisely.
-
-## How to run
-
-pip install -r requirements.txt
-run main.py file to retrieve a model and save it.
-model_optimization.py creates a dictionary of the best parameters for the model.
