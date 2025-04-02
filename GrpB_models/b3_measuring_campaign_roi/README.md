@@ -58,8 +58,8 @@ Since the dataset is fictitious, it lacks real-world patterns and variability, m
 
 ## Intended Usage
 
-Users (Marketing analysts, bank management) could use this model to have their ROI values predicted. Users can fill up the numerical features like click rate, impression, etc. with their targets. They can also enter categorical features that contains their intended marketing strategy, like target customer segments and type of channels used. This way, the users are able to gauge if their targeted metrics and initial strategy can reap in a higher ROI.
+Users (Marketing analysts, bank management) could use this model to have their ROI values predicted. Users can fill up the numerical features like click rate, impression, etc. with their targets. They can also enter categorical features that contains their intended marketing strategy, like age and gender demographics type of channels used. This way, the users are able to gauge if their targeted metrics and initial strategy can reap in a higher ROI.
 
-## Possible solution
+## Industry Context
 
-XGBoost is extremely efficient at handling multiple features and large datasets due to its gradient boosting algorithms, which can be a popular choice for banks, as they have access to much more customer data than any other business. This method is also considered a fairly modern technique. As some banks may feel that their vast amount of data is being under-utilised by older machine learning models, this XGBoost model ensures that large datasets can be used to train the model, and also develop more creative ROI predictions. As such, XGBoost offers a way for banks to use their data wisely.
+XGBoost is extremely efficient at handling multiple features and large datasets due to its gradient boosting algorithms, which can be a popular choice for banks, as they have access to much more customer data than any other business. This method is also considered a fairly modern technique. As some banks may feel that their vast amount of data is being under-utilised by older machine learning models, this XGBoost model ensures that large datasets can be used to train the model, and also develop more creative ROI predictions. As such, XGBoost offers a way for banks to use their data wisely.|
