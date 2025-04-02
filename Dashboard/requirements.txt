@@ -1,6 +1,10 @@
 streamlit
 pandas
 joblib
-scikit-learn
-imblearn
 xgboost
+requests
+matplotlib
+seaborn
+plotly
+Pillow
+scikit-learn
