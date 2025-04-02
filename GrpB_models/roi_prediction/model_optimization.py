@@ -67,9 +67,9 @@ class XGBoostOptimizer:
         return best_params
 
 # Run optimization
-if __name__ == "__main__":
-    optimizer = XGBoostOptimizer('GrpB_models/B3_Edsel/marketing_campaign_dataset.csv', max_evals=50)
-    best_params = optimizer.optimize()
+#if __name__ == "__main__":
+    #optimizer = XGBoostOptimizer('GrpB_models/B3_Edsel/marketing_campaign_dataset.csv', max_evals=50)
+    #best_params = optimizer.optimize()
 
 #Best Hyperparameters: 
 # {'alpha': 4.201332861544761, 

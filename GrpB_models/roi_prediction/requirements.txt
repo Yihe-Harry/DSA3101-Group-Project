@@ -1,8 +1,0 @@
-pandas
-numpy
-holidays
-scikit-learn
-matplotlib
-xgboost
-hyperopt
-joblib
