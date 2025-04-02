@@ -16,7 +16,7 @@ st.sidebar.header("Input Features")
 
 # Define input fields based on dataset columns
 def user_inputs():
-    Click-Through_Rate = st.sidebar.number_input("Feature 1 (e.g., Click-Through Rate)", min_value=0, max_value=999999, step=0.1)
+    Click_Through_Rate = st.sidebar.number_input("Feature 1 (e.g., Click-Through Rate)", min_value=0, max_value=999999, step=0.1)
     Cost_Per_Click = st.sidebar.number_input("Feature 2 (e.g., Cost Per Click)", min_value=1, max_value=999999, step=1)
     Campaign_Type = st.sidebar.selectbox("Feature 3 (e.g., Campaign Type)", ["Email", "Influencer", "Social Media", "Display", "Search"])
     Conversion_Rate = st.sidebar.number_input("Feature 4 (e.g., Conversion Rate)", min_value=0, max_value=999999, step=500)
