@@ -3,6 +3,19 @@
 ## Overview
 By dynamically updating customer segments based on their latest transactions and behaviors, banks can improve engagement and optimise marketing effectiveness.
 
+## Files
+- `cleaned_main_dataset.csv`  
+  Final cleaned dataset ready for clustering.
+
+- `df_k4.csv` & `cluster_profile_k4.csv`  
+  K=4 clustering results and segment profiles.
+
+- `real-time_segmentation.ipynb`
+  Notebook using model from A1 showing how real-time updates can affect customer segment.
+
+- `real-time_segmentation.py`
+  Python script using model from A1 showing how real-time updates can affect customer segment. 
+
 ## Implementation
 ### Segmentation Model (Subgroup A - Question 1)
 Using the dataset and segmentation model form A1, we have used a selected customer's profile to simulate how real-time updates can affect their segmentation outcome.
