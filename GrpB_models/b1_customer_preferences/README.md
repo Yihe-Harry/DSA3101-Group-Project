@@ -1,4 +1,26 @@
 # Subgroup B1: Predicting Customer Preferences
+## Running the Project with Docker
+
+### Prerequisites
+
+- Ensure you have Docker installed on your local machine. You can download and install Docker from https://www.docker.com/products/docker-desktop/.
+- This project uses Python 3.10 as specified in the Dockerfile.
+
+### Build and Run Instructions
+1. Navigate to the file directory
+   ```bash
+   cd DSA3101-Group-Project/GrpB_models/b1_customer_preferences
+   ```
+2. Build the Docker image :
+
+   ```bash
+   docker build -t cus_pref_model .
+   ```
+3. Run the Docker image :
+
+   ```bash
+   docker run cus_pref_model
+   ```
 ## Overview
 This directory contains the models and insights for predicting individual customer preferences. The directory contains the following:
 
