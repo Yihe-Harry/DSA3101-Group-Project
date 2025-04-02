@@ -8,6 +8,24 @@ import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
 from PIL import Image
+# At the beginning of app.py
+import threading
+from kmeans_api import app as flask_app
+import time
+
+# Start Flask app in a separate thread
+def run_flask():
+    flask_app.run(host="127.0.0.1", port=5000, debug=False, use_reloader=False)
+
+flask_thread = threading.Thread(target=run_flask)
+flask_thread.daemon = True  # Thread will exit when main program exits
+flask_thread.start()
+
+# Give the API a moment to start
+time.sleep(2)
+print("Flask API started on http://127.0.0.1:5000")
+
+
 
 # API Base URL
 API_BASE_URL = "http://127.0.0.1:5000"
@@ -122,9 +140,9 @@ cluster_names = {0: "Comfort Seekers",
 
 cluster_strategy = {
                 "Comfort Seekers": "Promote premium offerings like investment accounts or travel cards with moderate fees",
-                "Easy Explorers": "Use visually engaging campaigns across social media platforms to grab attention",
-                "Savvy Superusers": "Focus on no-fee and cashback products to appeal to budget awareness",
-                "Wandering Spenders": "Use limited-time offers, sign up bonuses, or fun challenges to encourage repeat engagement"
+                "Easy Explorers": "Use visually engaging campaigns across social media platforms to grab attention.",
+                "Savvy Superusers": "Focus on no-fee and cashback products to appeal to budget awareness.",
+                "Wandering Spenders": "Use limited-time offers, sign up bonuses, or fun challenges to encourage repeat engagement."
             }
 
 
@@ -418,19 +436,22 @@ with tab2:
                         )
                     
                     with col2:
-                        if 'cluster' in customer and 'cluster_description' in customer:
+                        if 'cluster' in customer:
                             st.subheader("Cluster Information")
                             
-                            # Display cluster info in a visually appealing way
+                            # Get cluster ID
                             cluster_id = int(customer['cluster'])
-                            cluster_desc = customer['cluster_description']
+                            
+                            # Map cluster ID to name and then to strategy
+                            cluster_name = cluster_names.get(cluster_id, f"Unknown Cluster {cluster_id}")
+                            cluster_strat = cluster_strategy.get(cluster_name, "No strategy available for this cluster")
                             
                             # Show cluster card
                             st.markdown(
                                 f"""
                                 <div style="padding: 20px; border-radius: 10px; background-color: {get_cluster_color(cluster_id)}; color: white;">
-                                    <h3 style="margin-top: 0;">Cluster {cluster_id}</h3>
-                                    <p>{cluster_desc}</p>
+                                    <h3 style="margin-top: 0;">Cluster {cluster_id}: {cluster_name}</h3>
+                                    <p>{cluster_strat}</p>
                                 </div>
                                 """, 
                                 unsafe_allow_html=True
@@ -438,6 +459,9 @@ with tab2:
                             
                         else:
                             st.warning("Cluster information not available for this customer")
+
+
+
                 else:
                     st.error(f"No customer found with ID: {customer_id}. Please check that you've entered a valid customer ID and try again. Valid IDs are integers that exist in the database.")
             except ValueError:
