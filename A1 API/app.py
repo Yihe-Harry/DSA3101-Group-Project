@@ -607,7 +607,7 @@ with tab3:
 
 # Footer
 st.markdown("---")
-st.caption("Customer Clustering Dashboard | Powered by K-means Clustering")
+st.caption("Customer Clustering Dashboard")
 
 # Display API status
 try:
