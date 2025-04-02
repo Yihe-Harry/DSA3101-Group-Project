@@ -11,7 +11,7 @@ With advancements in AI and machine learning, there is an opportunity to transfo
 Our goal is to enhance customer satisfaction, improve conversion rates and maximise marketing ROI, all while ensuring compliance with the strict regulations that govern the banking industry.
 
 # Limitations
-Due to the the sensitive and confidential nature of financial data, we were not able to obtain large amounts of real and up to date data of customer details and activity. To overcome this, we generated synthetic data based on research-backed distributions in order to reflect realistic customer behaviors as best as we could. While we aimed to model real-world banking scenarios, certain assumptions had to be made regarding customer behaviors, spending patterns, and engagement metrics. There are a plethora of variables affecting customer behaviours and our simplified and generalised models due to our limited resources may not capture all the complexities involved. 
+Due to the sensitive and confidential nature of financial data, we were not able to obtain large amounts of real and up-to-date data on customer details and activity. To overcome this, we generated synthetic data based on research-backed distributions to reflect realistic customer behaviors as best as we could. While we aimed to model real-world banking scenarios, certain assumptions had to be made regarding customer behaviors, spending patterns, and engagement metrics. There are a plethora of variables affecting customer behaviours, and our simplified and generalised models, due to our limited resources, may not capture all the complexities involved. 
 
 # Project Structure
 This project is divided into two key components:
@@ -20,13 +20,35 @@ Customer Segmentation & Behaviour Analysis – Focuses on identifying customer g
 
 Personalisation & Campaign Optimisation – Uses AI to tailor marketing campaigns and optimise outreach strategies. (See GrpB_models)
 
+```
+DSA3101-Group-Project/
+├── API/                     
+│   └── A1 API/                        # API for customer segmentation 
+├── Dashboard/                         # Main dashboard
+├── GrpA_models/                       # Sub Group A tasks
+│   ├── a1_customer_segmentation/      # Question A1
+│   ├── a2_customer_engagement/        # Question A2
+│   ├── a3_behavioural_patterns/       # Question A3
+│   ├── a4_campaign_impact_analysis/   # Question A4
+│   └── a5_segmentation_updates/       # Question A5
+|   └── README.md                      # Sub Group A documentation
+├── GrpB_models/                       # Sub Group B tasks
+│   ├── b1_customer_preferences/       # Question B1
+│   ├── b2_campaign_optimisation/      # Question B2
+│   ├── b3_measuring_campaign_roi/     # Question B3
+│   ├── b4_cost_effectiveness/         # Question B4
+│   └── b5_churn_prediction/           # Question B5
+|   └── README.md                      # Sub Group B documentation
+├── .gitignore                         # Git ignore file
+└── README.md                          # Project documentation
+```
+
 # Cloning repository
 
-You can clone the repository here
+You can clone the repository here:
 ```
 git clone https://github.com/Yihe-Harry/DSA3101-Group-Project.git
 ```
-
 
 <h2>Usage Guide</h2>
 
