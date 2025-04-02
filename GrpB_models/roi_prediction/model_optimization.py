@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import numpy as np
 from xgboost import cv
-from roi_regression_model import XGBoostModel
+from roi_regression_xgboost import XGBoostModel
 
 
 class XGBoostOptimizer:
