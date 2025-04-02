@@ -49,7 +49,7 @@ def data_cleaning(df):
     df = yn_map(df, ['default', 'housing', 'loan', 'y'])
     df = time_eng(df)
     df.drop(columns=['poutcome', 'duration', 'campaign', 'job_nan', 'contact_nan'], inplace=True, axis=1)
-    df.rename(columns={'job_admin.': 'job_admin', 'y': 'term_deposit', 'housing': 'housing_loan', 'loan': 'personal_loan'}, inplace=True)
+    df.rename(columns={'job_admin.': 'job_admin', 'y': 'term_deposit', 'housing': 'housing_loan', 'loan': 'personal_loan', 'month': 'last_contact_month', 'day_of_week': 'last_contact_day'}, inplace=True)
     return df
 
 def data_split(df):
