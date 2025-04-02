@@ -39,7 +39,8 @@ def time_eng(df):
             df.loc[i, 'year'] = df.loc[i - 1, 'year']
     contact_date = pd.to_datetime(df['day_of_week'].astype(str) + '-' + df['month'].astype(str) + '-' + df['year'].astype(str), format='%d-%m-%Y')
     last_contact_date = contact_date.max()
-    df['days_from_contact'] = (last_contact_date - contact_date).dt.days
+    df['days_since_contact'] = (last_contact_date - contact_date).dt.days
+    df.drop(columns=['year'], inplace=True, axis=1) #dropped since did not help with models
     return df
 
 def data_cleaning(df):
@@ -48,7 +49,7 @@ def data_cleaning(df):
     df = yn_map(df, ['default', 'housing', 'loan', 'y'])
     df = time_eng(df)
     df.drop(columns=['poutcome', 'duration', 'campaign', 'job_nan', 'contact_nan'], inplace=True, axis=1)
-    df.rename(columns={'job_admin.': 'job_admin', 'y': 'term_deposit', 'housing': 'housing_loan', 'loan': 'personal_loan'}, inplace=True)
+    df.rename(columns={'job_admin.': 'job_admin', 'y': 'term_deposit', 'housing': 'housing_loan', 'loan': 'personal_loan', 'month': 'last_contact_month', 'day_of_week': 'last_contact_day'}, inplace=True)
     return df
 
 def data_split(df):

@@ -17,8 +17,8 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import roc_curve, accuracy_score, f1_score, roc_auc_score, average_precision_score
 from bayes_opt import BayesianOptimization
 
-from datapreparation import import_data, data_cleaning, data_split, label_split
-from hyperparametertuning import get_lgb_opt_params, get_xgb_opt_params
+from data_preparation import import_data, data_cleaning, data_split, label_split
+from hyperparameter_tuning import get_lgb_opt_params, get_xgb_opt_params
 from models import final_classification_model, final_recommendation_model
 
 ####################Data Preparation####################
@@ -72,6 +72,11 @@ td_opt_params = {'colsample_bytree': 0.4157942248802582,
 
 ####################Models####################
 
-y_pred_prob, y_pred = final_classification_model(X_train, y_train, X_test, y_test)
-ranks = final_recommendation_model(y_pred_prob)
+final_mod = CustomerPreferencePrediction()
+final_mod.train(X_train, y_train, X_test, y_test)
+y_pred_prob = final_mod.predict_proba(X_test)
+y_pred = final_mod.predict(X_test)
+final_mod.eval(y_test, y_pred_prob, y_pred)
+ranks = final_mod.rank(X_test)
 print(ranks)
+joblib.dump(final_mod, '../../Dashboard/cus_pref_model.pkl')
