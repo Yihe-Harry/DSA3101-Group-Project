@@ -59,9 +59,10 @@ grid_search.fit(x_resampled, y_resampled)
 
 best_rf = grid_search.best_estimator_
 
+'''
 joblib.dump(best_rf, '../../Dashboard/churn_model.pkl')
 print("Churn model 1 trained & saved!")
-
+'''
 
 
 
@@ -70,7 +71,7 @@ print("Churn model 1 trained & saved!")
 
 ############# Model 2 ##################
 
-df = pd.read_excel('default of credit card clients.xls', header=1)
+df = pd.read_excel('default of credit card clients.xlsx', engine="openpyxl", header=1)
 
 
 
@@ -129,6 +130,9 @@ grid_search.fit(x_train, y_train)
 best_rf = grid_search.best_estimator_
 
 
-
+'''
 joblib.dump(best_rf, '../../Dashboard/churn_cc_model.pkl')
 print("Churn model 2 trained & saved!")
+'''
+
+print("Model training file executed successfully!")

@@ -1,6 +1,0 @@
-Cluster,Customer Type,Banking Behavior,Num Customers (k=5),income/month (k=5),account balance (k=5),loyalty score (k=5),transaction_count (k=5)
-0,High-Value Power Users,"low to mid income, lower account balance, loyal customers, frequent users",3419,8974.8,5044.6,507.29,4.89
-1,Budget-Conscious Occasionals,"low to mid income, good account balance, low loyalty, less active users",4689,8895.31,5113.66,492.82,1.48
-2,Value-Driven Frequent Users,"high income, lower account balance, low loyalty, frequent users",3529,9102.36,4966.71,496.35,4.83
-3,Affluent Inactives,"high income, good account balance, low loyalty, less active users",4366,9060.65,5097.11,488.43,2.79
-4,Cautious Regulars,"high income, good account balance, loyal customers, less active users",3997,9126.93,5081.03,512.4,1.84

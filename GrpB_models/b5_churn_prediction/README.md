@@ -6,8 +6,7 @@ This folder contains two machine learning models designed for:
 
 Both models use classification techniques to analyze customer behavior and identify patterns leading to churn or default.
 
-
-## Running the model training python script using Docker
+## Running the model training python script using Docker (If necessary)
 Please ensure you have Docker installed and the repository cloned to your local device.
 1. Navigate to the file directory
   ```bash
@@ -26,6 +25,7 @@ Please ensure you have Docker installed and the repository cloned to your local 
   ```bash
   "Model training file executed successfully!"
   ```
+
 
 ### Model 1: Customer Churn Prediction
 
