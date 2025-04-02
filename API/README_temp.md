@@ -47,7 +47,7 @@ After running the command, the app will launch and you will be automatically red
 ### 🧠  Real-Time Customer Segmentation API
 A Streamlit-powered dashboard and API for real-time customer segmentation using machine learning. This tool empowers marketing, analytics, and customer experience teams to understand customer clusters, analyze behavior, and predict segment membership based on user profile inputs.
 
-📌 Features/Functions
+### 📌 Features/Functions
 
 - Cluster Information
   - View overall distribution and insights for each customer segment.
@@ -58,7 +58,7 @@ A Streamlit-powered dashboard and API for real-time customer segmentation using 
 - Predict Cluster
   - Input a new customer’s profile to categorize them into a cluster instantly using the trained model.
 
-📊 Cluster Dashboard
+### 📊 Cluster Dashboard/Information
 
 Get an overview of your customer distribution across different behavioral and demographic clusters:
 
@@ -80,7 +80,7 @@ Each cluster provides insight into key traits and group behavior.
 
 
 
-🔍 Fetch Customer by ID
+### 🔍 Fetch Customer by ID
 
 Input a customer’s unique ID to view:
 
@@ -92,7 +92,7 @@ Strategic recommendations based on cluster behavior (e.g., engagement methods)
 
 ![Fetch Customer Info](Images/fetch_customer_info.png)
 
-🤖 Predict Customer Cluster
+### 🤖 Predict Customer Cluster
 
 Enter demographic, financial, transaction, and digital engagement data to:
 
@@ -101,3 +101,5 @@ Predict which customer cluster the individual is most likely to belong to.
 Tailor offerings and engagement strategies accordingly.
 
 ![Real-time segmentation](Images/predict_customer_cluster.png)
+
+![Cluster result](Images/cluster_result.png)
