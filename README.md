@@ -20,18 +20,11 @@ Customer Segmentation & Behaviour Analysis – Focuses on identifying customer g
 
 Personalisation & Campaign Optimisation – Uses AI to tailor marketing campaigns and optimise outreach strategies. (See GrpB_models)
 
-# Installation and Setup
-Please ensure you have Docker installed on your local machine. You can download and install Docker from https://www.docker.com/products/docker-desktop/.<br>
+# Cloning repository
 
-1. Clone the repository
+You can clone the repository here
 ```
 git clone https://github.com/Yihe-Harry/DSA3101-Group-Project.git
-```
-
-2. Create Virtual Environment
-```
-python3 -m venv venv
-source venv/bin/activate
 ```
 
 
