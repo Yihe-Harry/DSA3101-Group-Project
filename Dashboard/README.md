@@ -42,17 +42,28 @@ When you first open the dashboard, you will be greeted with a selection prompt. 
   <img src="Images/dashboard_home_page.JPG" width="800">
 </p>
 
+## Function: Customer Preference Prediction
+This function uses a trained ensemble of gradient boosting models to predicts the customer preference on bank products. Enter the customer's details and click 'Predict'
+<p align="center">
+  <img src="Images/customer_pref_date.JPG" width="800">
+</p>
+
+Then, the rankings of the customer's preference of bank products will be shown in a descending order with the 1st bank product as the most preferred product.
+<p align="center">
+  <img src="Images/customer_pref_result.JPG" width="800">
+</p>
+
 ## Function: CTR-Based 'Real-Time' Campaign Optimizer
 This function simulates the optimising of different marketing campaigns, where the volume and type of ads presented to the customer is personalised to his/her behavior in terms of how much the customer engages with the ads. The engagement metric used here is Click Through Rate (CTR), and we assume that the higher the CTR, the higher the engagement and interest, and hence we send a higher volume of similar ads to the customer. 
 
 The main ad being advertised here is a credit card, with the supplementary ads being a premium credit card, and a loan. A customer can choose whether to either click or ignore the ad. Once the CTR of the main ad exceeds 40% , we start sending supplementary ads advertising premium credit card to try and upsell the customer, as the customer shows high engagement. Once the CTR of the main ad reaches 60%, we start sending ads regarding loans to the customer. If the CTR drops below the thresholds (i.e. customer ignores ads enough times to drive down the CTR), the supplementary ads disappear at their respective thresholds.
 <p align="center">
-  <img src="Images/campaign_opt.JPG" width="800">
+  <img src="Images/campaign_opt.png" width="800">
 </p>
 
 Similarly, for the supplementary ads, if the CTR on these ads exceed 40%, an additional link will show up, which are offers on similar products. The additional links will also disappear when the CTR drops below 40% on the supplementary ads.
 <p align="center">
-  <img src="Images/campaign_opt2.JPG" width="800">
+  <img src="Images/campaign_opt2.png" width="800">
 </p>
 
 ## Function: Marketing Campaign ROI Prediction
