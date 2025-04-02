@@ -49,7 +49,12 @@ The main ad being advertised here is a credit card, with the supplementary ads b
 
 Similarly, for the supplementary ads, if the CTR on these ads exceed 40%, an additional link will show up, which are offers on similar products. The additional links will also disappear when the CTR drops below 40% on the supplementary ads.
 
+## Function: Marketing Campaign ROI Prediction
+This function utilises a trained XGBoost model and it predicts the resulting Return on Investment (ROI) for each marketing campaign. The user is able to input values for metrics like Click-Through Rate, and Conversion Rate, which will return a prediction of the ROI.
 
+1. The function's page prompts for data input for most of the metrics as stated in the page. It is reccommended to not leave any blanks.
+2. ROI will be predicted after submitting the input.
+3. Disclaimer: During the training process of the XGBoost model, the Root Mean Squared Error was 1.735. This means that, on average, the model's predictions were off from the actual ROI results by 1.735.
 
 ## Function: Customer Churn Prediction
 This function predicts whether a specific customer is likely to churn in the future. It utilizes two distinct models to generate accurate predictions:
@@ -70,9 +75,4 @@ Once the data is entered and the 'Predict' button is clicked, the model will dis
   <img src="Images/prediction_result.JPG" width="600">
 </p>
 
-## Function: Marketing Campaign ROI Prediction
-This function utilises a trained XGBoost model and it predicts the resulting Return on Investment (ROI) for each marketing campaign. The user is able to input values for metrics like Click-Through Rate, and Conversion Rate, which will return a prediction of the ROI.
 
-1. The function's page prompts for data input for most of the metrics as stated in the page. It is reccommended to not leave any blanks.
-2. ROI will be predicted after submitting the input.
-3. Disclaimer: During the training process of the XGBoost model, the Root Mean Squared Error was 1.735. This means that, on average, the model's predictions were off from the actual ROI results by 1.735.
