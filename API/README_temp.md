@@ -1,48 +1,29 @@
-# Running app.py
-## This section contains instructions on how to run app.py
+# Running app.py with docker
+This section contains instructions on how to run app.py with docker.
 
-1.&nbsp; Ensure that your Python version is at least 3.10. You can check your Python version by running:
+## Prerequisites
+- Ensure you have Docker installed on your local machine. You can download and install Docker from https://www.docker.com/products/docker-desktop/.
+- The api uses Python 3.9 as specified in the Dockerfile.
+- Ensure that your terminal's directory is in the API folder.
+- Download all the files in this folder and ensure they are placed in the same directory on your system.
 
-```
-python --version
-```
+## Build and Run Instructions
 
-2.&nbsp; Install the required libraries if you have not done so. You can do so by running the following command:
+1. Ensure Docker is running and run the commmand to build the Docker image :
 
-```
-pip install streamlit pandas numpy matplotlib scikit-learn fastapi pydantic uvicorn seaborn plotly
-```
+   ```bash
+   docker build -t segmentation_dashboard .
+   ```
+   
+2. Run the Docker image :
 
-3.&nbsp; Download all the files in this folder and ensure they are placed in the same directory on your system.
+   ```bash
+   docker run -p 5000:5000 -p 8501:8501 segmentation_dashboard
+   ```
+   
+3. The application will be accessible at http://localhost:8501/
 
-4.&nbsp; Open the Project in Your IDE
-
-Open your favourite IDE (e.g Visual Studio Code, PyCharm, or any other editor) and navigate to the folder where ```app.py``` and the other required files are located. This will allow you to view, modify and execute the app from within your IDE.
-
-5.&nbsp; Run the Streamlit App
-
-Navigate to the directory containing app.py. You can do this using the cd command. For example,
-
-```
-cd path/to/your-folder
-```
-
-Once you're in the correct directory, open a new terminal within your IDE or a standalone terminal and run the following command:
-
-```
-streamlit run app.py
-```
-
-6.&nbsp; Optional Email Prompt
-
-If you are prompted to enter your email address, simply press Enter to skip this step.
-
-7.&nbsp; Open the App in Your Browser
-
-After running the command, the app will launch and you will be automatically redirected to the application in your default web browser. If this does not happen, open your browser and go to the following URL specified by the terminal.
-
-
-## Functions of API
+## Functions of the dashboard
 
 ### 🧠  Real-Time Customer Segmentation API
 A Streamlit-powered dashboard and API for real-time customer segmentation using machine learning. This tool empowers marketing, analytics, and customer experience teams to understand customer clusters, analyze behavior, and predict segment membership based on user profile inputs.
