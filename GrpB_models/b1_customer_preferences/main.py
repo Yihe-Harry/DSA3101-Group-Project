@@ -19,7 +19,7 @@ from bayes_opt import BayesianOptimization
 
 from data_preparation import import_data, data_cleaning, data_split, label_split
 from hyperparameter_tuning import get_lgb_opt_params, get_xgb_opt_params
-from models import final_classification_model, final_recommendation_model
+from models import CustomerPreferencePrediction
 
 ####################Data Preparation####################
 df = import_data()
