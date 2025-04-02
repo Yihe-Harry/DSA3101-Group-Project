@@ -45,7 +45,7 @@ When you first open the dashboard, you will be greeted with a selection prompt. 
 ## Function: Customer Preference Prediction
 This function uses a trained ensemble of gradient boosting models to predicts the customer preference on bank products. Enter the customer's details and click 'Predict'
 <p align="center">
-  <img src="Images/customer_pref_date.png" width="800">
+  <img src="Images/customer_pref_data.png" width="800">
 </p>
 
 Then, the rankings of the customer's preference of bank products will be shown in a descending order with the 1st bank product as the most preferred product.
