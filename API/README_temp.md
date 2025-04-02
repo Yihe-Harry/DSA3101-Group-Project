@@ -1,9 +1,7 @@
-
-
 # Running app.py
 ## This section contains instructions on how to run app.py
 
-1.&nbsp; Ensure that your Python version is at least 3.9. You can check your Python version by running:
+1.&nbsp; Ensure that your Python version is at least 3.10. You can check your Python version by running:
 
 ```
 python --version
@@ -36,9 +34,11 @@ streamlit run app.py
 ```
 
 6.&nbsp; Optional Email Prompt
+
 If you are prompted to enter your email address, simply press Enter to skip this step.
 
 7.&nbsp; Open the App in Your Browser
+
 After running the command, the app will launch and you will be automatically redirected to the application in your default web browser. If this does not happen, open your browser and go to the following URL specified by the terminal.
 
 
@@ -94,7 +94,7 @@ Strategic recommendations based on cluster behavior (e.g., engagement methods)
 
 ### 🤖 Predict Customer Cluster
 
-Enter demographic, financial, transaction, and digital engagement data to:
+Enter customer demographic, financial, transaction, and digital engagement data to:
 
 Predict which customer cluster the individual is most likely to belong to.
 
