@@ -14,7 +14,7 @@ File 2: customer_segmentation.ipynb
 - This file contains the code used to train the different types of segmentation models, before
 deciding on the one being used for our project.
 - It also contains analysis of some of the characteristics of the clusters.
-- For the full reasoning/analysis, refer to customer_segmentation_final.ipynb
+- For the full reasoning/analysis, refer to customer_segmentation.ipynb
 
 
 File 3: generated_bank_data.csv
