@@ -280,8 +280,7 @@ No features, just click execute
 "Model successfully updated"
 ```
 
-# Running app.py
-## This section contains instructions on how to run app.py
+# Running Customer Segmentation Dashboard
 
 1.&nbsp; Ensure that your Python version is at least 3.9. You can check your Python version by running:
 
