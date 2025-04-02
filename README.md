@@ -22,7 +22,7 @@ Personalisation & Campaign Optimisation – Uses AI to tailor marketing campaign
 
 ```
 DSA3101-Group-Project/
-├── A1 API/                            # API for customer segmentation
+├── API/                               # API for customer segmentation
 │   └── README.md                      # API documentation
 ├── Dashboard/                         # Main dashboard
 |   └── README.md                      # Dashboard documentation
@@ -75,6 +75,6 @@ This project is developed by the following developers:<br>
 | Wang Yihe       | [Yihe-Harry](https://github.com/Yihe-Harry) |
 
 <h2>Notes</h2>
-Note that the API can be used as an actual implemetation of question A5 (Segmentation Updates). Refer to Project Structure above for the location of the API.
+Note that the API can be used as an answer to question A5 (Segmentation Updates), since it is an actual implementation of a real-time segmentation model. Refer to Project Structure above for the location of the API.
 
 <h2>References</h2>
