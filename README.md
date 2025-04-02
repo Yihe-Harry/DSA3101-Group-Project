@@ -74,6 +74,7 @@ This project is developed by the following developers:<br>
 | Tan Ming Hui    | [tmochi27](https://github.com/tmochi27)     |
 | Wang Yihe       | [Yihe-Harry](https://github.com/Yihe-Harry) |
 
-
+<h2>Notes</h2>
+Note that the API can be used as an actual implemetation of question A5 (Segmentation Updates). Refer to Project Structure above for the location of the API
 
 <h2>References</h2>
