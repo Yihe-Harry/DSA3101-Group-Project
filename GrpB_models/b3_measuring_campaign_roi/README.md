@@ -54,7 +54,7 @@ This pre-trained XGBoost aims to predict ROI of bank marketing campaigns while m
 
 ## Limitations and Challenges
 
-Since the dataset is fictitious, it lacks real-world patterns and variability, making it difficult to generate realistic ROI predictions. Additionally, the 'Customer Segment' feature was dropped due to irrelevant segment names in the dataset. In order to tackle this challenge, banks can incorporate the customer segmentation models provided by Subgroup A and gather the customer segment that each campaign was targeted to. This allows banks to use personalised marketing strategies as a feature in this XGBoost model, and perhaps it could answer which features are more important for various customer segments.
+Since the dataset is fictitious, it lacks real-world patterns and variability, making it difficult to generate realistic ROI predictions. Additionally, the 'Customer Segment' feature was dropped due to irrelevant segment names in the dataset. In order to tackle this challenge, banks can incorporate the [customer segmentation models provided by Subgroup A](https://github.com/Yihe-Harry/DSA3101-Group-Project/tree/main/GrpA_models/a1_customer_segmentation) and gather the corresponding customer segment that each campaign was targeted to. This allows banks to use personalised marketing strategies as a feature in this XGBoost model, and perhaps it could answer which features are more important for various customer segments.
 
 ## Intended Usage
 
