@@ -122,9 +122,9 @@ cluster_names = {0: "Comfort Seekers",
 
 cluster_strategy = {
                 "Comfort Seekers": "Promote premium offerings like investment accounts or travel cards with moderate fees",
-                "Easy Explorers": "Use visually engaging campaigns across social media platforms to grab attention.",
-                "Savvy Superusers": "Focus on no-fee and cashback products to appeal to budget awareness.",
-                "Wandering Spenders": "Use limited-time offers, sign up bonuses, or fun challenges to encourage repeat engagement."
+                "Easy Explorers": "Use visually engaging campaigns across social media platforms to grab attention",
+                "Savvy Superusers": "Focus on no-fee and cashback products to appeal to budget awareness",
+                "Wandering Spenders": "Use limited-time offers, sign up bonuses, or fun challenges to encourage repeat engagement"
             }
 
 
