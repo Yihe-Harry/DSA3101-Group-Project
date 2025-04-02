@@ -8,7 +8,7 @@ import os
 from sklearn.preprocessing import StandardScaler
 
 # Loading dataset 
-df = pd.read_csv("cleaned main dataset.csv",delimiter=",")
+df = pd.read_csv("main_dataset_cleaned.csv",delimiter=",")
 df.head()
 
 # ## **Customer Segmentation**
@@ -548,7 +548,7 @@ from sklearn.preprocessing import StandardScaler
 import pandas as pd
 
 # Load your dataset
-df = pd.read_csv("cleaned main dataset.csv")
+df = pd.read_csv("main_dataset_cleaned.csv")
 
 # Select clustering features
 cluster_features = [
