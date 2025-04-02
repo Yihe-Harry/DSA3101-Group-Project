@@ -22,9 +22,10 @@ Personalisation & Campaign Optimisation – Uses AI to tailor marketing campaign
 
 ```
 DSA3101-Group-Project/
-├── API/                     
-│   └── A1 API/                        # API for customer segmentation 
+├── A1 API/                            # API for customer segmentation
+│   └── README.md                      # API documentation
 ├── Dashboard/                         # Main dashboard
+|   └── README.md                      # Dashboard documentation
 ├── GrpA_models/                       # Sub Group A tasks
 │   ├── a1_customer_segmentation/      # Question A1
 │   ├── a2_customer_engagement/        # Question A2
