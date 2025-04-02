@@ -6,20 +6,20 @@ This project applies K-Means clustering to segment bank customers based on demog
 
 ## Project Structure
 
-### Folder 1: Data Extraction
-- `to get main dataset.ipynb`  
+### Folder 1: data
+- `main_dataset_generation.py`  
   Extracts and compiles the initial customer dataset.
-- `main dataset.csv`  
+- `main_dataset.csv`  
   Raw dataset output from extraction.
 
-### Folder 2: Data Cleaning
-- `data cleaning.ipynb`  
+### Folder 2: data_cleaning
+- `data_cleaning.py`  
   Handles missing values, formats, and prepares data for modeling.
-- `cleaned main dataset.csv`  
+- `main_dataset_cleaned.csv`  
   Final cleaned dataset ready for clustering.
 
 ### Folder 3: Modeling & Analysis
-- `Data Model - K Means.ipynb`  
+- `model_kmeans.py`  
   Performs K-Means clustering (K=4 and K=5) and interprets the results.
 - `df_k4.csv` & `cluster_profile_k4.csv`  
   K=4 clustering results and segment profiles.
