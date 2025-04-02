@@ -4,7 +4,7 @@ import xgboost as xgb
 import lightgbm as lgb
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import roc_curve, confusion_matrix, accuracy_score, f1_score, roc_auc_score, average_precision_score
-from datapreparation import label_split
+from data_preparation import label_split
 
 def get_biz_threshold(y_test, y_pred_prob, cost=1, profit=1): #profit is lost profit due to false negative customer and cost is cost of marketing to a false positive customer
     fpr, tpr, ths = roc_curve(y_test, y_pred_prob)
