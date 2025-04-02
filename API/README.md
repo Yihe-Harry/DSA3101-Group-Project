@@ -1,5 +1,5 @@
-# Running app.py with docker
-This section contains instructions on how to run app.py with docker.
+# Running `app.py` with docker
+This section contains instructions on how to run `app.py` with docker.
 
 ## Prerequisites
 - Ensure you have Docker installed on your local machine. You can download and install Docker from https://www.docker.com/products/docker-desktop/.
