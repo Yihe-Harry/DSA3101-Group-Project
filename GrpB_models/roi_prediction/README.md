@@ -1,10 +1,10 @@
 ## Installation
 
-pip install -r `requirements.txt`
+Run `pip install -r requirements.txt` to download all necessary packages
 
 Run `main.py` to run all scripts and get all the scripts.
 
-`model_optimization.py` returns a set of the best parameters.
+Run `model_optimization.py` to return a set of the best parameters.
 
 ## ROI Prediction using XGBoost model
 
