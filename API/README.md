@@ -8,20 +8,24 @@ This section contains instructions on how to run `app.py` with docker.
 - Download all the files in this folder and ensure they are placed in the same directory on your system.
 
 ## Build and Run Instructions
+1. Navigate to the dashboard directory
+   ```bash
+   cd DSA3101-Group-Project/API
+   ```
 
-1. Ensure Docker is running and run the commmand to build the Docker image :
+2. Ensure Docker is running and run the commmand to build the Docker image :
 
    ```bash
    docker build -t segmentation_dashboard .
    ```
    
-2. Run the Docker image :
+3. Run the Docker image :
 
    ```bash
    docker run -p 5000:5000 -p 8501:8501 segmentation_dashboard
    ```
    
-3. The application will be accessible at http://localhost:8501/
+4. The application will be accessible at http://localhost:8501/
 
 ## Functions of the dashboard
 
