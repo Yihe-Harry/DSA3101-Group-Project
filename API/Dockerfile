@@ -1,6 +1,6 @@
 FROM python:3.9-slim
 
-WORKDIR /app
+WORKDIR /API
 
 # Install dependencies directly in the Dockerfile
 RUN pip install --no-cache-dir \
