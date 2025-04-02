@@ -945,12 +945,12 @@ if function_choice:
 
 
         def user_inputs():
-            Click_Through_Rate = st.sidebar.number_input("Click-Through Rate", min_value=0.0, max_value=1.0, step=0.001)
-            Cost_Per_Click = st.sidebar.number_input("Cost Per Click", min_value=1, max_value=999999, step=1)
-            Acquisition_Cost = st.sidebar.number_input("Acquisition Cost", min_value=1, max_value=999999, step=1)
+            Click_Through_Rate = st.sidebar.number_input("Click-Through Rate", min_value=0.0, max_value=1.0, step=0.01)
+            Cost_Per_Click = st.sidebar.number_input("Cost Per Click", min_value=1.0, max_value=999999.0, step=0.01)
+            Acquisition_Cost = st.sidebar.number_input("Acquisition Cost", min_value=1.0, max_value=999999.0, step=0.01)
             Campaign_Type = st.sidebar.selectbox("Campaign Type", ["Email", "Influencer", "Social Media", "Display", "Search"])
-            Conversion_Rate = st.sidebar.number_input("Conversion Rate", min_value=0, max_value=1, step=500)
-            Engagement_Score = st.sidebar.number_input("Engagement Score", min_value=0, max_value=10, step=1)
+            Conversion_Rate = st.sidebar.number_input("Conversion Rate", min_value=0.0, max_value=1.0, step=0.01)
+            Engagement_Score = st.sidebar.number_input("Engagement Score", min_value=0.0, max_value=10.0, step=0.1)
             Channel_Used = st.sidebar.selectbox("Channel Used", ["Email", "Facebook", "Website", "Youtube", "Instagram", "Google Ads"])
             Target_Audience = st.sidebar.selectbox("Target Audience", ["Men 18-24", "Men 25-34", "All Ages", "Women 25-34", "Women 35-44"])
             Day_Type = st.sidebar.selectbox("Day Type", ["Weekday", "Weekend"])
