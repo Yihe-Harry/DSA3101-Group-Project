@@ -18,7 +18,7 @@ os.chdir("/Users/rachel/Desktop/DSA3101/dataset")
 
 
 # Loading dataset 
-df = pd.read_csv("main dataset.csv",delimiter=",")
+df = pd.read_csv("main_dataset.csv",delimiter=",")
 df.head()
 
 
@@ -317,8 +317,8 @@ df_encoded[['last_transaction_day']].isna().sum()
 # In[14]:
 
 
-# Save the dataset as "transformed main dataset.csv"
-df_encoded.to_csv("cleaned main dataset.csv", index=False)
+# Save the dataset
+df_encoded.to_csv("main_dataset_cleaned.csv", index=False)
 
 
 # In[ ]:
