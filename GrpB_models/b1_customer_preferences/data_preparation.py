@@ -39,7 +39,7 @@ def time_eng(df):
             df.loc[i, 'year'] = df.loc[i - 1, 'year']
     contact_date = pd.to_datetime(df['day_of_week'].astype(str) + '-' + df['month'].astype(str) + '-' + df['year'].astype(str), format='%d-%m-%Y')
     last_contact_date = contact_date.max()
-    df['days_from_contact'] = (last_contact_date - contact_date).dt.days
+    df['days_since_contact'] = (last_contact_date - contact_date).dt.days
     df.drop(columns=['year'], inplace=True, axis=1) #dropped since did not help with models
     return df
 
