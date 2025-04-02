@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Ensure Docker and Docker Compose are installed on your system.
+- Ensure you have Docker installed on your local machine. You can download and install Docker from https://www.docker.com/products/docker-desktop/.
 - The dashboard uses Python 3.10 as specified in the Dockerfile.
 
 ## Build and Run Instructions
