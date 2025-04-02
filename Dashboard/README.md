@@ -46,6 +46,9 @@ When you first open the dashboard, you will be greeted with a selection prompt. 
 This function simulates the optimising of different marketing campaigns, where the volume and type of ads presented to the customer is personalised to his/her behavior in terms of how much the customer engages with the ads. The engagement metric used here is Click Through Rate (CTR), and we assume that the higher the CTR, the higher the engagement and interest, and hence we send a higher volume of similar ads to the customer. 
 
 The main ad being advertised here is a credit card, with the supplementary ads being a premium credit card, and a loan. A customer can choose whether to either click or ignore the ad. Once the CTR of the main ad exceeds 40% , we start sending supplementary ads advertising premium credit card to try and upsell the customer, as the customer shows high engagement. Once the CTR of the main ad reaches 60%, we start sending ads regarding loans to the customer. If the CTR drops below the thresholds (i.e. customer ignores ads enough times to drive down the CTR), the supplementary ads disappear at their respective thresholds.
+<p align="center">
+  <img src="Images/campaign_opt.JPG" width="800">
+</p>
 
 Similarly, for the supplementary ads, if the CTR on these ads exceed 40%, an additional link will show up, which are offers on similar products. The additional links will also disappear when the CTR drops below 40% on the supplementary ads.
 
@@ -55,6 +58,9 @@ This function utilises a trained XGBoost model and it predicts the resulting Ret
 1. The function's page prompts for data input for most of the metrics as stated in the page. It is reccommended to not leave any blanks.
 2. ROI will be predicted after submitting the input.
 3. Disclaimer: During the training process of the XGBoost model, the Root Mean Squared Error was 1.735. This means that, on average, the model's predictions were off from the actual ROI results by 1.735.
+<p align="center">
+  <img src="Images/roi_prediction.JPG" width="800">
+</p>
 
 ## Function: Customer Churn Prediction
 This function predicts whether a specific customer is likely to churn in the future. It utilizes two distinct models to generate accurate predictions:
