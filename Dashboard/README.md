@@ -43,7 +43,7 @@ When you first open the dashboard, you will be greeted with a selection prompt. 
 </p>
 
 ## Function: Customer Preference Prediction
-This function uses a trained ensemble of gradient boosting models to predicts the customer preference on bank products. Enter the customer's details and click 'Predict'
+This function uses a trained ensemble of gradient boosting models to predicts the customer preference on bank products. Enter the customer's details and click 'Predict'.
 <p align="center">
   <img src="Images/customer_pref_data.png" width="800">
 </p>
