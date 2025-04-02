@@ -1002,6 +1002,7 @@ if function_choice:
             
             # Display prediction result
             st.subheader(f"Predicted ROI: {prediction[0]:.2f}")
+            st.write("Disclaimer: During the training process of the XGBoost model, the Root Mean Squared Error was 1.735. This means that, on average, the model's predictions were off from the actual ROI results by 1.735.")
     ########################################################################
 
 
