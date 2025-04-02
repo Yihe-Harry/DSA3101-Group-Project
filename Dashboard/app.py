@@ -11,6 +11,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
+import threading
+import time
+from kmeans_api import app as flask_app
 from PIL import Image
 from xgboost import XGBRegressor
 from sklearn.model_selection import train_test_split
@@ -39,6 +42,20 @@ FUNCTIONS = {
 }
 
 ######################### A1 stuff ################################
+# Start Flask app in a separate thread
+def run_flask():
+    flask_app.run(host="127.0.0.1", port=5000, debug=False, use_reloader=False)
+
+flask_thread = threading.Thread(target=run_flask)
+flask_thread.daemon = True  # Thread will exit when main program exits
+flask_thread.start()
+
+# Give the API a moment to start
+time.sleep(2)
+print("Flask API started on http://127.0.0.1:5000")
+
+
+
 # API Base URL
 API_BASE_URL = "http://127.0.0.1:5000"
 
