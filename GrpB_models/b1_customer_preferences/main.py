@@ -4,6 +4,7 @@
 
 import pandas as pd
 import numpy as np
+import joblib
 
 from ucimlrepo import fetch_ucirepo
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
