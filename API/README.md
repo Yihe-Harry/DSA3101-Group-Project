@@ -280,7 +280,7 @@ No features, just click execute
 "Model successfully updated"
 ```
 
-# Running Customer Segmentation Dashboard
+# Running Customer Segmentation Dashboard alone
 
 1.&nbsp; Ensure that your Python version is at least 3.9. You can check your Python version by running:
 
