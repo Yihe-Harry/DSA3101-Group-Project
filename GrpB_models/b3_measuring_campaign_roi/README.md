@@ -13,6 +13,26 @@ Please ensure you have Docker installed and the repository cloned to your local 
   ```bash
   docker run --rm -v ${PWD}/C:/DSA3101-Group-Project/GrpB_models/b3_measuring_campaign roi_prediction_model
   ```
+## Project Files 📂
+
+### Notebooks 📖
+- [📓 Model Analysis](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/model_analysis.ipynb) - model_analysis.ipynb
+
+### Dataset 📊
+- [📂 Marketing Campaign Dataset](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/marketing_campaign_dataset.csv) - marketing_campaign_dataset.csv
+
+### Data Processing & Feature Engineering 🛠️
+- [🔄 Data Cleaning](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/data_cleaning.py) - data_cleaning.py
+- [⚙️ Feature Engineering](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/feature_engineering.py) - feature_engineering.py
+
+### Model Training & Evaluation 🤖
+- [🚀 XGBoost Model Training & Results](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/roi_regression_xgboost.py) - roi_regression_xgboost.py
+- [🎯 Hyperparameter Tuning](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/model_optimization.py) - model_optimization.py
+
+### Application & Deployment 🌍
+- [🚪 Entry Point](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/main.py) - main.py
+- [💻 Streamlit Dashboard Interface](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/app.py) - app.py
+- [📦 Dockerfile](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/Dockerfile) - Dockerfile
 
 ## Installation
 
