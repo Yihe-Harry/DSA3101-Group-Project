@@ -3,7 +3,7 @@ This section contains instructions on how to run app.py with docker.
 
 ## Prerequisites
 - Ensure you have Docker installed on your local machine. You can download and install Docker from https://www.docker.com/products/docker-desktop/.
-- The api uses Python 3.9 as specified in the Dockerfile.
+- The dashboard uses Python 3.9 as specified in the Dockerfile.
 - Ensure that your terminal's directory is in the API folder.
 - Download all the files in this folder and ensure they are placed in the same directory on your system.
 
