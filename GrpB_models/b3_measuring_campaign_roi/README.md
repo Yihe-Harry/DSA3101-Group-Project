@@ -34,13 +34,13 @@ Please ensure you have Docker installed and the repository cloned to your local 
 - [💻 Streamlit Dashboard Interface](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/app.py) - app.py
 - [📦 Dockerfile](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/Dockerfile) - Dockerfile
 
-## Installation
+## Functionalities
 
 Run `pip install pandas numpy holidays scikit-learn matplotlib xgboost hyperopt joblib` to download all necessary packages
 
-Run `main.py` to run all scripts together.
+Run `main.py` to run all scripts together and save the model in a .pkl file.
 
-Run `model_optimization.py` to return a set of the best parameters.
+Run `model_optimization.py` to return a set of the best parameters. These parameters can be used to replace the current parameters in [🚀 XGBoost Model Training & Results](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/roi_regression_xgboost.py) if results are unsatisfactory.
 
 ## ROI Prediction using XGBoost model
 

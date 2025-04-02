@@ -1,0 +1,5 @@
+Cluster_4,income/month (k=4),account balance (k=4),loyalty score (k=4),transaction_count (k=4),Num Customers (k=4),Description
+0,9014.71,5057.2,500.67,4.86,4330,"low to mid income, lower account balance, loyal customers, frequent users"
+1,8927.05,5111.65,494.24,1.52,5890,"low to mid income, good account balance, low loyalty, less active users"
+2,9112.06,5009.02,494.87,4.75,4459,"high income, lower account balance, low loyalty, frequent users"
+3,9079.43,5069.59,505.9,1.71,5321,"high income, good account balance, loyal customers, less active users"
