@@ -70,7 +70,7 @@ print("Churn model 1 trained & saved!")
 
 ############# Model 2 ##################
 
-df = pd.read_excel('default of credit card clients.xls', engine="xlrd", header=1)
+df = pd.read_excel('default of credit card clients.xlsx', engine="openpyxl", header=1)
 
 
 
