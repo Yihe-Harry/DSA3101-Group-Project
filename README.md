@@ -76,5 +76,3 @@ This project is developed by the following developers:<br>
 
 <h2>Notes</h2>
 Note that the API can be used as an answer to question A5 (Segmentation Updates), since it is an actual implementation of a real-time segmentation model. Refer to Project Structure above for the location of the API.
-
-<h2>References</h2>
