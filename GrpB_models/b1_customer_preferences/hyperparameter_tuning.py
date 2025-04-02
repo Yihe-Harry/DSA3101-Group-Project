@@ -1,5 +1,5 @@
 #pip install bayesian-optimization (install for bayesian optimisation)
-from datapreparation import import_data, data_cleaning, data_split, label_split
+from data_preparation import import_data, data_cleaning, data_split, label_split
 import xgboost as xgb
 import lightgbm as lgb
 from bayes_opt import BayesianOptimization

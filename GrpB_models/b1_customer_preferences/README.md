@@ -2,11 +2,11 @@
 ## Overview
 This directory contains the models and insights for predicting individual customer preferences. The directory contains the following:
 
-1. datapreparation.py — functions for data importing, cleaning and feature engineering.
-2. hyperparametertuning.py — functions for hyperparameter tuning.
+1. data_preparation.py — functions for data importing, cleaning and feature engineering.
+2. hyperparameter_tuning.py — functions for hyperparameter tuning.
 3. models.py — functions to run the models used.
 4. main.py — full pipeline of data preparation, training and fitting ensemble model.
-5. modelsummary.ipynb — details of thought process and insights of the models.
+5. modelling_summary.ipynb — details of thought process and insights of the models.
 6. Dockerfile — instructions for building Docker image.
 
 ## Data Preparation
