@@ -1,6 +1,6 @@
 from data_cleaning import DataCleaning
 from feature_engineering import FeatureEngineering
-from roi_regression_model import XGBoostModel
+from GrpB_models.roi_prediction.roi_regression_xgboost import XGBoostModel
 from model_optimization import XGBoostOptimizer
 import matplotlib.pyplot as plt
 import xgboost as xgb
@@ -19,6 +19,6 @@ xgb.plot_importance(trained_model, importance_type="weight", xlabel="Feature Imp
 plt.show() #Plots the importance of features in the dataset.
 
 # Save the model
-#joblib.dump(trained_model, '../../Dashboard/roi_xgboost.pkl')
+joblib.dump(trained_model, '../../Dashboard/roi_xgboost.pkl')
  #Load the model
-#loaded_model = joblib.load('../../Dashboard/roi_xgboost.pkl')
+loaded_model = joblib.load('../../Dashboard/roi_xgboost.pkl')
