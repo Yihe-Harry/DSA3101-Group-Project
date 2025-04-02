@@ -8,8 +8,7 @@ import joblib
 import pandas as pd
 import numpy as np
 
-file_path = 'marketing_campaign_dataset.csv' 
-
+file_path = r'GrpB_models\b3_measuring_campaign_roi\marketing_campaign_dataset.csv' # Path to the dataset
 
 model = XGBoostModel(file_path)
 mse, rmse, trained_model = model.xgboost_modelling()
