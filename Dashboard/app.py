@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 import joblib
 import os
+import datetime
 import xgboost as xgb
+import models
 from xgboost import XGBRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
@@ -32,7 +34,7 @@ FUNCTIONS = {
 
 
 
-################## Functions for Q10 ##################
+################## Functions for B5 ##################
 def create_interaction_features(df):
     df['Age_Balance'] = df['Age'] * df['Balance']
     df['Age_NumOfProducts'] = df['Age'] * df['NumOfProducts']
@@ -82,6 +84,57 @@ function_choice = st.selectbox("Choose a function:", list(FUNCTIONS.keys()))
 
 # Step 2: Show models based on selected function
 if function_choice:
+    ############################ Question B1 ###################################
+    if function_choice == "Customer Preference Prediction":
+        st.title("📊 Customer Preference Prediction")
+        
+        model = joblib.load("cus_pref_model.pkl") 
+        st.success(f"✅ Customer Preference model loaded successfully!")
+
+        st.sidebar.header("Customer General Data Inputs")
+        age = st.number_input("Age", min_value=18, max_value=95, value=40)
+        job_list = ['technician', 'student', 'retired', 'admin', 'self-employed', 'housemaid', 'management', 'services', 'unemployed', 'entrepreneur', 'blue-collar']
+        job = st.selectbox("Job", job_list)
+        marital_list = ['single', 'married', 'divorced']
+        marital = st.selectbox("Marital Status", marital_list)
+        education = { 'primary': 0, 'secondary': 1, 'tertiary': 2 }.get(st.selectbox('education', ['primary', 'secondary', 'tertiary']), -1)
+        default = st.selectbox("Has Credit in Default?", ['yes', 'no'])
+        balance = st.number_input("Average Yearly Account Balance", value=3000)
+        pdays = st.number_input("Number of Days since Previous Campaign", min_value=-1, value=-1)
+        previous = st.number_input("Number of Contacts before Campaign", min_value=0, value=0)
+        contact_list = ['cellular', 'telephone']
+        contact = st.selectbox("Way of Contact", contact_list)
+        date = st.date_input("Date of Last Contact", value = 'today', max_value = 'today')
+        
+        inputs = pd.DataFrame({
+            'age': [age],
+            'education': [1 if education=='primary' else 2 if education=='secondary' else 3 if education == 'tertiary' else -1],
+            'default': [0 if default=='no' else 1],
+            'balance': [balance],
+            'pdays': [pdays],
+            'previous': previous,
+            'job_' + job: [1],
+            'marital_' + marital: [1],
+            'contact_' + contact: [1],
+            'last_contact_day': [date.day],
+            'last_contact_month': [date.month],
+            'days_since_contact': [(date - datetime.date.today()).days]
+            })
+        inputs = inputs.reindex(columns = ['age', 'education', 'default', 'balance', 'last_contact_day', 'last_contact_month', 'pdays', 'previous', 'job_admin', 'job_blue-collar',
+                                           'job_entrepreneur', 'job_housemaid', 'job_management', 'job_retired', 'job_self-employed', 'job_services', 'job_student', 'job_technician',
+                                           'job_unemployed', 'marital_divorced', 'marital_married', 'marital_single', 'contact_cellular', 'contact_telephone', 'days_since_contact'], fill_value=0)
+
+
+        if st.sidebar.button("Predict"):
+            res = model.rank(inputs)
+            prod_ranks = res.melt(var_name="bank_products", value_name="ranks").sort_values(by="ranks")
+            st.header("Prediction Result")
+            st.info("Ranking of Bank Products:")
+            n = 1
+            for prod in prod_ranks["bank_products"]:
+                st.info(str(n) + ": " + prod)
+                n += 1
+    ###########################################################################
 
     ############################ Question B2 ###################################
     if function_choice == "CTR-Based 'Real-Time' Campaign Optimizer":
