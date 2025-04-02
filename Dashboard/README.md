@@ -51,6 +51,9 @@ The main ad being advertised here is a credit card, with the supplementary ads b
 </p>
 
 Similarly, for the supplementary ads, if the CTR on these ads exceed 40%, an additional link will show up, which are offers on similar products. The additional links will also disappear when the CTR drops below 40% on the supplementary ads.
+<p align="center">
+  <img src="Images/campaign_opt2.JPG" width="800">
+</p>
 
 ## Function: Marketing Campaign ROI Prediction
 This function utilises a trained XGBoost model and it predicts the resulting Return on Investment (ROI) for each marketing campaign. The user is able to input values for metrics like Click-Through Rate, and Conversion Rate, which will return a prediction of the ROI.
