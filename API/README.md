@@ -292,7 +292,7 @@ python --version
 2.&nbsp; Install the required libraries if you have not done so. You can do so by running the following command:
 
 ```
-pip install streamlit pandas numpy matplotlib scikit-learn fastapi pydantic uvicorn
+pip install streamlit pandas numpy matplotlib scikit-learn fastapi pydantic uvicorn seaborn plotly
 ```
 
 3.&nbsp; Download all the files in this folder and ensure they are placed in the same directory on your system.
