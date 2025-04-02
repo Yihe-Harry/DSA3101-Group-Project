@@ -103,7 +103,7 @@ Bayesian Optimisation is chosen to identify the most cost-effective personalisat
 
 
 ### Step 4: Predicting ROI Metrics
-To evaluate cost-effectiveness, additional models are used to predict ROI metrics such as return on ad spend, customer acquisition cost and cost per successful response. These predictions help quantify the financial impact of marketing efforts before optimisation, ensuring that marketing strategies align with business objectives.
+To evaluate cost-effectiveness, additional models are used to predict ROI metrics such as return on ad spend, customer acquisition cost and cost per successful response. These predictions help quantify the financial impact of marketing efforts before optimisation, ensuring that marketing strategies align with bank marketing objectives.
 
 **Justification for the Chosen Approach**
 
@@ -126,7 +126,7 @@ Nonlinear Programming is an appropriate method when the relationships between va
 
 Constrained Multi-Objective Optimisation
 
-In cases where there are multiple competing objectives such as balancing marketing spend across customer segments, Constrained Multi-Objective Optimisation (CMO) is highly effective. CMO can optimise several objectives simultaneously, such as maximising customer engagement and retention while keeping within budgetary constraints. This approach ensures that trade-offs between different goals are made efficiently, allowing the bank to prioritise its marketing resources effectively.
+In cases where there are multiple competing objectives such as balancing marketing spend across customer segments, Constrained Multi-Objective Optimisation (CMOO) is highly effective. CMOO can optimise several objectives simultaneously, such as maximising customer engagement and retention while keeping within budgetary constraints. This approach ensures that trade-offs between different goals are made efficiently, allowing the bank to prioritise its marketing resources effectively.
 
 Stochastic Optimisation
 
@@ -148,7 +148,7 @@ Nonlinear Programming is ideal for modelling complex, non-linear relationships b
 
 Constrained Multi-Objective Optimisation
 
-CMO is effective when multiple, sometimes conflicting objectives must be balanced, such as maximising response rates, boosting engagement and staying within budget. It ensures optimal allocation of resources while respecting constraints like customer fairness and legal limitations. CMO outputs are more interpretable, providing transparency into how different objectives are prioritised. This approach ensures the bank remains compliant with transparency and accountability regulations while optimising its marketing efforts.
+CMOO is effective when multiple, sometimes conflicting objectives must be balanced, such as maximising response rates, boosting engagement and staying within budget. It ensures optimal allocation of resources while respecting constraints like customer fairness and legal limitations. CMOO outputs are more interpretable, providing transparency into how different objectives are prioritised. This approach ensures the bank remains compliant with transparency and accountability regulations while optimising its marketing efforts.
 
 Stochastic Optimisation
 
@@ -166,7 +166,7 @@ Before fully deploying the model to the entire customer base, the bank should fi
 
 ### Step 7: Model Lifecycle Management
 
-In order to ensure that the models remain effective over time, it’s essential to implement a Model Lifecycle Management strategy. This involves regular updates, retraining and evaluation of the model to keep it aligned with changing customer behaviour, market trends and new data sources. By continuously refining and adapting the model, businesses can maintain high levels of accuracy and effectiveness, optimising their marketing efforts for maximum impact and cost-efficiency.
+In order to ensure that the models remain effective over time, it’s essential to implement a Model Lifecycle Management strategy. This involves regular updates, retraining and evaluation of the model to keep it aligned with changing customer behaviour, market trends and new data sources. By continuously refining and adapting the model, the bank can maintain high levels of accuracy and effectiveness, optimising their marketing efforts for maximum impact and cost-efficiency.
 
 To maintain the effectiveness of the model, it's crucial to use data that is no more than 2 years old, ensuring the model reflects the most current customer behaviours and market conditions. Regularly update the dataset to include new customer transactions and evolving demographic data. Additionally, periodically review and adjust the features used in the model to reflect any shifts in customer preferences or external factors, such as economic changes.
 
@@ -176,7 +176,7 @@ It is also essential to track key KPIs like response rates, conversion rates and
 
 As new data sources (e.g., social media, customer support interactions) become available, the bank should assess whether they should be incorporated into the model to improve its predictive power. Changes in customer behaviour may require recalibrating the model, adjusting features or integrating new data to reflect emerging patterns. A continuous feedback loop allows the model to evolve based on new insights, ensuring it stays aligned with current market conditions.
 
-Effective Model Lifecycle Management ensures that marketing models remain relevant, accurate and adaptable to evolving conditions. By prioritising data freshness, regular retraining, continuous performance monitoring and the integration of new data sources, businesses can optimise their marketing strategies and achieve long-term success. This proactive approach ensures that marketing campaigns continue to drive high engagement and ROI while staying aligned with the latest customer trends and economic factors.
+Effective Model Lifecycle Management ensures that marketing models remain relevant, accurate and adaptable to evolving conditions. By prioritising data freshness, regular retraining, continuous performance monitoring and the integration of new data sources, the bank can optimise their marketing strategies and achieve long-term success. This proactive approach ensures that marketing campaigns continue to drive high engagement and ROI while staying aligned with the latest customer trends and economic factors.
 
 # 3) Conclusion
 Balancing personalisation with cost-effectiveness in marketing campaigns is crucial for banks looking to maximise the impact of their marketing efforts while maintaining budget control. By leveraging AI techniques like customer segmentation, predictive modeling and Bayesian Optimisation, banks can ensure that their campaigns are not only personalised but also cost-efficient. 
