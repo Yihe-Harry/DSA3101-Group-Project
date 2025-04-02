@@ -113,21 +113,33 @@ def add_new_customer(customer_data):
     except Exception as e:
         st.error(f"Error connecting to API: {str(e)}")
         return None
+    
+
+cluster_names = {0: "Comfort Seekers",
+                 1: "Easy Explorers",
+                 2: "Savvy Superusers",
+                 3: "Wandering Spenders"}
+
+cluster_strategy = {
+                "Comfort Seekers": "Promote premium offerings like investment accounts or travel cards with moderate fees",
+                "Easy Explorers": "Use visually engaging campaigns across social media platforms to grab attention.",
+                "Savvy Superusers": "Focus on no-fee and cashback products to appeal to budget awareness.",
+                "Wandering Spenders": "Use limited-time offers, sign up bonuses, or fun challenges to encourage repeat engagement."
+            }
+
 
 # App title
 st.title("Customer Clustering Dashboard")
 st.markdown("---")
 
 # Create tabs
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "📊 Dashboard", 
+tab1, tab2, tab3 = st.tabs([
+    "📊 Cluster Information", 
     "🔍 Fetch Customer", 
-    "🔮 Predict Cluster", 
-    "✏️ Update Customer", 
-    "➕ Add Customer"
+    "🔮 Predict Cluster"
 ])
 
-# Tab 1: Dashboard Information
+# Tab 1: Cluster Information
 with tab1:
     st.header("Cluster Dashboard")
     
@@ -139,16 +151,25 @@ with tab1:
         if 'cluster' in df.columns:
             df['cluster'] = pd.to_numeric(df['cluster'], errors='coerce')
             
+            # Add cluster names to the dataframe
+            df['cluster_name'] = df['cluster'].map(cluster_names)
+            
             st.subheader("Customer Distribution by Cluster")
             
             # Count customers by cluster
             cluster_counts = df['cluster'].value_counts().reset_index()
             cluster_counts.columns = ['Cluster', 'Count']
             
-            # Create a bar chart
+            # Add cluster names to the counts
+            cluster_counts['Cluster_Name'] = cluster_counts['Cluster'].map(cluster_names)
+            
+            # Sort the DataFrame by Cluster ID before creating the plot
+            cluster_counts = cluster_counts.sort_values('Cluster')
+
+            # Create the bar chart with sorted data
             fig = px.bar(
                 cluster_counts, 
-                x='Cluster', 
+                x='Cluster_Name', 
                 y='Count',
                 color='Cluster',
                 color_discrete_map={
@@ -157,9 +178,25 @@ with tab1:
                     2: "#e74c3c",
                     3: "#f39c12"
                 },
-                labels={'Cluster': 'Cluster ID', 'Count': 'Number of Customers'},
-                title='Customer Distribution by Cluster'
+                labels={'Cluster_Name': 'Cluster', 'Count': 'Number of Customers'},
+                category_orders={"Cluster_Name": [cluster_names[i] for i in range(4)]},
             )
+
+            # Explicitly set the color scale to ensure it uses your mapping
+            fig.update_traces(marker_color=[
+                {
+                    0: "#3498db",
+                    1: "#2ecc71", 
+                    2: "#e74c3c",
+                    3: "#f39c12"
+                }[cluster] for cluster in cluster_counts['Cluster']
+            ])
+            
+            # Customize the hover template to show both cluster name and ID
+            fig.update_traces(
+                hovertemplate='<b>%{x}</b><br>Cluster ID: %{marker.color}<br>Customers: %{y}<extra></extra>'
+            )
+            
             st.plotly_chart(fig)
             
             # Display cluster statistics
@@ -170,34 +207,134 @@ with tab1:
             cluster_stats = cluster_counts.copy()
             cluster_stats['Percentage'] = (cluster_stats['Count'] / total_customers * 100).round(2)
             
-            # Add cluster descriptions
-            descriptions = {
-                0: "Budget-conscious individuals with moderate engagement",
-                1: "High-value customers with strong digital presence",
-                2: "Conservative savers with limited digital footprint",
-                3: "Young professionals with high transaction frequency"
-            }
-            
-            cluster_stats['Description'] = cluster_stats['Cluster'].map(descriptions)
+            # Add cluster descriptions from the dictionary based on cluster name
+            cluster_stats['Description'] = cluster_stats['Cluster_Name'].map(cluster_strategy)
             
             # Sort by Cluster ID (ascending order)
             cluster_stats = cluster_stats.sort_values('Cluster')
             
-            # Display statistics
+            # Display statistics with cluster names
             st.dataframe(
-                cluster_stats[['Cluster', 'Count', 'Percentage', 'Description']],
+                cluster_stats[['Cluster', 'Cluster_Name', 'Count', 'Percentage', 'Description']],
                 column_config={
                     "Cluster": st.column_config.NumberColumn("Cluster ID"),
+                    "Cluster_Name": st.column_config.Column("Cluster Name"),
                     "Count": st.column_config.NumberColumn("Number of Customers"),
                     "Percentage": st.column_config.NumberColumn("% of Total", format="%.2f%%"),
-                    "Description": "Cluster Description"
+                    "Description": st.column_config.Column("Marketing Strategy")
                 },
                 hide_index=True
             )
+            
+            # Add more in-depth analysis
+            st.subheader("Cluster Profile Analysis")
+            
+            # Create tabs for detailed cluster analysis
+            cluster_tabs = st.tabs([cluster_names[0], cluster_names[1], cluster_names[2], cluster_names[3]])
+            
+            for i, tab in enumerate(cluster_tabs):
+                with tab:
+                    cluster_id = i
+                    cluster_name = cluster_names[i]
+                    
+                    col1, col2 = st.columns([1, 2])
+                    
+                    with col1:
+                        # Display cluster info in a card
+                        st.markdown(
+                            f"""
+                            <div style="padding: 20px; border-radius: 10px; background-color: {get_cluster_color(cluster_id)}; color: white;">
+                                <h3 style="margin-top: 0;">Cluster {cluster_id}: {cluster_name}</h3>
+                                <p>{cluster_strategy[cluster_name]}</p>
+                            </div>
+                            """, 
+                            unsafe_allow_html=True
+                        )
+                        
+                        # Display key metrics for this cluster
+                        cluster_df = df[df['cluster'] == cluster_id]
+                        customer_count = len(cluster_df)
+                        percentage = round((customer_count / total_customers * 100), 2)
+                        
+                        st.metric(label="Customers in Cluster", value=customer_count)
+                        st.metric(label="Percentage of Total", value=f"{percentage}%")
+                    
+                    with col2:
+                        # Display more detailed analysis for this cluster
+                        if not cluster_df.empty:
+                            # Calculate age distribution
+                            if 'age' in cluster_df.columns:
+                                st.subheader("Age Distribution")
+                                age_fig = px.histogram(
+                                    cluster_df, 
+                                    x='age',
+                                    nbins=20,
+                                    color_discrete_sequence=[{
+                                        0: "#3498db",
+                                        1: "#2ecc71",
+                                        2: "#e74c3c",
+                                        3: "#f39c12"
+                                    }[cluster_id]],
+                                    labels={'age': 'Age', 'count': 'Number of Customers'},
+                                    title=f'Age Distribution in {cluster_name}'
+                                )
+                                st.plotly_chart(age_fig, use_container_width=True)
+                            
+                            # Calculate average metrics for this cluster vs overall
+                            st.subheader("Key Metrics Comparison")
+                            metrics_to_compare = ['income/month', 'account balance', 'total_withdrawals', 'total_deposits', 'transaction_count', 'loyalty score']
+                            metrics_available = [m for m in metrics_to_compare if m in cluster_df.columns]
+                            
+                            if metrics_available:
+                                # Calculate averages
+                                cluster_avgs = cluster_df[metrics_available].mean().to_dict()
+                                overall_avgs = df[metrics_available].mean().to_dict()
+                                
+                                comparison_data = []
+                                for metric in metrics_available:
+                                    # Format the metric name for display
+                                    display_name = ' '.join(word.capitalize() for word in metric.split('_')).replace('/', ' per ')
+                                    
+                                    # Calculate percentage difference
+                                    if overall_avgs[metric] > 0:  # Avoid division by zero
+                                        pct_diff = round(((cluster_avgs[metric] - overall_avgs[metric]) / overall_avgs[metric] * 100), 1)
+                                    else:
+                                        pct_diff = 0
+                                    
+                                    # Format values for currency or numbers
+                                    if 'income' in metric or 'balance' in metric or 'withdrawals' in metric or 'deposits' in metric:
+                                        cluster_val = f"${cluster_avgs[metric]:,.2f}"
+                                        overall_val = f"${overall_avgs[metric]:,.2f}"
+                                    else:
+                                        cluster_val = f"{cluster_avgs[metric]:.1f}"
+                                        overall_val = f"{overall_avgs[metric]:.1f}"
+                                    
+                                    comparison_data.append({
+                                        'Metric': display_name,
+                                        'Cluster Average': cluster_val,
+                                        'Overall Average': overall_val,
+                                        'Difference': f"{pct_diff:+.1f}%"
+                                    })
+                                
+                                # Create comparison dataframe
+                                comparison_df = pd.DataFrame(comparison_data)
+                                
+                                # Display comparison table
+                                st.dataframe(
+                                    comparison_df,
+                                    column_config={
+                                        "Metric": st.column_config.Column("Metric"),
+                                        "Cluster Average": st.column_config.Column(f"{cluster_name} Average"),
+                                        "Overall Average": st.column_config.Column("Overall Average"),
+                                        "Difference": st.column_config.Column("% Difference")
+                                    },
+                                    hide_index=True
+                                )
         else:
             st.warning("Cluster information not available in the dataset")
     else:
         st.error("Unable to fetch customer data. Please check if the API is running.")
+
 
 # Tab 2: Fetch Customer Information
 with tab2:
@@ -252,7 +389,7 @@ with tab2:
                         
                         # Loyalty Score
                         customer_info["Attribute"].append("Loyalty Score")
-                        customer_info["Value"].append(customer.get("loyalty score", "N/A"))
+                        customer_info["Value"].append(round(float(customer.get("loyalty score", 0)), 2) if customer.get("loyalty score", "N/A") != "N/A" else "N/A")
                         
                         # Education Level (convert to text if numeric)
                         customer_info["Attribute"].append("Education Level")
@@ -306,402 +443,167 @@ with tab2:
             except ValueError:
                 st.error("Invalid customer ID format. Customer IDs should be integers. Please enter a numeric customer ID (e.g., 1, 2, 3, etc.)")
 
-# Tab 3: Predict Cluster for a New Customer
+# Tab 3: Predict Cluster
 with tab3:
-    st.header("Predict Cluster for a New Customer")
+    st.header("Predict Customer Cluster")
+    st.markdown("Enter customer information to predict which cluster they belong to.")
     
-    st.subheader("Enter Customer Information")
-    st.caption("Fill in the fields below to predict the customer's cluster. Not all fields are required.")
-    
-    # Create a multi-column layout for input fields
+    # Create two columns for input fields to save space
     col1, col2 = st.columns(2)
     
     with col1:
-        age = st.number_input("Age", min_value=0.0, max_value=1.0, value=0.5, step=0.01, 
-                             help="Age value (normalized between 0-1). 0 is youngest, 1 is oldest.")
-        gender = st.selectbox("Gender", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male")
-        income = st.number_input("Monthly Income", min_value=0.0, max_value=1.0, value=0.5, step=0.01,
-                                help="Income value (normalized between 0-1)")
-        balance = st.number_input("Account Balance", min_value=0.0, max_value=1.0, value=0.5, step=0.01,
-                                 help="Account balance (normalized between 0-1)")
-        loyalty = st.number_input("Loyalty Score", min_value=0.0, max_value=1000.0, value=500.0)
-        education = st.selectbox("Education Level", options=[0, 0.33, 0.67, 1.0], 
-                               format_func=lambda x: ["High School", "Bachelor's", "Master's", "PhD"][int(x*3) if x > 0 else 0])
+        # Demographic information
+        st.subheader("Demographics")
+        age = st.number_input("Age", min_value=18, max_value=100, value=30, key="predict_age")
+        gender = st.selectbox("Gender", options=[(1, "Male"), (0, "Female")], format_func=lambda x: x[1], key="predict_gender")[0]
+        education_options = [
+            (0, "High School"),
+            (0.33, "Bachelor's"),
+            (0.67, "Master's"),
+            (1, "PhD")
+        ]
+        education_level = st.selectbox(
+            "Education Level", 
+            options=education_options,
+            format_func=lambda x: x[1],
+            key="predict_education"
+        )[0]
+        
+        # Financial information
+        st.subheader("Financial Information")
+        income = st.number_input("Monthly Income", min_value=0, value=5000, key="predict_income")
+        account_balance = st.number_input("Account Balance", min_value=0, value=10000, key="predict_balance")
+        loyalty_score = st.slider("Loyalty Score", min_value=0, max_value=1000, value=500, key="predict_loyalty")
+        has_loan = st.checkbox("Has Loan", key="predict_loan")
         
     with col2:
-        withdrawals = st.number_input("Total Withdrawals", min_value=0.0, value=500.0)
-        deposits = st.number_input("Total Deposits", min_value=0.0, value=500.0)
-        transactions = st.number_input("Transaction Count", min_value=0, value=20)
+        # Transaction information
+        st.subheader("Transaction Behavior")
+        total_withdrawals = st.number_input("Total Withdrawals", min_value=0, value=2000, key="predict_withdrawals")
+        total_deposits = st.number_input("Total Deposits", min_value=0, value=3000, key="predict_deposits")
+        transaction_count = st.number_input("Transaction Count", min_value=0, value=25, step=1, key="predict_transactions")
         
-        # Social media presence
-        st.subheader("Social Media Presence")
-        col_fb, col_tw = st.columns(2)
-        col_em, col_ig = st.columns(2)
-        
-        with col_fb:
-            facebook = st.checkbox("Facebook", value=True)
-        with col_tw:
-            twitter = st.checkbox("Twitter", value=False)
-        with col_em:
-            email = st.checkbox("Email", value=True)
-        with col_ig:
-            instagram = st.checkbox("Instagram", value=True)
-            
-        has_loan = st.checkbox("Has Loan", value=False)
+        # Digital engagement
+        st.subheader("Digital Engagement")
+        facebook = st.checkbox("Active on Facebook", key="predict_facebook")
+        twitter = st.checkbox("Active on Twitter", key="predict_twitter")
+        instagram = st.checkbox("Active on Instagram", key="predict_instagram")
+        email = st.checkbox("Responsive to Email", key="predict_email")
     
-    # Create the customer data for prediction
-    customer_data = {
-        "age": float(age),
-        "gender": int(gender),
-        "income/month": float(income),
-        "account balance": float(balance),
-        "loyalty score": float(loyalty),
-        "education level": float(education),
-        "total_withdrawals": float(withdrawals),
-        "total_deposits": float(deposits),
-        "transaction_count": int(transactions),
-        "Facebook": int(facebook),
-        "Twitter": int(twitter),
-        "Email": int(email),
-        "Instagram": int(instagram),
-        "has_loan": int(has_loan)
-    }
-    
+    # Predict button
     if st.button("Predict Cluster"):
+        # Prepare data for API call
+        customer_data = {
+            "age": age,
+            "gender": gender,
+            "income/month": income,
+            "account balance": account_balance,
+            "loyalty score": loyalty_score,
+            "education level": education_level,
+            "total_withdrawals": total_withdrawals,
+            "total_deposits": total_deposits,
+            "transaction_count": transaction_count,
+            "Facebook": int(facebook),
+            "Twitter": int(twitter),
+            "Instagram": int(instagram),
+            "Email": int(email),
+            "has_loan": int(has_loan)
+        }
+        
+        # Call API to assign cluster
         result = assign_cluster(customer_data)
         
         if result:
-            st.success(f"Prediction Successful!")
-            
             # Display the result
             cluster_id = result['cluster']
-            cluster_desc = result['cluster_description']
+            cluster_description = result['cluster_description']
             
-            # Create a card with cluster information
+            st.success(f"Prediction complete!")
+            
+            # Display cluster information in a visually appealing card
             st.markdown(
                 f"""
-                <div style="padding: 20px; border-radius: 10px; background-color: {get_cluster_color(cluster_id)}; color: white;">
-                    <h2 style="margin-top: 0;">Assigned to Cluster {cluster_id}</h2>
-                    <p style="font-size: 18px;">{cluster_desc}</p>
+                <div style="padding: 20px; border-radius: 10px; background-color: {get_cluster_color(cluster_id)}; color: white; margin-top: 20px;">
+                    <h2 style="margin-top: 0;">Cluster {cluster_id}</h2>
+                    <p style="font-size: 18px;">{cluster_description}</p>
                 </div>
                 """, 
                 unsafe_allow_html=True
             )
             
-            # Show any missing features that were filled with defaults
-            if 'missing_features' in result and result['missing_features']:
-                st.info(f"Some features were not provided and filled with average values: {', '.join(result['missing_features'])}")
+            # Check if any features were missing in the request
+            if result.get('missing_features') and len(result['missing_features']) > 0:
+                st.info(f"Note: Some features were not provided and were filled with average values: {', '.join(result['missing_features'])}")
             
-            # Show the provided data
-            st.subheader("Customer Data Used for Prediction")
-            st.json(customer_data)
+            # Display feature importance visualization
+            st.subheader("Key Features for This Customer")
             
-            # Option to save this customer (would require additional API endpoint)
-            if st.button("Save This Customer"):
-                response = add_new_customer(customer_data)
-                if response:
-                    st.success(f"Customer saved with ID: {response['customer']['customer id']}")
-                    st.balloons()
-
-# Tab 4: Update Customer Data
-with tab4:
-    st.header("Update Customer Data")
-    
-    # First, search for a customer to update
-    customer_id_to_update = st.text_input("Enter Customer ID to Update", "")
-    
-    if st.button("Search Customer") and customer_id_to_update:
-        customer = get_customer(customer_id_to_update)
-        
-        if customer:
-            st.success(f"Customer found! Update the information below.")
-            
-            # Create a form for updating customer data
-            with st.form("update_customer_form"):
-                st.subheader("Update Customer Information")
-                
-                # Create columns for the form
-                col1, col2 = st.columns(2)
-                
-                with col1:
-                    # Pre-fill with existing data if available
-                    age = st.number_input(
-                        "Age", 
-                        min_value=0.0, 
-                        max_value=1.0, 
-                        value=float(customer.get("age", 0.5)),
-                        step=0.01,
-                        help="Age value (normalized between 0-1). 0 is youngest, 1 is oldest."
-                    )
-                    
-                    gender = st.selectbox(
-                        "Gender", 
-                        options=[0, 1], 
-                        format_func=lambda x: "Female" if x == 0 else "Male",
-                        index=int(customer.get("gender", 0))
-                    )
-                    
-                    income = st.number_input(
-                        "Monthly Income", 
-                        min_value=0.0, 
-                        max_value=1.0,
-                        value=float(customer.get("income/month", 0.5)),
-                        step=0.01,
-                        help="Income value (normalized between 0-1)"
-                    )
-                    
-                    balance = st.number_input(
-                        "Account Balance", 
-                        min_value=0.0, 
-                        max_value=1.0,
-                        value=float(customer.get("account balance", 0.5)),
-                        step=0.01,
-                        help="Account balance (normalized between 0-1)"
-                    )
-                    
-                    loyalty = st.number_input(
-                        "Loyalty Score", 
-                        min_value=0.0, 
-                        max_value=1000.0, 
-                        value=float(customer.get("loyalty score", 500.0))
-                    )
-                    
-                    education_options = [0.0, 0.33, 0.67, 1.0]
-                    education_labels = ["High School", "Bachelor's", "Master's", "PhD"]
-                    
-                    try:
-                        education_val = float(customer.get("education level", 0.0))
-                        education_default = 0
-                        for i, val in enumerate(education_options):
-                            if abs(education_val - val) < 0.2:  # Find closest match
-                                education_default = i
-                                break
-                    except (ValueError, TypeError):
-                        education_default = 0
-                        
-                    education = st.selectbox(
-                        "Education Level", 
-                        options=education_options,
-                        format_func=lambda x: education_labels[int(x*3) if x > 0 else 0],
-                        index=education_default
-                    )
-                    
-                with col2:
-                    withdrawals = st.number_input(
-                        "Total Withdrawals", 
-                        min_value=0.0, 
-                        value=float(customer.get("total_withdrawals", 500.0))
-                    )
-                    
-                    deposits = st.number_input(
-                        "Total Deposits", 
-                        min_value=0.0, 
-                        value=float(customer.get("total_deposits", 500.0))
-                    )
-                    
-                    transactions = st.number_input(
-                        "Transaction Count", 
-                        min_value=0, 
-                        value=int(float(customer.get("transaction_count", 20)))
-                    )
-                    
-                    # Social media presence
-                    st.subheader("Social Media Presence")
-                    col_fb, col_tw = st.columns(2)
-                    col_em, col_ig = st.columns(2)
-                    
-                    with col_fb:
-                        facebook = st.checkbox(
-                            "Facebook", 
-                            value=bool(int(float(customer.get("Facebook", 1))))
-                        )
-                    with col_tw:
-                        twitter = st.checkbox(
-                            "Twitter", 
-                            value=bool(int(float(customer.get("Twitter", 0))))
-                        )
-                    with col_em:
-                        email = st.checkbox(
-                            "Email", 
-                            value=bool(int(float(customer.get("Email", 1))))
-                        )
-                    with col_ig:
-                        instagram = st.checkbox(
-                            "Instagram", 
-                            value=bool(int(float(customer.get("Instagram", 1))))
-                        )
-                        
-                    has_loan = st.checkbox(
-                        "Has Loan", 
-                        value=bool(int(float(customer.get("has_loan", 0))))
-                    )
-                
-                # Submit button
-                submit_button = st.form_submit_button("Update Customer")
-                
-                if submit_button:
-                    # Create the updated customer data
-                    updated_data = {
-                        "age": float(age),
-                        "gender": int(gender),
-                        "income/month": float(income),
-                        "account balance": float(balance),
-                        "loyalty score": float(loyalty),
-                        "education level": float(education),
-                        "total_withdrawals": float(withdrawals),
-                        "total_deposits": float(deposits),
-                        "transaction_count": int(transactions),
-                        "Facebook": int(facebook),
-                        "Twitter": int(twitter),
-                        "Email": int(email),
-                        "Instagram": int(instagram),
-                        "has_loan": int(has_loan)
-                    }
-                    
-                    # Call the update function
-                    success = update_customer(customer_id_to_update, updated_data)
-                    
-                    if success:
-                        st.success("Customer data updated successfully!")
-                        st.balloons()
-                        
-                        # Refresh the customer data to show updated info
-                        updated_customer = get_customer(customer_id_to_update)
-                        if updated_customer and 'cluster' in updated_customer:
-                            st.info(f"Customer is now assigned to Cluster {updated_customer['cluster']}: {updated_customer['cluster_description']}")
-                    else:
-                        st.error("Failed to update customer data.")
-                        
-                        # Show what the update would look like
-                        st.subheader("Data That Would Be Updated")
-                        
-                        # Display before and after
-                        before_after = pd.DataFrame({
-                            'Before': [customer.get(k, '') for k in CLUSTER_FEATURES],
-                            'After': [updated_data.get(k, '') for k in CLUSTER_FEATURES]
-                        }, index=CLUSTER_FEATURES)
-                        
-                        st.dataframe(before_after)
-        else:
-            st.error(f"No customer found with ID: {customer_id_to_update}")
-
-# Tab 5: Add New Customer
-with tab5:
-    st.header("Add New Customer")
-    
-    with st.form("add_customer_form"):
-        st.subheader("Enter New Customer Information")
-        
-        # Create columns for the form
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            # Customer ID field (optional)
-            new_customer_id = st.text_input("Customer ID (Optional)", key="new_customer_id_input")
-            
-            age = st.number_input("Age", min_value=0.0, max_value=1.0, value=0.5, step=0.01, key="new_age",
-                                help="Age value (normalized between 0-1). 0 is youngest, 1 is oldest.")
-            gender = st.selectbox("Gender", options=[0, 1], format_func=lambda x: "Female" if x == 0 else "Male", key="new_gender")
-            income = st.number_input("Monthly Income", min_value=0.0, max_value=1.0, value=0.5, step=0.01, key="new_income",
-                                    help="Income value (normalized between 0-1)")
-            balance = st.number_input("Account Balance", min_value=0.0, max_value=1.0, value=0.5, step=0.01, key="new_balance",
-                                     help="Account balance (normalized between 0-1)")
-            loyalty = st.number_input("Loyalty Score", min_value=0.0, max_value=1000.0, value=500.0, key="new_loyalty")
-            education = st.selectbox("Education Level", options=[0.0, 0.33, 0.67, 1.0], key="new_education",
-                                 format_func=lambda x: ["High School", "Bachelor's", "Master's", "PhD"][int(x*3) if x > 0 else 0])
-            
-        with col2:
-            withdrawals = st.number_input("Total Withdrawals", min_value=0.0, value=500.0, key="new_withdrawals")
-            deposits = st.number_input("Total Deposits", min_value=0.0, value=500.0, key="new_deposits")
-            transactions = st.number_input("Transaction Count", min_value=0, value=20, key="new_transactions")
-            
-            # Social media presence
-            st.subheader("Social Media Presence")
-            col_fb, col_tw = st.columns(2)
-            col_em, col_ig = st.columns(2)
-            
-            with col_fb:
-                facebook = st.checkbox("Facebook", value=True, key="new_fb")
-            with col_tw:
-                twitter = st.checkbox("Twitter", value=False, key="new_tw")
-            with col_em:
-                email = st.checkbox("Email", value=True, key="new_em")
-            with col_ig:
-                instagram = st.checkbox("Instagram", value=True, key="new_ig")
-                
-            has_loan = st.checkbox("Has Loan", value=False, key="new_loan")
-        
-        # Submit button
-        submit_button = st.form_submit_button("Add Customer")
-        
-        if submit_button:
-            # Create the new customer data
-            new_customer_data = {
-                "customer id": int(new_customer_id) if new_customer_id else None,
-                "age": float(age),
-                "gender": int(gender),
-                "income/month": float(income),
-                "account balance": float(balance),
-                "loyalty score": float(loyalty),
-                "education level": float(education),
-                "total_withdrawals": float(withdrawals),
-                "total_deposits": float(deposits),
-                "transaction_count": int(transactions),
-                "Facebook": int(facebook),
-                "Twitter": int(twitter),
-                "Email": int(email),
-                "Instagram": int(instagram),
-                "has_loan": int(has_loan)
+            # Get submitted feature values for visualization
+            feature_data = {
+                'Feature': [],
+                'Value': [],
+                'Category': []
             }
             
-            # Call the add function
-            response = add_new_customer(new_customer_data)
+            # Demographics
+            feature_data['Feature'].extend(['Age', 'Gender', 'Education'])
+            feature_data['Value'].extend([
+                age, 
+                'Male' if gender == 1 else 'Female',
+                dict(education_options)[education_level]
+            ])
+            feature_data['Category'].extend(['Demographics'] * 3)
             
-            if response:
-                st.success(f"New customer added successfully with ID: {response['customer']['customer id']}!")
-                st.balloons()
-                
-                # Show the new customer's cluster
-                if 'cluster' in response['customer']:
-                    cluster_id = int(response['customer']['cluster'])
-                    st.info(f"Customer was assigned to Cluster {cluster_id}")
-                    
-                    # Show cluster description if available
-                    result = assign_cluster(new_customer_data)
-                    if result:
-                        cluster_desc = result['cluster_description']
-                        st.markdown(
-                            f"""
-                            <div style="padding: 20px; border-radius: 10px; background-color: {get_cluster_color(cluster_id)}; color: white;">
-                                <h3 style="margin-top: 0;">Cluster {cluster_id}: {cluster_desc}</h3>
-                            </div>
-                            """, 
-                            unsafe_allow_html=True
-                        )
-            else:
-                st.error("Failed to add new customer. Check the API connection.")
-                
-                # Show what the prediction would be
-                result = assign_cluster({k: v for k, v in new_customer_data.items() if k in CLUSTER_FEATURES})
-                
-                if result:
-                    st.subheader("Cluster Prediction for New Customer")
-                    cluster_id = result['cluster']
-                    cluster_desc = result['cluster_description']
-                    
-                    st.markdown(
-                        f"""
-                        <div style="padding: 20px; border-radius: 10px; background-color: {get_cluster_color(cluster_id)}; color: white;">
-                            <h3 style="margin-top: 0;">Would be assigned to Cluster {cluster_id}</h3>
-                            <p>{cluster_desc}</p>
-                        </div>
-                        """, 
-                        unsafe_allow_html=True
-                    )
-                
-                # Show the POST data that would be sent
-                st.subheader("Customer Data")
-                st.json(new_customer_data)
+            # Financial
+            feature_data['Feature'].extend(['Income', 'Account Balance', 'Loyalty Score', 'Loan'])
+            feature_data['Value'].extend([
+                f"${income:,.2f}/month",
+                f"${account_balance:,.2f}",
+                loyalty_score,
+                'Yes' if has_loan else 'No'
+            ])
+            feature_data['Category'].extend(['Financial'] * 4)
+            
+            # Transaction
+            feature_data['Feature'].extend(['Withdrawals', 'Deposits', 'Transactions'])
+            feature_data['Value'].extend([
+                f"${total_withdrawals:,.2f}",
+                f"${total_deposits:,.2f}",
+                transaction_count
+            ])
+            feature_data['Category'].extend(['Transaction'] * 3)
+            
+            # Digital
+            feature_data['Feature'].extend(['Facebook', 'Twitter', 'Instagram', 'Email'])
+            feature_data['Value'].extend([
+                'Active' if facebook else 'Inactive',
+                'Active' if twitter else 'Inactive',
+                'Active' if instagram else 'Inactive',
+                'Active' if email else 'Inactive'
+            ])
+            feature_data['Category'].extend(['Digital'] * 4)
+            
+            # Create DataFrame for display
+            df_features = pd.DataFrame(feature_data)
+            
+            # Display as a colorful table
+            st.dataframe(
+                df_features,
+                column_config={
+                    "Feature": st.column_config.Column("Feature"),
+                    "Value": st.column_config.Column("Value"),
+                    "Category": st.column_config.Column("Category")
+                },
+                use_container_width=True,
+                hide_index=True
+            )
+            
+            # Add an option to save this customer to the database
+            st.subheader("Save Customer to Database")
+            save_customer = st.checkbox("Would you like to save this customer to the database?", key="predict_save")
+            
+        else:
+            st.error("Error predicting cluster. Please try again or check if the API is running.")
 
 # Footer
 st.markdown("---")
@@ -740,13 +642,11 @@ with st.sidebar.expander("Help & Information"):
     This app allows you to explore customer segments created using K-means clustering.
     
     **Features:**
-    - Dashboard: View cluster distribution and insights
+    - Cluster Information: View cluster distribution and insights
     - Fetch Customer: Look up customers and their assigned clusters
     - Predict Cluster: Categorize new customers
-    - Update Customer: Modify existing customer data
-    - Add Customer: Add new customers to the database
+
     
-    For all input fields that have values between 0-1, these are normalized values where 0 represents the minimum and 1 represents the maximum in the dataset.
     """)
 
 
