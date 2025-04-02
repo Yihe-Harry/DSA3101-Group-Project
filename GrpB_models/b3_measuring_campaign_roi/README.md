@@ -38,7 +38,7 @@ Please ensure you have Docker installed and the repository cloned to your local 
 
 Run `pip install pandas numpy holidays scikit-learn matplotlib xgboost hyperopt joblib` to download all necessary packages
 
-Run `main.py` to run all scripts together and save the model in a .pkl file.
+Run `main.py` to run all scripts together and save the model in a .pkl file. It also produces a plot of the features ranked based on importance
 
 Run `model_optimization.py` to return a set of the best parameters. These parameters can be used to replace the current parameters in [🚀 XGBoost Model Training & Results](https://github.com/Yihe-Harry/DSA3101-Group-Project/blob/main/GrpB_models/b3_measuring_campaign_roi/roi_regression_xgboost.py) if results are unsatisfactory.
 
@@ -58,7 +58,7 @@ Since the dataset is fictitious, it lacks real-world patterns and variability, m
 
 ## Intended Usage
 
-Users (Marketing analysts, bank management) could use this model to have their ROI values predicted. Banks could fill up the numerical features like click rate, impression, etc. with their targets. They can also enter categorical features that contains their intended marketing strategy, like target customer segments and type of channels used. This way, the users are able to gauge if their targeted metrics and initial strategy can reap in a higher ROI.
+Users (Marketing analysts, bank management) could use this model to have their ROI values predicted. Users can fill up the numerical features like click rate, impression, etc. with their targets. They can also enter categorical features that contains their intended marketing strategy, like target customer segments and type of channels used. This way, the users are able to gauge if their targeted metrics and initial strategy can reap in a higher ROI.
 
 ## Possible solution
 
