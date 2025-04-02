@@ -80,4 +80,4 @@ y_pred = final_mod.predict(X_test)
 final_mod.eval(y_test, y_pred_prob, y_pred)
 ranks = final_mod.rank(X_test)
 print(ranks)
-joblib.dump(final_mod, '../../Dashboard/cus_pref_model.pkl')
+# joblib.dump(final_mod, '../../Dashboard/cus_pref_model.pkl') #comment out for docker
