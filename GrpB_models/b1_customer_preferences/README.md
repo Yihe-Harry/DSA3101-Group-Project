@@ -53,16 +53,16 @@ For the ensemble classification model, we achieved an 83.2% macro accuracy(inclu
 The feature importance over all models show that days_since_contact, balance and last_contact_month are generally the most important features.
 
 ## Key Insights
+### Term Deposit
+The subsciption of term deposit is closely tied to the contacts the customers received with a general decrease in subscriptions across day since last contact and general increase of subscription with increased frequency of contact. It is recommended to contact the customers after a short period since subscription increase initially with day since last contact and with appropriate frequency since subscription rate drops drastically after 15 contacts. Contacting customers during peak subscription months like March, September, etc. can increase success rates of sales of marketing campaigns.
+
 ### Housing Loan
 The target group for housing loans are youths and middle age customers with lower bank balance, this corresponds with the business understanding that the youths and middle age are more likely to buy new houses and loans are generally for customers lacking funding for their new houses. It is recommended to suggest housing loan to these target groups to increase success rate of sales of marketing campaigns.
 
 ### Personal Loan
 The target group of personal loan is customers with low bank balance and special groups such as students are more inclined to take personal loans due to financial circumstances. There is also seasonal trend with July having the highest personal loan adoption proportion so it is recommended to reach out to customers about personal loans during months of higher proportion for a higher success rate of sales of marketing campaigns.
 
-### Term Deposit
-The subsciption of term deposit is closely tied to the contacts the customers received with a general decrease in subscriptions across day since last contact and general increase of subscription with increased frequency of contact. It is recommended to contact the customers after a short period since subscription increase initially with day since last contact and with appropriate frequency since subscription rate drops drastically after 15 contacts. Contacting customers during peak subscription months like March, September, etc. can increase success rates of sales of marketing campaigns.
-
-![Prediction Result](https://raw.githubusercontent.com/Yihe-Harry/DSA3101-Group-Project/main/Dashboard/Images/prediction_result.JPG)
+![Customer Preference Result](https://raw.githubusercontent.com/Yihe-Harry/DSA3101-Group-Project/main/Dashboard/Images/customer_pref_result.png)
 
 ## Conclusion
 For marketing campaigns, targeting bank products to the right customer segments at the right time is crucial for maximizing the success of marketing campaigns and improving customer engagement. By aligning product offerings with customer preferences, the bank can enhance customer satisfaction while increasing sales conversion rates.
