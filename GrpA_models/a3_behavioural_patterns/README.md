@@ -123,22 +123,22 @@ product_usage.png for visualisation purposes in this README file
 - We can offer personalised strategies according to the characteristics of 
 each cluster, which can increase ROI via a variety of marketing strategies.
 
-- Cluster 0 : Frequent users, high income, medium loyalty, semi-budget conscious
+- Cluster 0 : Frequent users, high income, medium loyalty, semi-budget conscious (Comfort Seekers)
 
   - Promote premium offerings like investment accounts or travel cards with moderate fees
 
   - These customers are active and financially capable but need stronger incentives to stay loyal
 
-- Cluster 1 : Occasional users, medium income, medium loyalty, not budget conscious
+- Cluster 1 : Occasional users, medium income, medium loyalty, not budget conscious (Easy Explorers)
 
   - Use visually engaging campaigns across social media platforms to grab attention
 
   - They are open to spending but not actively engaged, so the goal is to increase frequency and deepen their relationship with the bank
-- Cluster 2 : Very frequent users, high income, medium loyalty, very budget conscious
+- Cluster 2 : Very frequent users, high income, medium loyalty, very budget conscious (Savvy Superusers)
 
   - Focus on no-fee and cashback products to appeal to budget awareness
   - These users interact often but are cost-sensitive, so delivering value without fees will strengthen retention
-- Cluster 3 : Semi-frequent users, medium income, low loyalty, not budget conscious
+- Cluster 3 : Semi-frequent users, medium income, low loyalty, not budget conscious (Wandering Spenders)
 
   - Use limited-time offers, sign-up bonuses, or fun challenges to encourage repeat engagement
   - This group is disengaged but not price-sensitive , so strategic nudges can build habits and loyalty over time
