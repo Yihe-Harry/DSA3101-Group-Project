@@ -752,7 +752,7 @@ if function_choice:
         job = st.selectbox("Job", job_list)
         marital_list = ['single', 'married', 'divorced']
         marital = st.selectbox("Marital Status", marital_list)
-        education = { 'primary': 0, 'secondary': 1, 'tertiary': 2 }.get(st.selectbox('education', ['primary', 'secondary', 'tertiary']), -1)
+        education = st.selectbox("Education", ['primary', 'secondary', 'tertiary', 'unknown'])
         default = st.selectbox("Has Credit in Default?", ['yes', 'no'])
         balance = st.number_input("Average Yearly Account Balance", value=3000)
         pdays = st.number_input("Number of Days since Previous Campaign", min_value=-1, value=-1)
@@ -763,11 +763,11 @@ if function_choice:
         
         inputs = pd.DataFrame({
             'age': [age],
-            'education': [1 if education=='primary' else 2 if education=='secondary' else 3 if education == 'tertiary' else -1],
+            'education': [0 if education=='primary' else 1 if education=='secondary' else 2 if education == 'tertiary' else -1],
             'default': [0 if default=='no' else 1],
             'balance': [balance],
             'pdays': [pdays],
-            'previous': previous,
+            'previous': [previous],
             'job_' + job: [1],
             'marital_' + marital: [1],
             'contact_' + contact: [1],
