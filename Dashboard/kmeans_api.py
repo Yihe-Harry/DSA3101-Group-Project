@@ -150,10 +150,10 @@ kmeans, scaler = load_or_train_model()
 # Helper function to get cluster description
 def get_cluster_description(cluster_id):
     descriptions = {
-        0: "Budget-conscious individuals with moderate engagement",
-        1: "High-value customers with strong digital presence",
-        2: "Conservative savers with limited digital footprint",
-        3: "Young professionals with high transaction frequency"
+        0: "Value-driven relatively high earners who actively engage but seek offerings that justify the cost",
+        1: "Casual users drawn to aesthetics and lifestyle, with untapped engagement potential",
+        2: "Highly engaged financial optimisers who demand high value with minimal fees",
+        3: "Low-loyalty spenders motivated by novelty, rewards, and playful experiences"
     }
     return descriptions.get(cluster_id, "Unknown cluster")
 
