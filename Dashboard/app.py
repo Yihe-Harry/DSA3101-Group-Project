@@ -698,10 +698,6 @@ if function_choice:
                         hide_index=True
                     )
                     
-                    # Add an option to save this customer to the database
-                    st.subheader("Save Customer to Database")
-                    save_customer = st.checkbox("Would you like to save this customer to the database?", key="predict_save")
-                    
                 else:
                     st.error("Error predicting cluster. Please try again or check if the API is running.")
 
