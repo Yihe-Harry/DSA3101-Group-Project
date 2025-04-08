@@ -211,7 +211,7 @@ def preprocess_credit_card_data():
 
 
 # Title
-st.title("🤖 Welcome to Group 13 AI banking system!")
+st.title("🤖 Welcome to PersonaBank!")
 
 
 
